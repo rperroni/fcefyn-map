@@ -169,6 +169,10 @@ a {
     background-color: #FFB74D;
 }
 
+.regular {
+    background-color: #c2a374;
+}
+
 .bloqueada {
     background-color: #bdbdbd;
     /*border-color: #7c7c7c;*/

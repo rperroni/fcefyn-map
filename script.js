@@ -1,6 +1,7 @@
 let materias = [];
 let aprobadas = new Set();
 let cursando = new Set(); // nuevo set
+let regulares = new Set();
 
 function cargarProgreso() {
     const data = localStorage.getItem("aprobadas");
@@ -9,11 +10,14 @@ function cargarProgreso() {
     }
     const dataCursando = localStorage.getItem("cursando");
     if (dataCursando) cursando = new Set(JSON.parse(dataCursando));
+    const dataRegulares = localStorage.getItem("regulares");
+    if (dataRegulares) regulares = new Set(JSON.parse(dataRegulares));
 }
 
 function guardarProgreso() {
     localStorage.setItem("aprobadas", JSON.stringify([...aprobadas]));
     localStorage.setItem("cursando", JSON.stringify([...cursando]));
+    localStorage.setItem("regulares", JSON.stringify([...regulares]));
 }
 
 function actualizarEstado() {
@@ -26,8 +30,8 @@ function actualizarEstado() {
         let puedeCursar;
 
         if (m.codigo === "ingles"){
-            //modulo de ingles requiere 10 asignaturas aprobadas
-            puedeCursar = aprobadas.size >= 10;
+            //modulo de ingles requiere 10 asignaturas aprobadas (+3 del ingreso)
+            puedeCursar = aprobadas.size > 13;
         }else if (m.codigo === "PPS"){
             // Práctica profesional supervisada: requiere adeudar <= 100 RTF
             puedeCursar = rtfAdeudados <= 100;
@@ -36,12 +40,14 @@ function actualizarEstado() {
             puedeCursar = rtfAdeudados <= 50;
         } else {
             // Caso normal: requiere correlativas aprobadas
-            puedeCursar = m.correlativas.every(c => aprobadas.has(c));
+            puedeCursar = m.correlativas.every(c => aprobadas.has(c) || regulares.has(c));
         }
         //const puedeCursar = m.correlativas.every(c => aprobadas.has(c));
 
         if (aprobadas.has(m.codigo)) {
             elemento.className = "materia aprobada";
+        } else if (regulares.has(m.codigo)) {
+            elemento.className = "materia regular";
         } else if (cursando.has(m.codigo)) {
             elemento.className = "materia cursando";
         } else if (puedeCursar) {
@@ -49,13 +55,14 @@ function actualizarEstado() {
         } else {
             elemento.className = "materia bloqueada";
         }
+
          // Actualizar tooltip del nombre
         const nombreSpan = elemento.querySelector(".nombre-materia span");
         if (aprobadas.has(m.codigo)) {
             nombreSpan.title = "Desaprobar";
         } else if (cursando.has(m.codigo)) {
-            nombreSpan.title = "Aprobar";
-        } else if (puedeCursar) {
+            nombreSpan.title = "Regularizar";
+        } else if (puedeCursar || regulares.has(m.codigo)) {
             nombreSpan.title = "Aprobar";
         } else {
             nombreSpan.title = "Te faltan correlativas";
@@ -63,7 +70,7 @@ function actualizarEstado() {
 
         // Mostrar/ocultar botón de anotarse
         const botonAnotarse = elemento.querySelector(".icono-anotarse");
-        if (aprobadas.has(m.codigo) || (!puedeCursar)) {
+        if (aprobadas.has(m.codigo) || (!puedeCursar) || regulares.has(m.codigo)) {
             botonAnotarse.style.display = "none";
         } else {
             botonAnotarse.style.display = "block"; // mostrar en cursando o disponible
@@ -91,12 +98,25 @@ function actualizarEstado() {
 }
 
 function toggleAprobada(codigo) {
+    const materia = materias.find(m => m.codigo === codigo);
+
     if (aprobadas.has(codigo)) {
         aprobadas.delete(codigo);
-    } else {
+    } else if (cursando.has(codigo)) {
+        if (materia.semestre === 0) {
+            // Semestre 0: ir directo a aprobada
+            aprobadas.add(codigo);
+            cursando.delete(codigo);
+        } else {
+            // Semestres normales: pasar a regular
+            regulares.add(codigo);
+            cursando.delete(codigo);
+        }
+    } else { /* está regular */
+        regulares.delete(codigo);
         aprobadas.add(codigo);
-        cursando.delete(codigo); // si la apruebo, dejo de cursarla
     }
+
     guardarProgreso();
     actualizarEstado();
 }
