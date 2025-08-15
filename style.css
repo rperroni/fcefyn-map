@@ -1,0 +1,192 @@
+/* Página tipo diapositiva centrada */
+html, body { 
+    height: 100%; margin: 0; 
+    overflow-y: auto;
+}
+
+header {
+    background-color: rgb(34, 34, 34);
+    width: 100%;
+    color: white;
+}
+
+body {
+  display: grid;
+  grid-template-rows: auto 1fr; /* título arriba, mapa ocupa el resto */
+  justify-items: center;
+  align-items: start;
+  overflow: hidden;             /* sin scroll vertical de la página */
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Área “slide” centrada */
+.slide {
+    width: 100vw;
+    height: 100%;                 /* ocupa todo el alto disponible */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*place-items: center;          /* centra el mapa */
+    overflow: visible;            /* no recorta nada */
+}
+
+/* ÚNICO contenedor que scrollea en X */
+.scroll-x {
+    display: flex;
+    width: auto;
+    height: auto;
+    overflow-x: auto;             /* scroll horizontal */
+    overflow-y: hidden;           /* no queremos barra vertical aquí */
+    padding: 12px 20px 36px;      /* <-- bottom extra para que el ícono “flote” sin cortarse */
+}
+
+/* contenedor de columnas sin overflow */
+#contenedor-semestres {
+    display: flex;
+    justify-content: center;
+    gap: 50px;                    /* más espacio entre columnas */
+    padding: 0;                   /* lo manejamos desde .scroll-x */
+    overflow: visible;            /* importante: que no recorte */
+}
+.columna-semestre {
+    display: flex;
+    /*justify-content: center; ahora las columnas están distribuidas desde el centro*/
+    flex-direction: column;
+    gap: 30px; /* más separación entre filas */
+    /*min-width: 100px; /* más compacto */
+    max-width: 100px;
+}
+
+.materia {
+    position: relative;
+    padding: 6px 8px; /* más chico */
+    height: auto;
+    border-radius: 8px;
+    /*border-style: solid;*/
+    border-width: 0.5px;
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.2s ease;
+    text-align: center;
+    font-size: 12px; /* letra más chica */
+    z-index: 1;
+}
+
+/* Al hacer hover, quitamos el redondeo derecho para que encaje con la pestaña */
+.materia:hover {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    transform: scale(1.05);
+}
+
+.icono-flotante {
+    position: absolute;
+    bottom: -15px; /* arriba de la tarjeta */
+    left: 0;                /* empieza desde la izquierda */
+    width: 100%;            /* ocupa todo el ancho de la tarjeta */
+    box-sizing: border-box; /* incluye bordes en el ancho */
+    background-color: inherit;
+    padding: 4px 0;
+    border-radius: 0 0 6px 6px;
+    /*border-style: solid;
+    border-top-style: none;
+    border-color: inherit;
+    border-width: inherit;*/
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    /*transform: translateY(10px);*/
+}
+
+.materia:hover .icono-flotante, .icono-flotante:hover {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.icono-anotarse {
+    position: absolute;
+    top: -10px;       /* un poquito hacia arriba de la tarjeta */
+    right: -10px;     /* un poquito a la derecha de la tarjeta */
+    width: 20px;     /* círculo */
+    height: 20px;
+    line-height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    
+    justify-content: center;
+    font-size: 12px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease;
+    color: #000000;
+    z-index: 2; /* para que esté por encima */
+}
+
+.materia:hover .icono-anotarse {
+    opacity: 1;
+    visibility: visible;
+}
+
+.nombre-materia {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+}
+
+/* El icono no ocupa espacio si no está visible */
+.nombre-materia a {
+    display: inline-flex;
+    font-size: 0.9em;
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+    margin-left: 0;
+}
+
+.aprobada {
+    background-color: #43A047;
+    color: white;
+}
+
+.disponible {
+    background-color: #42A5F5;
+}
+
+.cursando {
+    background-color: #FFB74D;
+}
+
+.bloqueada {
+    background-color: #bdbdbd;
+    /*border-color: #7c7c7c;*/
+    color: #5a5a5a;
+}
+
+/* Verde para anotarse */
+.icono-anotarse.anotarse {
+    background-color: #66BB6A;
+}
+
+/* Rojo para desanotarse */
+.icono-anotarse.desanotarse {
+    background-color: #EF5350;
+}
+
+.link-icon {
+    display: flex;
+    justify-content: flex-end;
+    margin-left: auto;
+}
