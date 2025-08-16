@@ -35,7 +35,7 @@ El diseño y enfoque se inspiran en [FIUBA-Map](https://github.com/fdelmazo/FIUB
 - Navegación por carrera y plan específicos  
 - *(Opcional: tracking de créditos, guardado del estado, etc. si lo implementás)*  
 
-- *Por el momento el proyecto no cuenta con una base de datos. Los cambios se guardan en el navegador localmente.
+*Por el momento el proyecto no cuenta con una base de datos. Los cambios se guardan en el navegador localmente.
 ---
 
 ## Capturas / Demo

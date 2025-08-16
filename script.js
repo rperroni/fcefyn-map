@@ -305,6 +305,58 @@ function renderCarreraDropdown() {
     });
 }
 
+// Sugerencias: formulario flotante y envío por Formspree
+function setupSugerencias() {
+    const modal = document.getElementById("sugerencias-modal");
+    const btn = document.getElementById("sugerencias-btn");
+    const closeBtn = document.getElementById("sugerencias-close");
+    const form = document.getElementById("sugerencias-form");
+    const status = document.getElementById("sugerencias-status");
+
+    // Mostrar modal
+    btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        modal.classList.add("visible");
+        status.textContent = "";
+    });
+
+    // Cerrar modal con cruz
+    closeBtn.addEventListener("click", () => {
+        modal.classList.remove("visible");
+    });
+
+    // Cerrar modal al hacer click fuera del contenido
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+            modal.classList.remove("visible");
+        }
+    });
+
+    // Enviar formulario por Formspree
+    form.addEventListener("submit", function(e) {
+        e.preventDefault();
+        status.textContent = "Enviando...";
+        // Formspree endpoint para perronirocio@gmail.com
+        fetch("https://formspree.io/f/xwkgyqgj", {
+            method: "POST",
+            headers: { "Accept": "application/json" },
+            body: new FormData(form)
+        })
+        .then(response => {
+            if (response.ok) {
+                status.textContent = "¡Mensaje enviado! Gracias por tu aporte.";
+                form.reset();
+                setTimeout(() => { modal.classList.remove("visible"); }, 1800);
+            } else {
+                status.textContent = "Hubo un error al enviar. Intenta nuevamente.";
+            }
+        })
+        .catch(() => {
+            status.textContent = "Hubo un error al enviar. Intenta nuevamente.";
+        });
+    });
+}
+
 // Elimina el listener del <select> original
 // document.getElementById("carrera").addEventListener("change", ...);
 
@@ -376,3 +428,8 @@ function setupInfoColores() {
 /* Inicial */
 cargarCarrera(carreraActual);
 setupInfoColores();
+
+/* Agrega esto al final del archivo */
+document.addEventListener("DOMContentLoaded", () => {
+    setupSugerencias();
+});

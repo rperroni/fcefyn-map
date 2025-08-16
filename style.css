@@ -500,3 +500,252 @@ a {
     }
 }
 /* --- FIN RESPONSIVE --- */
+
+/* Footer */
+footer {
+    background-color: var(--bgnd-color-footer);
+    color: var(--txt-color-footer);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 20;
+}
+
+.footer-content {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+}
+
+.icono-footer {
+    font-size: 2rem;
+    color: #fff;
+    transition: color 0.2s;
+}
+
+.icono-footer:hover {
+    color: #43A047;
+}
+
+.icono-footer-mate {
+    width: 32px;
+    height: 32px;
+    vertical-align: middle;
+    border-radius: 0;
+    background: none;
+    border: none;
+    filter: brightness(0) invert(1); /* blanco sobre fondo oscuro */
+    transition: box-shadow 0.2s, filter 0.2s;
+}
+
+.icono-footer-mate:hover {
+    filter: brightness(0) invert(0.7); /* gris claro al hacer hover */
+    box-shadow: none;
+}
+
+.footer-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.7rem;
+    cursor: pointer;
+    padding: 0 8px;
+    transition: color 0.2s;
+}
+
+.footer-btn:hover {
+    color: #42A5F5;
+}
+
+.enviar-btn {
+    font-size: 1.1rem;
+    background: #42A5F5;
+    color: #fff;
+    border-radius: 6px;
+    padding: 8px 18px;
+    margin-top: 12px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.enviar-btn:hover {
+    background: #1565c0;
+}
+
+/* Formulario flotante de sugerencias */
+.sugerencias-modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0; top: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.35);
+    justify-content: center;
+    align-items: center;
+}
+
+.sugerencias-modal.visible {
+    display: flex;
+}
+
+.sugerencias-modal-content {
+    background: #f7f7f7;
+    color: #222;
+    padding: 32px 24px 24px 24px;
+    border-radius: 14px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    min-width: 340px;
+    max-width: 95vw;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    border: 1.5px solid #e0e0e0;
+}
+
+.sugerencias-modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 18px;
+    font-size: 1.35rem;
+    color: #1565c0;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+#sugerencias-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.sugerencias-row {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 0;
+}
+
+.sugerencias-row label {
+    margin-top: 0;
+}
+
+.sugerencias-row input {
+    margin-bottom: 0;
+}
+
+#sugerencias-form label {
+    margin-top: 12px;
+    margin-bottom: 4px;
+    font-weight: 500;
+    font-size: 1rem;
+    color: #222;
+}
+
+#sugerencias-form input,
+#sugerencias-form textarea {
+    width: 100%;
+    padding: 7px 10px;
+    border-radius: 6px;
+    border: 1px solid #bdbdbd;
+    font-size: 1rem;
+    margin-bottom: 8px;
+    box-sizing: border-box;
+    background: #fff;
+    color: #222;
+    transition: border 0.2s;
+}
+
+#sugerencias-form input:focus,
+#sugerencias-form textarea:focus {
+    border: 1.5px solid #42A5F5;
+    outline: none;
+}
+
+#sugerencias-form textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+.enviar-btn {
+    font-size: 1.1rem;
+    background: #42A5F5;
+    color: #fff;
+    border-radius: 6px;
+    padding: 8px 18px;
+    margin-top: 12px;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(66,165,245,0.08);
+}
+
+.enviar-btn:hover {
+    background: #1565c0;
+}
+
+#sugerencias-status {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #43A047;
+    min-height: 22px;
+    text-align: center;
+}
+
+.sugerencias-close {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    font-size: 2rem;
+    color: #222;
+    cursor: pointer;
+    font-weight: bold;
+    transition: color 0.2s;
+    z-index: 2;
+}
+
+.sugerencias-close:hover {
+    color: #EF5350;
+}
+
+/* Responsive para el formulario flotante */
+@media (max-width: 600px) {
+    .sugerencias-modal-content {
+        min-width: 0;
+        padding: 18px 6px 12px 6px;
+    }
+    .sugerencias-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+/* Responsive: íconos del footer más pequeños en pantallas chicas */
+@media (max-width: 600px) {
+    .footer-content {
+        gap: 18px;
+    }
+    .icono-footer {
+        font-size: 1.3rem;
+    }
+    .icono-footer-mate {
+        width: 22px;
+        height: 22px;
+    }
+    .footer-btn {
+        font-size: 1.15rem;
+        padding: 0 4px;
+    }
+}
