@@ -148,17 +148,17 @@ a {
 
 .icono-anotarse {
     position: absolute;
-    top: -10px;       /* un poquito hacia arriba de la tarjeta */
-    right: -10px;     /* un poquito a la derecha de la tarjeta */
-    width: 20px;     /* círculo */
-    height: 20px;
-    line-height: 20px; /* centrar icono */
+    top: -5px;       /* un poquito hacia arriba de la tarjeta */
+    right: -5px;     /* un poquito a la derecha de la tarjeta */
+    width: 25px;     /* círculo */
+    height: 25px;
+    line-height: 25px; /* centrar icono */
     border-radius: 50%;
     display: flex;
     align-items: center;
     
     justify-content: center;
-    font-size: 12px;
+    font-size: 15px;
     cursor: pointer;
     border: 1px solid #ccc;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
@@ -212,4 +212,90 @@ a {
     display: flex;
     justify-content: flex-end;
     margin-left: auto;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+    header {
+        flex-direction: column;
+        align-items: center; /* centrado */
+        justify-content: center;
+        padding: 12px 8px;
+        gap: 10px;
+        text-align: center;
+    }
+    header h1, .selector-carrera {
+        text-align: center;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+    body {
+        overflow-y: auto !important; /* permite scroll vertical */
+    }
+    .slide {
+        height: auto;
+        min-height: 40vh;
+        padding: 0;
+    }
+    .scroll-x {
+        padding: 8px 4px 24px;
+        max-width: 100vw;
+    }
+    #contenedor-semestres {
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+    .columna-semestre {
+        max-width: 90vw;
+        gap: 24px;
+        margin-bottom: 32px;
+    }
+    .materia {
+        max-width: 98vw;
+        min-width: 60vw;
+        font-size: 0.95rem;
+        padding: 10px 6px;
+    }
+}
+
+@media (max-width: 600px) {
+    header {
+        padding: 8px 2px;
+        font-size: 13px;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+    header h1, .selector-carrera {
+        text-align: center;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+    body {
+        overflow-y: auto !important; /* permite scroll vertical */
+    }
+    .selector-carrera {
+        font-size: 12px;
+    }
+    .slide {
+        min-height: 30vh;
+    }
+    .scroll-x {
+        padding: 4px 1px 16px;
+    }
+    .columna-semestre {
+        max-width: 100vw;
+        gap: 16px;
+        margin-bottom: 40px;
+    }
+    .materia {
+        font-size: 0.9rem;
+        padding: 8px 4px;
+    }
 }
