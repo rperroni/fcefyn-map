@@ -35,13 +35,20 @@ function actualizarEstado() {
 
         let puedeCursar;
         // las materias modulo de ingles, pps, y pi tienen condiciones especiales de correlativas
-        if (m.codigo === "ingles") {
-            puedeCursar = aprobadas.size > 13;
-        } else if (m.codigo === "PPS") {
-            puedeCursar = rtfAdeudados <= 100;
-        } else if (m.codigo === "PI") {
-            puedeCursar = rtfAdeudados <= 50;
+        if (m.condiciones) {
+            switch (m.condiciones.tipo) {
+                case "minAprobadas":
+                    puedeCursar = aprobadas.size >= m.condiciones.cantidad;
+                    break;
+                case "maxAdeudados":
+                    puedeCursar = rtfAdeudados <= m.condiciones.cantidad;
+                    break;
+                // Podés agregar más tipos en el futuro (ej: "requiereCursando", etc.)
+                default:
+                    puedeCursar = false;
+            }
         } else {
+            // regla estándar: todas las correlativas aprobadas o regulares
             puedeCursar = m.correlativas.every(c => aprobadas.has(c) || regulares.has(c));
         }
 

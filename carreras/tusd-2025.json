@@ -114,6 +114,10 @@
     "codigo": "ingles",
     "nombre": "Módulo de Inglés",
     "correlativas": [],
+    "condiciones": {
+      "tipo": "minAprobadas",
+      "cantidad": 9
+    },
     "RTF": 3,
     "semestre": 4,
     "programa_url": "https://fcefyn.unc.edu.ar/documents/5636/10-04066-M%C3%B3dulo_de_ingl%C3%A9s-v02.docx.pdf"
@@ -148,6 +152,10 @@
     "codigo": "PPS",
     "nombre": "Práctica Profesional Supervisada",
     "correlativas": [],
+    "condiciones": {
+      "tipo": "minAprobadas",
+      "cantidad": 12
+    },
     "RTF": 6,
     "semestre": 6,
     "programa_url": "no disponible"

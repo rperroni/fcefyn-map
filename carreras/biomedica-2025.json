@@ -122,6 +122,10 @@
     "codigo": "ingles",
     "nombre": "Módulo de Inglés",
     "correlativas": [],
+    "condiciones": {
+      "tipo": "minAprobadas",
+      "cantidad": 13
+    },
     "RTF": 3,
     "semestre": 3,
     "programa_url": "https://fcefyn.unc.edu.ar/documents/5636/10-04066-M%C3%B3dulo_de_ingl%C3%A9s-v02.docx.pdf"
@@ -318,6 +322,10 @@
     "codigo": "PPS",
     "nombre": "Práctica Profesional Supervisada",
     "correlativas": [],
+    "condiciones": {
+      "tipo": "maxRtfAdeudados",
+      "cantidad": 100
+    },
     "RTF": 10,
     "semestre": 8,
     "programa_url": "https://fcefyn.unc.edu.ar/documents/5526/10-09217-Pr%C3%A1ctica_Profesional_Supervisada.docx.pdf"
@@ -378,6 +386,10 @@
     "codigo": "PI",
     "nombre": "Proyecto Integrador",
     "correlativas": [],
+    "condiciones": {
+      "tipo": "maxRtfAdeudados",
+      "cantidad": 50
+    },
     "RTF": 13,
     "semestre": 10,
     "programa_url": "https://fcefyn.unc.edu.ar/documents/5530/10-09225-Proyecto_Integrador.docx.pdf"
