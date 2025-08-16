@@ -1,5 +1,16 @@
 /* Colores */
 :root {
+    /* colores de header y footer */
+    --bgnd-color-header: rgb(34, 34, 34); /* gris oscuro */
+    --txt-color-header: white; /* texto blanco para contraste */
+
+    --bgnd-color-selector: rgb(50, 50, 50); /* gris más claro para el selector */
+    --txt-color-selector: white; /* texto blanco para contraste */
+
+    --bgnd-color-footer: rgb(34, 34, 34); /* gris oscuro */
+    --txt-color-footer: white; /* texto blanco para contraste */
+    /* fin colores de header y footer */
+
     /* colores de los estados de las materias */
     --bgnd-color-aprobada: #43A047; /* verde */
     --txt-color-aprobada: white; /* texto blanco para contraste */
@@ -25,23 +36,25 @@
 
 /* Página tipo diapositiva centrada */
 html, body { 
-    height: 100%; margin: 0; 
+    height: 100%; margin: 0; padding: 0;
     overflow-y: auto;
 }
 
+
 header {
-    background-color: rgb(34, 34, 34);
-    width: 100%;
-    color: white;
+    background-color: var(--bgnd-color-header);
+    width: 100%; /* usa viewport width para respetar padding */
+    color: var(--txt-color-header);
     display: flex;
     justify-content: space-between; /* título a la izquierda, selector a la derecha */
     align-items: center;
-    padding: 0 20px;
+    padding: 0 20px; /* aumenta padding para pantallas grandes */
+    box-sizing: border-box; /* asegura que el padding funcione */
 }
 
 .selector-carrera {
     font-size: 14px;
-    color: white;
+    color: var(--txt-color-selector);
 }
 
 .selector-carrera select {
@@ -68,7 +81,6 @@ a {
 
 /* Área “slide” centrada */
 .slide {
-    width: 100vw;
     height: 100%;                 /* ocupa todo el alto disponible */
     display: flex;
     justify-content: center;
@@ -199,6 +211,17 @@ a {
     visibility: visible;
 }
 
+.icono-plan-carrera {
+    font-size: 22px;
+    color: #f5f5f5; /* blanco/gris claro para contraste sobre fondo oscuro */
+    margin-right: 10px;
+    vertical-align: middle;
+    background: none;
+    box-shadow: none;
+    border: none;
+    transition: color 0.2s;
+}
+
 /* POSIBLES ESTADOS DE LAS MATERIAS */
 .aprobada {
     background-color: var(--bgnd-color-aprobada);
@@ -262,7 +285,7 @@ a {
         justify-content: center;
         align-items: center;
         display: flex;
-        flex-direction: column;
+        flex-direction: row; /* Fuerza horizontal para el icono y selector */
     }
     body {
         overflow-y: auto !important; /* permite scroll vertical */
@@ -279,6 +302,7 @@ a {
     #contenedor-semestres {
         gap: 16px;
         flex-wrap: wrap;
+        margin-left: -80px;
     }
     .columna-semestre {
         max-width: 90vw;
@@ -286,8 +310,7 @@ a {
         margin-bottom: 32px;
     }
     .materia {
-        max-width: 98vw;
-        min-width: 60vw;
+        width: 60vw;
         font-size: 0.95rem;
         padding: 10px 6px !important;
         padding: 0;
@@ -367,6 +390,15 @@ a {
 
     .icono-flotante {
         background-color: var(--bgnd-color-ver-programa) !important; /* verde para programa */
+    }
+
+    .icono-plan-carrera {
+        font-size: 20px;
+        margin-right: 7px;
+    }
+
+    .selector-carrera {
+        gap: 4px;
     }
 
     /* Verde para anotarse */

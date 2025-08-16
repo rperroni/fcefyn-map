@@ -212,10 +212,28 @@ function cargarCarrera(nombreCarrera) {
         .catch(err => console.error("Error cargando materias:", err));
 }
 
+// URLs de los planes de estudio por carrera
+const PLANES_CARRERA = {
+    "biomedica-2025": "https://fcefyn.unc.edu.ar/documents/5190/Ing._Biom%C3%A9dica_Plan_de_estudio_2025.pdf",
+    "tusd-2025": "https://fcefyn.unc.edu.ar/documents/5905/Anexo_I_Grilla_de_Cursada-tusd25.pdf"
+};
+
+// Actualiza el enlace del plan de estudios
+function actualizarPlanCarreraLink(nombreCarrera) {
+    const link = document.getElementById("plan-carrera-link");
+    if (link) {
+        link.href = PLANES_CARRERA[nombreCarrera] || "#";
+    }
+}
+
 // Listener del selector
 document.getElementById("carrera").addEventListener("change", e => {
     cargarCarrera(e.target.value);
+    actualizarPlanCarreraLink(e.target.value);
 });
+
+// Inicializa el href al cargar
+actualizarPlanCarreraLink(carreraActual);
 
 // Estados y nombres para referencia de colores
 const ESTADOS_MATERIA = [
