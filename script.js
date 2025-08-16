@@ -230,13 +230,85 @@ function actualizarPlanCarreraLink(nombreCarrera) {
     }
 }
 
-// Listener del selector
-document.getElementById("carrera").addEventListener("change", e => {
-    cargarCarrera(e.target.value);
-    actualizarPlanCarreraLink(e.target.value);
-});
+// Lista de carreras para el menú personalizado
+const CARRERAS = [
+    {
+        value: "biomedica-2025",
+        nombre: "Ingeniería Biomédica",
+        anio: "2025"
+    },
+    {
+        value: "tusd-2025",
+        nombre: "Tecnicatura Universitaria en Sistemas Digitales",
+        anio: "2025"
+    }
+    // Puedes agregar más carreras aquí si lo deseas
+];
 
-// Inicializa el href al cargar
+// Renderiza el menú personalizado de carreras
+function renderCarreraDropdown() {
+    const dropdown = document.getElementById("carrera-dropdown");
+    if (!dropdown) return;
+    dropdown.innerHTML = "";
+
+    // Encuentra la carrera seleccionada
+    const selectedCarrera = CARRERAS.find(c => c.value === carreraActual) || CARRERAS[0];
+
+    // Elemento seleccionado
+    const selectedDiv = document.createElement("div");
+    selectedDiv.className = "carrera-dropdown-selected";
+    selectedDiv.innerHTML = `
+        <span>
+            ${selectedCarrera.nombre}
+            <span class="anio-label">${selectedCarrera.anio}</span>
+        </span>
+        <i class="fa-solid fa-chevron-down"></i>
+    `;
+    dropdown.appendChild(selectedDiv);
+
+    // Lista de opciones
+    const listDiv = document.createElement("div");
+    listDiv.className = "carrera-dropdown-list";
+    CARRERAS.forEach(c => {
+        const optionDiv = document.createElement("div");
+        optionDiv.className = "carrera-dropdown-option" + (c.value === carreraActual ? " selected" : "");
+        optionDiv.innerHTML = `
+            <span>
+                ${c.nombre}
+                <span class="anio-label">${c.anio}</span>
+            </span>
+        `;
+        optionDiv.onclick = () => {
+            carreraActual = c.value;
+            renderCarreraDropdown();
+            cargarCarrera(carreraActual);
+            actualizarPlanCarreraLink(carreraActual);
+            listDiv.classList.remove("visible");
+        };
+        listDiv.appendChild(optionDiv);
+    });
+    dropdown.appendChild(listDiv);
+
+    // Mostrar/ocultar lista al click
+    selectedDiv.onclick = (e) => {
+        e.stopPropagation();
+        listDiv.classList.toggle("visible");
+    };
+
+    // Ocultar lista al click fuera
+    document.addEventListener("click", function hideDropdown(e) {
+        if (!dropdown.contains(e.target)) {
+            listDiv.classList.remove("visible");
+        }
+    });
+}
+
+// Elimina el listener del <select> original
+// document.getElementById("carrera").addEventListener("change", ...);
+
+// Inicializa el menú personalizado y la carrera
+renderCarreraDropdown();
+cargarCarrera(carreraActual);
 actualizarPlanCarreraLink(carreraActual);
 
 // Estados y nombres para referencia de colores

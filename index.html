@@ -8,22 +8,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <header>
-    <h1>
+    <!--<h1>
         <a target="_blank" href="https://fcefyn.unc.edu.ar/" title="Pagina de la FCEFyN">
             FCEFyN Map
         </a>
-    </h1>
+    </h1>-->
 
-    <!-- Selector de carrera -->
+    <!-- Selector de carrera personalizado -->
     <div class="selector-carrera">
         <a id="plan-carrera-link" href="#" target="_blank" title="Ver plan de estudios">
             <i class="fa-solid fa-book icono-plan-carrera"></i>
         </a>
-        <label for="carrera"></label>
-        <select id="carrera">
-            <option value="biomedica-2025" selected>Ingeniería Biomédica 2025</option>
-            <option value="tusd-2025">Tecnicatura en Sistemas Digitales 2025</option>
-        </select>
+        <div id="carrera-dropdown" class="carrera-dropdown"></div>
     </div>
 </header>
 <body>
