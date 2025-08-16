@@ -165,7 +165,6 @@ function cargarCarrera(nombreCarrera) {
                     const div = document.createElement("div");
                     div.id = m.codigo;
                     div.className = "materia";
-                    // Nuevo: click en toda la materia
                     div.onclick = () => toggleEstado(m.codigo);
 
                     const asignatura = document.createElement("div");
@@ -173,7 +172,6 @@ function cargarCarrera(nombreCarrera) {
 
                     const nombre = document.createElement("span");
                     nombre.innerText = m.nombre;
-                    // nombre.onclick = () => toggleEstado(m.codigo);
 
                     asignatura.appendChild(nombre);
                     div.appendChild(asignatura);
@@ -188,8 +186,12 @@ function cargarCarrera(nombreCarrera) {
                         icono.href = m.programa_url;
                         icono.target = "_blank";
                         icono.className = "icono-flotante";
-                        icono.innerHTML = '<i class="fa-regular fa-file"></i>'; // para que no muestre el cuadrado
+                        icono.innerHTML = '<i class="fa-regular fa-file"></i>';
                         icono.title = "Ver programa";
+                        // Evita que el click cambie el estado de la materia
+                        icono.addEventListener("click", function(e) {
+                            e.stopPropagation();
+                        });
                         acciones.appendChild(icono);
                     }
 
