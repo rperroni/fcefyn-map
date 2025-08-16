@@ -165,13 +165,15 @@ function cargarCarrera(nombreCarrera) {
                     const div = document.createElement("div");
                     div.id = m.codigo;
                     div.className = "materia";
+                    // Nuevo: click en toda la materia
+                    div.onclick = () => toggleEstado(m.codigo);
 
                     const asignatura = document.createElement("div");
                     asignatura.classList.add("nombre-materia");
 
                     const nombre = document.createElement("span");
                     nombre.innerText = m.nombre;
-                    nombre.onclick = () => toggleEstado(m.codigo);
+                    // nombre.onclick = () => toggleEstado(m.codigo);
 
                     asignatura.appendChild(nombre);
                     div.appendChild(asignatura);
