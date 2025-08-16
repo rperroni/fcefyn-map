@@ -19,6 +19,12 @@ const CARRERAS = [
     // Puedes agregar más carreras aquí si lo deseas
 ];
 
+// URLs de los planes de estudio por carrera
+const PLANES_CARRERA = {
+    "biomedica-2025": "https://fcefyn.unc.edu.ar/documents/5190/Ing._Biom%C3%A9dica_Plan_de_estudio_2025.pdf",
+    "tusd-2025": "https://fcefyn.unc.edu.ar/documents/5905/Anexo_I_Grilla_de_Cursada-tusd25.pdf"
+};
+
 
 /* Helpers para localStorage por carrera */
 function claveLS(tipo) {
@@ -232,11 +238,7 @@ function cargarCarrera(nombreCarrera) {
         .catch(err => console.error("Error cargando materias:", err));
 }
 
-// URLs de los planes de estudio por carrera
-const PLANES_CARRERA = {
-    "biomedica-2025": "https://fcefyn.unc.edu.ar/documents/5190/Ing._Biom%C3%A9dica_Plan_de_estudio_2025.pdf",
-    "tusd-2025": "https://fcefyn.unc.edu.ar/documents/5905/Anexo_I_Grilla_de_Cursada-tusd25.pdf"
-};
+
 
 // Actualiza el enlace del plan de estudios
 function actualizarPlanCarreraLink(nombreCarrera) {
@@ -337,7 +339,7 @@ function setupSugerencias() {
         e.preventDefault();
         status.textContent = "Enviando...";
         // Formspree endpoint para perronirocio@gmail.com
-        fetch("https://formspree.io/f/xwkgyqgj", {
+        fetch("https://formspree.io/f/xblkelye", {
             method: "POST",
             headers: { "Accept": "application/json" },
             body: new FormData(form)
@@ -428,8 +430,4 @@ function setupInfoColores() {
 /* Inicial */
 cargarCarrera(carreraActual);
 setupInfoColores();
-
-/* Agrega esto al final del archivo */
-document.addEventListener("DOMContentLoaded", () => {
-    setupSugerencias();
-});
+setupSugerencias();
