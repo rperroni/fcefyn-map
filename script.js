@@ -34,7 +34,7 @@ function actualizarEstado() {
             .reduce((total, x) => total + (x.RTF || 0), 0);
 
         let puedeCursar;
-        // las materias modulo de ingles, pps, y pi tienen condiciones especiales de correlativas
+        // las materias con condiciones especiales
         if (m.condiciones) {
             switch (m.condiciones.tipo) {
                 case "minAprobadas":
@@ -43,7 +43,6 @@ function actualizarEstado() {
                 case "maxAdeudados":
                     puedeCursar = rtfAdeudados <= m.condiciones.cantidad;
                     break;
-                // Podés agregar más tipos en el futuro (ej: "requiereCursando", etc.)
                 default:
                     puedeCursar = false;
             }
@@ -64,65 +63,64 @@ function actualizarEstado() {
             elemento.className = "materia bloqueada";
         }
 
-        // Tooltip
+        // Tooltip en el nombre
         const nombreSpan = elemento.querySelector(".nombre-materia span");
-        if (aprobadas.has(m.codigo)) { //al pasar el mouse sobre una materia aprobada sale el mensaje "desaprobar", que es su acción onclick
+        if (aprobadas.has(m.codigo)) {
             nombreSpan.title = "Desaprobar";
-        } else if (cursando.has(m.codigo)) { //hover mouse sobre una materia en curso muestra "regularizar"
+        } else if (cursando.has(m.codigo)) {
             nombreSpan.title = "Regularizar";
-        } else if (puedeCursar || regulares.has(m.codigo)) { //sobre una materia disponible o regular dice "aprobar"
+        } else if (puedeCursar || regulares.has(m.codigo)) {
             nombreSpan.title = "Aprobar";
         } else {
-            nombreSpan.title = "Te faltan correlativas"; //si la materia está bloqueada permite "aprobar" pero avisa que faltan las correlativas
+            nombreSpan.title = "Te faltan correlativas";
         }
 
         // Botón anotarse
         const botonAnotarse = elemento.querySelector(".icono-anotarse");
+        const esMobile = window.innerWidth <= 900;
         if (aprobadas.has(m.codigo) || (!puedeCursar) || regulares.has(m.codigo)) {
-            botonAnotarse.style.display = "none"; //si la materia está aprobada, no se puede cursar o está regular, no muestra el botón para anotarse
+            // En desktop se oculta si no se puede usar
+            // En mobile también se oculta si no es disponible/cursando
+            botonAnotarse.style.display = "none";
         } else {
             botonAnotarse.style.display = "block";
             botonAnotarse.innerHTML = cursando.has(m.codigo)
-                ? '<i class="fa-solid fa-ban"></i>' //botón desinscribirse si está en curso
-                : '<i class="fa-regular fa-pen-to-square"></i>'; //o inscribirse si no
-            botonAnotarse.title = cursando.has(m.codigo)
-                ? "Abandonar" //mensajes diferentes para cada caso arriba descrito
-                : "Anotarse";
+                ? '<i class="fa-solid fa-ban"></i>'
+                : '<i class="fa-regular fa-pen-to-square"></i>';
+            botonAnotarse.title = cursando.has(m.codigo) ? "Abandonar" : "Anotarse";
         }
 
-        /*este bloque habilita el boton de anotarse/abandonar de acuerdo al estado de la materia*/ 
-        const iconoAnotarse = elemento.querySelector(".icono-anotarse");
-        if (iconoAnotarse) {
+        // Colores del botón anotarse
+        if (botonAnotarse) {
             if (elemento.classList.contains("disponible")) {
-                iconoAnotarse.classList.add("anotarse");
-                iconoAnotarse.classList.remove("abandonar");
+                botonAnotarse.classList.add("anotarse");
+                botonAnotarse.classList.remove("abandonar");
             } else if (elemento.classList.contains("cursando")) {
-                iconoAnotarse.classList.add("abandonar");
-                iconoAnotarse.classList.remove("anotarse");
+                botonAnotarse.classList.add("abandonar");
+                botonAnotarse.classList.remove("anotarse");
             } else {
-                iconoAnotarse.classList.remove("anotarse", "abandonar");
+                botonAnotarse.classList.remove("anotarse", "abandonar");
             }
         }
     });
 }
 
-// esta función cambia el estado de una materia onclick
+// Cambia el estado al click en el nombre
 function toggleEstado(codigo) {
     const materia = materias.find(m => m.codigo === codigo);
 
-    /* Si la materia está aprobada, para a disponible o bloqueada segun corresponda*/
     if (aprobadas.has(codigo)) {
         aprobadas.delete(codigo);
-    } else if (cursando.has(codigo)) { // si la materia está en curso
-        if (materia.semestre === 0) { // y es del ingreso
+    } else if (cursando.has(codigo)) {
+        if (materia.semestre === 0) {
             aprobadas.add(codigo);
-            cursando.delete(codigo); //pasa a aprobada
+            cursando.delete(codigo);
         } else {
-            regulares.add(codigo); // si no es del ingreso pasa a regular
+            regulares.add(codigo);
             cursando.delete(codigo);
         }
     } else {
-        regulares.delete(codigo); // otro caso (está regular) pasa a aprobada
+        regulares.delete(codigo);
         aprobadas.add(codigo);
     }
 
@@ -130,7 +128,7 @@ function toggleEstado(codigo) {
     actualizarEstado();
 }
 
-// cambia el estado de la materia cuando se toca en anotarse/abandonar
+// Cambia estado cursando al click en icono
 function toggleCursando(codigo) {
     if (cursando.has(codigo)) {
         cursando.delete(codigo);
@@ -144,13 +142,10 @@ function toggleCursando(codigo) {
 function cargarCarrera(nombreCarrera) {
     carreraActual = nombreCarrera;
 
-    //carga el plan de estudios de la carrera seleccionada --> debe coincidir con el value de la lista del html, que debe coincidir con el nombre del archivo
     fetch(`carreras/${nombreCarrera}.json`)
         .then(res => res.json())
         .then(data => {
             materias = data;
-
-            // limpiar antes de redibujar
             const contenedor = document.getElementById("contenedor-semestres");
             contenedor.innerHTML = "";
 
@@ -163,12 +158,10 @@ function cargarCarrera(nombreCarrera) {
             });
 
             Object.keys(grupos).sort((a, b) => a - b).forEach(sem => {
-                // crea las columnas de semestres
                 const columna = document.createElement("div");
                 columna.className = "columna-semestre";
 
                 grupos[sem].forEach(m => {
-                    // crea las tarjetas de materias
                     const div = document.createElement("div");
                     div.id = m.codigo;
                     div.className = "materia";
@@ -183,24 +176,31 @@ function cargarCarrera(nombreCarrera) {
                     asignatura.appendChild(nombre);
                     div.appendChild(asignatura);
 
+                    // Contenedor de iconos a la derecha
+                    const acciones = document.createElement("div");
+                    acciones.className = "acciones-materia";
+
+                    // Icono ver programa
+                    if (m.programa_url) {
+                        const icono = document.createElement("a");
+                        icono.href = m.programa_url;
+                        icono.target = "_blank";
+                        icono.className = "icono-flotante";
+                        icono.innerHTML = '<i class="fa-regular fa-file"></i>'; // para que no muestre el cuadrado
+                        icono.title = "Ver programa";
+                        acciones.appendChild(icono);
+                    }
+
+                    // Botón anotarse
                     const botonAnotarse = document.createElement("div");
                     botonAnotarse.className = "icono-anotarse";
                     botonAnotarse.onclick = e => {
                         e.stopPropagation();
                         toggleCursando(m.codigo);
                     };
-                    div.appendChild(botonAnotarse);
+                    acciones.appendChild(botonAnotarse);
 
-                    // este bloque es el desplegable abajo de cada tarjeta que permite clickear para ver el programa de la materia
-                    if (m.programa_url) {
-                        const icono = document.createElement("a");
-                        icono.href = m.programa_url;
-                        icono.target = "_blank";
-                        icono.className = "icono-flotante fa-regular fa-file";
-                        icono.title = "Ver programa";
-                        div.appendChild(icono);
-                    }
-
+                    div.appendChild(acciones);
                     columna.appendChild(div);
                 });
 
@@ -212,10 +212,71 @@ function cargarCarrera(nombreCarrera) {
         .catch(err => console.error("Error cargando materias:", err));
 }
 
-/* Listener del selector */
+// Listener del selector
 document.getElementById("carrera").addEventListener("change", e => {
     cargarCarrera(e.target.value);
 });
 
+// Estados y nombres para referencia de colores
+const ESTADOS_MATERIA = [
+    { clase: "aprobada", label: "Aprobada" },
+    { clase: "disponible", label: "Disponible para cursar" },
+    { clase: "cursando", label: "En curso" },
+    { clase: "regular", label: "Regularizada" },
+    { clase: "bloqueada", label: "Bloqueada (faltan correlativas)" }
+];
+
+// Utilidad para obtener el color real de cada estado desde CSS
+function getColorForEstado(clase) {
+    // Crea un elemento temporal con la clase y obtiene el color de fondo
+    const temp = document.createElement("div");
+    temp.className = `materia ${clase}`;
+    temp.style.display = "none";
+    document.body.appendChild(temp);
+    // Usa getComputedStyle para obtener el color actual
+    const color = getComputedStyle(temp).backgroundColor;
+    document.body.removeChild(temp);
+    return color;
+}
+
+// Renderiza el panel de referencia de colores
+function renderInfoColoresPanel() {
+    const panel = document.getElementById("info-colores-panel");
+    panel.innerHTML = "<b>Referencia de colores:</b><br><br>";
+    ESTADOS_MATERIA.forEach(estado => {
+        const color = getColorForEstado(estado.clase);
+        const row = document.createElement("div");
+        row.className = "color-row";
+        row.innerHTML = `
+            <span class="color-dot" style="background:${color};"></span>
+            <span class="color-label">${estado.label}</span>
+        `;
+        panel.appendChild(row);
+    });
+}
+
+// Muestra/oculta el panel al tocar el botón
+function setupInfoColores() {
+    const btn = document.getElementById("info-colores-btn");
+    const panel = document.getElementById("info-colores-panel");
+    if (!btn || !panel) return;
+    btn.addEventListener("click", () => {
+        if (panel.classList.contains("visible")) {
+            panel.classList.remove("visible");
+        } else {
+            renderInfoColoresPanel();
+            panel.classList.add("visible");
+        }
+    });
+    // Oculta el panel si se toca fuera
+    document.addEventListener("click", e => {
+        if (!panel.classList.contains("visible")) return;
+        if (e.target !== btn && !panel.contains(e.target)) {
+            panel.classList.remove("visible");
+        }
+    });
+}
+
 /* Inicial */
 cargarCarrera(carreraActual);
+setupInfoColores();
