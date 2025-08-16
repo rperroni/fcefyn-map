@@ -720,32 +720,106 @@ footer {
     color: #EF5350;
 }
 
-/* Responsive para el formulario flotante */
-@media (max-width: 600px) {
-    .sugerencias-modal-content {
-        min-width: 0;
-        padding: 18px 6px 12px 6px;
-    }
-    .sugerencias-row {
-        flex-direction: column;
-        gap: 0;
-    }
+/* Modal referencia de colores */
+.footer-colores-modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0; top: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.35);
+    justify-content: center;
+    align-items: center;
 }
 
-/* Responsive: íconos del footer más pequeños en pantallas chicas */
+.footer-colores-modal.visible {
+    display: flex;
+}
+
+.footer-colores-modal-content {
+    background: #f7f7f7;
+    color: #222;
+    padding: 28px 22px 18px 22px;
+    border-radius: 14px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+    min-width: 320px;
+    max-width: 95vw;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    border: 1.5px solid #e0e0e0;
+}
+
+.footer-colores-modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 18px;
+    font-size: 1.25rem;
+    color: #1565c0;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.footer-colores-close {
+    position: absolute;
+    top: 12px;
+    right: 18px;
+    font-size: 2rem;
+    color: #222;
+    cursor: pointer;
+    font-weight: bold;
+    transition: color 0.2s;
+    z-index: 2;
+}
+
+.footer-colores-close:hover {
+    color: #EF5350;
+}
+
+#footer-colores-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 8px;
+}
+
+.footer-color-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.08rem;
+}
+
+.footer-color-dot {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: inline-block;
+    border: 2px solid #e0e0e0;
+    margin-right: 2px;
+}
+
+.footer-color-label {
+    font-weight: 500;
+    color: #222;
+}
+
+/* Responsive para el modal de colores */
 @media (max-width: 600px) {
-    .footer-content {
-        gap: 18px;
+    .footer-colores-modal-content {
+        min-width: 0;
+        padding: 14px 4px 10px 4px;
     }
-    .icono-footer {
-        font-size: 1.3rem;
+    #footer-colores-list {
+        gap: 8px;
     }
-    .icono-footer-mate {
-        width: 22px;
-        height: 22px;
+    .footer-color-row {
+        font-size: 0.98rem;
+        gap: 8px;
     }
-    .footer-btn {
-        font-size: 1.15rem;
-        padding: 0 4px;
+    .footer-color-dot {
+        width: 16px;
+        height: 16px;
     }
 }

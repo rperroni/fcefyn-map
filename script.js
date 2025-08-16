@@ -369,11 +369,11 @@ actualizarPlanCarreraLink(carreraActual);
 
 // Estados y nombres para referencia de colores
 const ESTADOS_MATERIA = [
-    { clase: "aprobada", label: "Aprobada" },
-    { clase: "disponible", label: "Disponible para cursar" },
-    { clase: "cursando", label: "En curso" },
-    { clase: "regular", label: "Regularizada" },
-    { clase: "bloqueada", label: "Bloqueada (faltan correlativas)" }
+    { clase: "aprobada", label: "Aprobada", var: "--bgnd-color-aprobada" },
+    { clase: "disponible", label: "Disponible para cursar", var: "--bgnd-color-disponible" },
+    { clase: "cursando", label: "En curso", var: "--bgnd-color-cursando" },
+    { clase: "regular", label: "Regularizada", var: "--bgnd-color-regular" },
+    { clase: "bloqueada", label: "Bloqueada (faltan correlativas)", var: "--bgnd-color-bloqueada" }
 ];
 
 // Utilidad para obtener el color real de cada estado desde CSS
@@ -427,10 +427,49 @@ function setupInfoColores() {
     });
 }
 
+/* Footer: referencia de colores */
+function setupFooterColores() {
+    const modal = document.getElementById("footer-colores-modal");
+    const btn = document.getElementById("footer-colores-btn");
+    const closeBtn = document.getElementById("footer-colores-close");
+    const list = document.getElementById("footer-colores-list");
+
+    function renderColoresList() {
+        list.innerHTML = "";
+        ESTADOS_MATERIA.forEach(estado => {
+            const color = getComputedStyle(document.documentElement).getPropertyValue(estado.var).trim();
+            const row = document.createElement("div");
+            row.className = "footer-color-row";
+            row.innerHTML = `
+                <span class="footer-color-dot" style="background:${color};"></span>
+                <span class="footer-color-label">${estado.label}</span>
+            `;
+            list.appendChild(row);
+        });
+    }
+
+    btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        renderColoresList();
+        modal.classList.add("visible");
+    });
+
+    closeBtn.addEventListener("click", () => {
+        modal.classList.remove("visible");
+    });
+
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+            modal.classList.remove("visible");
+        }
+    });
+}
+
 /* Inicial */
 cargarCarrera(carreraActual);
 setupInfoColores();
 
 document.addEventListener("DOMContentLoaded", () => {
     setupSugerencias();
+    setupFooterColores();
 });
