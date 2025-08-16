@@ -823,3 +823,24 @@ footer {
         height: 16px;
     }
 }
+
+/* Responsive: íconos del footer más pequeños en pantallas chicas */
+@media (max-width: 600px) {
+    .footer-content {
+        gap: 18px;
+    }
+    .icono-footer {
+        font-size: 1.3rem;
+    }
+    .icono-footer-mate {
+        width: 22px;
+        height: 22px;
+    }
+    .footer-btn {
+        font-size: 1.15rem;
+        padding: 0 4px;
+    }
+    .fa-palette {
+        font-size: 1.15rem !important;
+    }
+}
