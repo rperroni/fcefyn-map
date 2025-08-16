@@ -4,6 +4,22 @@ let cursando = new Set();
 let regulares = new Set();
 let carreraActual = "biomedica-2025"; // default
 
+// Lista de carreras para el menú personalizado
+const CARRERAS = [
+    {
+        value: "biomedica-2025",
+        nombre: "Ingeniería Biomédica",
+        anio: "2025"
+    },
+    {
+        value: "tusd-2025",
+        nombre: "Tecnicatura Universitaria en Sistemas Digitales",
+        anio: "2025"
+    }
+    // Puedes agregar más carreras aquí si lo deseas
+];
+
+
 /* Helpers para localStorage por carrera */
 function claveLS(tipo) {
     return `${tipo}_${carreraActual}`;
@@ -230,20 +246,6 @@ function actualizarPlanCarreraLink(nombreCarrera) {
     }
 }
 
-// Lista de carreras para el menú personalizado
-const CARRERAS = [
-    {
-        value: "biomedica-2025",
-        nombre: "Ingeniería Biomédica",
-        anio: "2025"
-    },
-    {
-        value: "tusd-2025",
-        nombre: "Tecnicatura Universitaria en Sistemas Digitales",
-        anio: "2025"
-    }
-    // Puedes agregar más carreras aquí si lo deseas
-];
 
 // Renderiza el menú personalizado de carreras
 function renderCarreraDropdown() {
