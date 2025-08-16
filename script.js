@@ -430,4 +430,7 @@ function setupInfoColores() {
 /* Inicial */
 cargarCarrera(carreraActual);
 setupInfoColores();
-setupSugerencias();
+
+document.addEventListener("DOMContentLoaded", () => {
+    setupSugerencias();
+});
