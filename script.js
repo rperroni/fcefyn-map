@@ -267,6 +267,7 @@ function renderCarreraDropdown() {
     // Lista de opciones
     const listDiv = document.createElement("div");
     listDiv.className = "carrera-dropdown-list";
+    let selectedOptionDiv = null;
     CARRERAS.forEach(c => {
         const optionDiv = document.createElement("div");
         optionDiv.className = "carrera-dropdown-option" + (c.value === carreraActual ? " selected" : "");
@@ -284,6 +285,7 @@ function renderCarreraDropdown() {
             actualizarPlanCarreraLink(carreraActual);
             listDiv.classList.remove("visible");
         };
+        if (c.value === carreraActual) selectedOptionDiv = optionDiv;
         listDiv.appendChild(optionDiv);
     });
     dropdown.appendChild(listDiv);
@@ -292,6 +294,12 @@ function renderCarreraDropdown() {
     selectedDiv.onclick = (e) => {
         e.stopPropagation();
         listDiv.classList.toggle("visible");
+        // Scroll a la opción seleccionada
+        if (listDiv.classList.contains("visible") && selectedOptionDiv) {
+            setTimeout(() => {
+                selectedOptionDiv.scrollIntoView({ block: "center", behavior: "instant" });
+            }, 0);
+        }
     };
 
     // Ocultar lista al click fuera
