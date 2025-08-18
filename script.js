@@ -157,7 +157,7 @@ function cargarCarrera(nombreCarrera) {
                     <div class="en-construccion-panel">
                         <i class="fa-solid fa-person-digging en-construccion-icon"></i>
                         <div><b>En construcción</b></div>
-                        <div class="en-construccion-desc">Pronto vas a poder ver el plan de materias de esta carrera.</div>
+                        <div class="en-construccion-desc">Pronto vas a poder ver el plan de esta carrera.</div>
                     </div>
                 `;
                 return;
