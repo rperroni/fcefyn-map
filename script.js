@@ -6,7 +6,6 @@ let carreraActual = "biomedica-2025"; // default
 
 import { CARRERAS } from './carreras.js';
 
-
 /* Helpers para localStorage por carrera */
 function claveLS(tipo) {
     return `${tipo}_${carreraActual}`;
