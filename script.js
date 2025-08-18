@@ -2,7 +2,7 @@ let materias = [];
 let aprobadas = new Set();
 let cursando = new Set();
 let regulares = new Set();
-let carreraActual = "biomedica-2025"; // default
+let carreraActual = localStorage.getItem("ultimaCarrera") || "biomedica-2025"; // default
 
 import { CARRERAS } from './carreras.js';
 
@@ -26,6 +26,7 @@ function guardarProgreso() {
     localStorage.setItem(claveLS("aprobadas"), JSON.stringify([...aprobadas]));
     localStorage.setItem(claveLS("cursando"), JSON.stringify([...cursando]));
     localStorage.setItem(claveLS("regulares"), JSON.stringify([...regulares]));
+    localStorage.setItem("ultimaCarrera", carreraActual);
 }
 
 function actualizarEstado() {
@@ -277,6 +278,7 @@ function renderCarreraDropdown() {
         `;
         optionDiv.onclick = () => {
             carreraActual = c.value;
+            localStorage.setItem("ultimaCarrera", carreraActual); // Guarda la última seleccionada
             renderCarreraDropdown();
             cargarCarrera(carreraActual);
             actualizarPlanCarreraLink(carreraActual);
