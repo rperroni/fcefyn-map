@@ -40,7 +40,10 @@ El diseño y enfoque se inspiran en [FIUBA-Map](https://github.com/fdelmazo/FIUB
 
 ## Capturas / Demo
 
-*(Podés insertar imágenes o GIFs del sitio funcionando aquí)*  
+<div style="display: flex; gap: 16px; align-items: flex-start;">
+  <img src="captura_escritorio.png" alt="Captura escritorio" style="height: 340px; border:1px solid #ccc;">
+  <img src="captura_mobile.jpeg" alt="Captura móvil" style="height: 340px; border:1px solid #ccc;">
+</div>
 
 ---
 
