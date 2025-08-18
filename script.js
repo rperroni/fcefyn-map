@@ -151,6 +151,18 @@ function cargarCarrera(nombreCarrera) {
             const contenedor = document.getElementById("contenedor-semestres");
             contenedor.innerHTML = "";
 
+            // Si el archivo está vacío, muestra "En construcción"
+            if (!Array.isArray(materias) || materias.length === 0) {
+                contenedor.innerHTML = `
+                    <div class="en-construccion-panel">
+                        <i class="fa-solid fa-person-digging en-construccion-icon"></i>
+                        <div><b>En construcción</b></div>
+                        <div class="en-construccion-desc">Pronto vas a poder ver el plan de materias de esta carrera.</div>
+                    </div>
+                `;
+                return;
+            }
+
             cargarProgreso();
 
             const grupos = {};
@@ -454,4 +466,4 @@ document.addEventListener("DOMContentLoaded", () => {
     setupSugerencias();
     setupFooterColores();
 });
-    
+

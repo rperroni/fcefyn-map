@@ -874,3 +874,52 @@ footer {
         font-size: 1.15rem !important;
     }
 }
+
+/* Panel "En construcción" */
+.en-construccion-panel {
+    width: 100%;
+    max-width: 600px;
+    min-height: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    color: #1565c0;
+    background: #f7f7f7;
+    border-radius: 14px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    margin: 32px auto 0 auto;
+    padding: 48px 16px;
+}
+
+.en-construccion-icon {
+    font-size: 2.5rem;
+    margin-bottom: 18px;
+    color: #1565c0;
+}
+
+.en-construccion-desc {
+    font-size: 1rem;
+    color: #444;
+    margin-top: 8px;
+    text-align: center;
+}
+
+/* Responsive para el panel "En construcción" */
+@media (max-width: 700px) {
+    .en-construccion-panel {
+        font-size: 1.1rem;
+        padding: 32px 6px;
+        min-width: 0;
+        max-width: 98vw;
+        margin-top: 18px;
+    }
+    .en-construccion-icon {
+        font-size: 2rem;
+        margin-bottom: 12px;
+    }
+    .en-construccion-desc {
+        font-size: 0.97rem;
+    }
+}
