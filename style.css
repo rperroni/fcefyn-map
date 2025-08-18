@@ -12,16 +12,16 @@
     /* fin colores de header y footer */
 
     /* colores de los estados de las materias */
-    --bgnd-color-aprobada: #43A047; /* verde */
-    --txt-color-aprobada: white; /* texto blanco para contraste */
+    --bgnd-color-aprobada: #4cc27d; /* verde */
+    --txt-color-aprobada: rgb(31, 31, 31); /* texto blanco para contraste */
 
-    --bgnd-color-disponible: #42A5F5; /* azul */
+    --bgnd-color-disponible: #74C4D7; /* azul */
     --txt-color-disponible: rgb(0, 0, 0); /* texto negro para contraste */
 
-    --bgnd-color-cursando: #FFB74D; /* naranja */
+    --bgnd-color-cursando: #E6B10E; /* naranja */
     --txt-color-cursando: black;
 
-    --bgnd-color-regular: #c2a374; /* marrón */
+    --bgnd-color-regular: #d39332; /* marrón */
     --txt-color-regular: black;
 
     --bgnd-color-bloqueada: #bdbdbd; /* gris */
@@ -30,7 +30,7 @@
 
     /* Colores acciones de materias */
     --bgnd-color-anotarse: #66BB6A; /* verde para anotarse */
-    --bgnd-color-abandonar: #EF5350; /* rojo para desanotarse */
+    --bgnd-color-abandonar: #DE4343; /* rojo para desanotarse */
     --bgnd-color-ver-programa: #aaebae; /* verde para ver programa */
 }
 
