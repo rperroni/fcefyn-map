@@ -17,8 +17,19 @@ const CARRERAS = [
         nombre: "Tecnicatura Universitaria en Sistemas Digitales",
         anio: "2025",
         plan: "https://fcefyn.unc.edu.ar/documents/5905/Anexo_I_Grilla_de_Cursada-tusd25.pdf"
+    },
+    {
+        value: "tuaqi-2025",
+        nombre: "Tecnicatura Universitaria en Análisis Químico Industrial",
+        anio: "2025",
+        plan: "https://fcefyn.unc.edu.ar/documents/5908/Anexo_I_TUAQUI_2025_-_Grilla_de_cursada.pdf"
+    },
+    {
+        value: "hidromteorologia-2024",
+        nombre: "Licenciatura en Hidrometeorología",
+        anio: "2024",
+        plan: "https://fcefyn.unc.edu.ar/facultad/secretarias/academica/escuelas/escuela-de-ingenieria-civil/carrera-licenciatura-en-hidrometeorologia/"
     }
-    // Puedes agregar más carreras aquí si lo deseas
 ];
 
 
