@@ -20,11 +20,11 @@ Inspirado fuertemente en el proyecto [FIUBA-Map](https://github.com/fdelmazo/FIU
 
 ## Introducción
 
-**FCEFYN-Map** es una herramienta web que permite visualizar **interactivamente** los planes de estudio de la Facultad de Ciencias Exactas, Físicas y Naturales (FCEFyN).  
+**FCEFYN-Map** es una herramienta web que permite visualizar **interactivamente** los planes de estudio de la Facultad de Ciencias Exactas, Físicas y Naturales (FCEFyN) de la Universidad Nacional de Córdoba (UNC).  
 
 Facilita ver las correlativas de cada materia, seleccionarlas como cursadas o aprobadas, y planificar el progreso académico.  
 
-El diseño y enfoque se inspiran en [FIUBA-Map](https://github.com/fdelmazo/FIUBA-Map), que realizó una idea similar para la Facultad de Ingeniería.
+El diseño y enfoque se inspiran en [FIUBA-Map](https://github.com/fdelmazo/FIUBA-Map), que realizó una idea similar para la Facultad de Ingeniería de la Universidad de Buenos Aires.
 
 ---
 
@@ -35,7 +35,7 @@ El diseño y enfoque se inspiran en [FIUBA-Map](https://github.com/fdelmazo/FIUB
 - Navegación por carrera y plan específicos  
 - *(Opcional: tracking de créditos, guardado del estado, etc. si lo implementás)*  
 
-*Por el momento el proyecto no cuenta con una base de datos. Los cambios se guardan en el navegador localmente.
+* *Por el momento el proyecto no cuenta con una base de datos. Los cambios se guardan en el navegador localmente.*
 ---
 
 ## Capturas / Demo
