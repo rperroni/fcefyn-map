@@ -1,1 +1,442 @@
-[]
+[
+  {
+    "codigo": "ambientacion",
+    "nombre": "Ambientación Universitaria",
+    "correlativas": [],
+    "RTF": 0.5,
+    "semestre": 0,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/112/03-IME-Ciclo_de_nivelacion_Amb_Univ.pdf"
+  },
+  {
+    "codigo": "fisica",
+    "nombre": "Física",
+    "correlativas": [],
+    "RTF": 1,
+    "semestre": 0,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/111/02-IM-Ciclo_de_nivelacion_Fisica.pdf"
+  },
+  {
+    "codigo": "mat",
+    "nombre": "Matemática",
+    "correlativas": [],
+    "RTF": 1.5,
+    "semestre": 0,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/110/01-IM-Ciclo_de_nivelacion_Matematicas.pdf"
+  },
+  
+  
+  {
+    "codigo": "intro",
+    "nombre": "Introducción a la Ingeniería",
+    "correlativas": ["ambientacion"],
+    "RTF": 1,
+    "semestre": 1,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/106/04-IM-Introduccion_Ingenieria.pdf"
+  },
+  {
+    "codigo": "intromate",
+    "nombre": "Introducción a la Matemática",
+    "correlativas": ["mat"],
+    "RTF": 4,
+    "semestre": 1,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/107/05-IM-Introduccion_a_la_Matematica.pdf"
+  },
+  {
+    "codigo": "informatica",
+    "nombre": "Informática",
+    "correlativas": ["mat"],
+    "RTF": 4,
+    "semestre": 1,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/108/07-IM-Informatica_1.pdf"
+  },
+  {
+    "codigo": "Quim",
+    "nombre": "Química Aplicada",
+    "correlativas": ["mat"],
+    "RTF": 3,
+    "semestre": 1,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/117/12-IM-Quimica_Aplicada.pdf"
+  }, 
+  {
+    "codigo": "TyL",
+    "nombre": "Taller y Laboratorio",
+    "correlativas": ["mat"],
+    "RTF": 2,
+    "semestre": 1,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/286/1_2_Taller_y_Laboratorio.pdf"
+  }, 
+
+  
+
+  {
+    "codigo": "AM1",
+    "nombre": "Análisis Matemático I",
+    "correlativas": ["intromate"],
+    "RTF": 3,
+    "semestre": 2,
+    "programa_url": "https://fcefyn.unc.edu.ar/facultad/secretarias/academica/departamentos/matematica/analisis-matematico-i-1/"
+  },
+  {
+    "codigo": "F1",
+    "nombre": "Física I",
+    "correlativas": ["fisica", "intromate"],
+    "RTF": 4,
+    "semestre": 2,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/115/10-IM-Fisica_I.pdf"
+  },
+  {
+    "codigo": "AL",
+    "nombre": "Álgebra Lineal",
+    "correlativas": ["intromate"],
+    "RTF": 3,
+    "semestre": 2,
+    "programa_url": ""
+  },
+  {
+    "codigo": "QOyB",
+    "nombre": "Química Orgánica y Biológica",
+    "correlativas": ["Quim"],
+    "RTF": 3,
+    "semestre": 2,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/928/Qu%C3%ADmica-Organica-y-Biologica.pdf"
+  },
+  {
+    "codigo": "RG",
+    "nombre": "Representación Gráfica",
+    "correlativas": [],
+    "RTF": 4,
+    "semestre": 2,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/927/Representacin__GraficaOK_1.pdf"
+  },
+
+
+  {
+    "codigo": "AM2",
+    "nombre": "Análisis Matemático II",
+    "correlativas": ["AL", "AM1"],
+    "RTF": 4,
+    "semestre": 3,
+    "programa_url": ""
+  },
+  {
+    "codigo": "F2",
+    "nombre": "Física II",
+    "correlativas": ["F1", "AM1"],
+    "RTF": 4,
+    "semestre": 3,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/203/F%C3%AFsica-II1.pdf"
+  },
+  {
+    "codigo": "PyE",
+    "nombre": "Probabilidad y Estadística",
+    "correlativas": ["AM1"],
+    "RTF": 3,
+    "semestre": 3,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/210/17-IM-Probab_y_E.pdf"
+  },
+  {
+    "codigo": "MN",
+    "nombre": "Métodos Numéricos",
+    "correlativas": ["AM1"],
+    "RTF": 3,
+    "semestre": 3,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/199/18-IM-Metodos_Numericos.pdf"
+  },  
+  {
+    "codigo": "intbio",
+    "nombre": "Introducción a la Biología",
+    "correlativas": ["QOyB"],
+    "RTF": 3,
+    "semestre": 3,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/929/Introduccion-a-la-Biologia.pdf"
+  },
+  
+  {
+    "codigo": "fibi",
+    "nombre": "Física Biomédica",
+    "correlativas": ["F2", "intbio"],
+    "RTF": 2,
+    "semestre": 4,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/1254/Fisica_BiomedicaOK.pdf"
+  },
+  {
+    "codigo": "elec",
+    "nombre": "Electrónica",
+    "correlativas": ["F2", "TyL"],
+    "RTF": 3,
+    "semestre": 4,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/1253/ElectrnicaOK.pdf"
+  },
+  {
+    "codigo": "seniales",
+    "nombre": "Teoría de Señales",
+    "correlativas": ["AM2"],
+    "RTF": 4,
+    "semestre": 4,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/1257/Teora_de_Seales_y_Sistemas_LinealesOK.pdf"
+  },
+  {
+    "codigo": "AM3",
+    "nombre": "Análisis Matemático III",
+    "correlativas": ["AM2"],
+    "RTF": 4,
+    "semestre": 4,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/1256/Analisis_Matematico_IIIOK.pdf"
+  },  
+  {
+    "codigo": "anato",
+    "nombre": "Anatomía para Ingenieros",
+    "correlativas": ["intbio"],
+    "RTF": 4,
+    "semestre": 4,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/1255/Anatoma_para_IngenierosOK.pdf"
+  },
+
+
+  {
+    "codigo": "ED1",
+    "nombre": "Electrónica Digital I",
+    "correlativas": ["elec", "TyL"],
+    "RTF": 4,
+    "semestre": 5,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/676/3_1_Electronica_digital_1.pdf"
+  },
+  {
+    "codigo": "biomat",
+    "nombre": "Biomateriales",
+    "correlativas": ["QOyB"],
+    "RTF": 4,
+    "semestre": 5,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/1023/BiomaterialesOK.pdf"
+  },
+  {
+    "codigo": "PS",
+    "nombre": "Procesamiento de Señales",
+    "correlativas": ["seniales", "AM3"],
+    "RTF": 4,
+    "semestre": 5,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4144/Procesamiento_Digital_de_Se%C3%B1ales.pdf"
+  },
+  {
+    "codigo": "EGyME",
+    "nombre": "Electrotecnia General y Máquinas Eléctricas",
+    "correlativas": ["F2"],
+    "RTF": 4,
+    "semestre": 5,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/1024/Electrotecnia-Gral-y-Maq-Electricas.pdf"
+  },
+
+
+
+  {
+    "codigo": "ingles",
+    "nombre": "Módulo de Inglés",
+    "correlativas": [],
+    "condiciones": {
+      "tipo": "minAprobadas",
+      "cantidad": 18
+    },
+    "RTF": 2,
+    "semestre": 6,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/218/23-IM-Modulo_de_Ingles.pdf"
+  },
+  {
+    "codigo": "EyRM",
+    "nombre": "Estática y Resistencia de los Materiales",
+    "correlativas": ["F1"],
+    "RTF": 3,
+    "semestre": 6,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/1258/Est%C3%ADtica_y_resistencia_de_materialesOK.pdf"
+  },
+  {
+    "codigo": "TRyC",
+    "nombre": "Teoria de Redes y Control",
+    "correlativas": ["EGyME", "seniales"],
+    "RTF": 3,
+    "semestre": 6,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/1027/Teoria_de_Redes_y_ControlOK.pdf"
+  },  
+  {
+    "codigo": "fisiologia",
+    "nombre": "Fisiología Humana",
+    "correlativas": ["fibi", "anato"],
+    "RTF": 4,
+    "semestre": 6,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/1026/Fisiologia_HumanaOK.pdf"
+  },
+  {
+    "codigo": "MyS",
+    "nombre": "Modelos y Simulación",
+    "correlativas": ["IyCN", "PyE"],
+    "RTF": 3,
+    "semestre": 6,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5694/10-09220-Modelos_y_Simulaciones.docx.pdf"
+  },
+
+
+  
+  {
+    "codigo": "ED2",
+    "nombre": "Electrónica Digital II",
+    "correlativas": ["ED1", "informatica"],
+    "RTF": 4,
+    "semestre": 7,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/679/4_1_Electronica_digital_2.pdf"
+  },
+  {
+    "codigo": "EA",
+    "nombre": "Electrónica Analógica",
+    "correlativas": ["elec", "TRyC"],
+    "RTF": 3,
+    "semestre": 7,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/1041/5616_Electronica_Analogica.pdf"
+  },
+  {
+    "codigo": "insthosp",
+    "nombre": "Instalaciones Hospitalarias",
+    "correlativas": ["EGyME"],
+    "RTF": 4,
+    "semestre": 7,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/1043/5618_Instalaciones_Hospitalarias.pdf"
+  },
+  {
+    "codigo": "TyS",
+    "nombre": "Transductores y Sensores",
+    "correlativas": ["TRyC", "elec"],
+    "RTF": 4,
+    "semestre": 7,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/1040/5620_Transductores_y_Sensores.pdf"
+  },
+  {
+    "codigo": "fisiopatologia",
+    "nombre": "Fisiopatología",
+    "correlativas": ["fisiologia"],
+    "RTF": 2,
+    "semestre": 7,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/1042/5639_Fisiopatologia.pdf"
+  },
+
+
+
+
+  {
+    "codigo": "economia",
+    "nombre": "Economía",
+    "correlativas": ["AM1"],
+    "RTF": 2,
+    "semestre": 8,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/224/32-IM-Economia.pdf"
+  },
+  {
+    "codigo": "instrumentacion",
+    "nombre": "Instrumentación Biomédica",
+    "correlativas": ["EA", "ED2", "TyS"],
+    "RTF": 4,
+    "semestre": 8,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/1046/5622_Instrumentacion_Biomedica.pdf"
+  },
+  {
+    "codigo": "inghosp",
+    "nombre": "Ingeniería Hospitalaria",
+    "correlativas": ["insthosp"],
+    "RTF": 3,
+    "semestre": 8,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/1047/5623_Ingenieria_Hospitalaria.pdf"
+  },
+  {
+    "codigo": "nuclear",
+    "nombre": "Medicina Nuclear",
+    "correlativas": ["fibi"],
+    "RTF": 3,
+    "semestre": 8,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/1044/5628_Medicina_Nuclear.pdf"
+  },
+  {
+    "codigo": "biomec",
+    "nombre": "Biomecánica",
+    "correlativas": ["biomat", "EyRM"],
+    "RTF": 3,
+    "semestre": 8,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/1045/5629_Biomecanica.pdf"
+  },
+  
+
+  
+  {
+    "codigo": "imagenes",
+    "nombre": "Imágenes en Medicina",
+    "correlativas": ["instrumentacion"],
+    "RTF": 3,
+    "semestre": 9,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/1259/Imagenes_en_MedicinaOK_1.pdf"
+  },
+  
+  {
+    "codigo": "PPS",
+    "nombre": "Práctica Profesional Supervisada",
+    "correlativas": [],
+    "condiciones": {
+      "tipo": "minAprobadas",
+      "cantidad": 35
+    },
+    "RTF": 9,
+    "semestre": 9,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/1260/Practica_SupervisadaOK.pdf"
+  },
+  {
+    "codigo": "opt1",
+    "nombre": "Optativa I",
+    "correlativas": [],
+    "RTF": 3,
+    "semestre": 9,
+    "programa_url": ""
+  },
+  {
+    "codigo": "rehab",
+    "nombre": "Ingeniería en Rehabilitación",
+    "correlativas": ["ED2", "biomec", "TyS"],
+    "RTF": 3,
+    "semestre": 9,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/1261/Ingenier%C3%ADa_en_Rehabilitaci%C3%B3n.pdf"
+  },
+  
+  
+  {
+    "codigo": "PI",
+    "nombre": "Proyecto Integrador",
+    "correlativas": [],
+    "condiciones": {
+      "tipo": "minAprobadas",
+      "cantidad": 47
+    },
+    "RTF": 5,
+    "semestre": 10,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/1264/Proyecto_IntegradorOK.pdf"
+  },
+  {
+    "codigo": "SeHA",
+    "nombre": "Seguridad e Higiene Ambiental",
+    "correlativas": ["inghosp"],
+    "RTF": 3,
+    "semestre": 10,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/1263/Seguridad_e_Higiene_Industrial_y_AmbientalOK.pdf"
+  },
+  {
+    "codigo": "opt2",
+    "nombre": "Optativa II",
+    "correlativas": [],
+    "RTF": 3,
+    "semestre": 10,
+    "programa_url": ""
+  },
+  {
+    "codigo": "gestion",
+    "nombre": "Gestión de Organizaciones Industriales",
+    "correlativas": ["economia"],
+    "RTF": 3,
+    "semestre": 10,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4329/Gestin_de_Organizaciones_IndustrialesOK_ZDhyPCt.pdf"
+  }
+  
+
+]
