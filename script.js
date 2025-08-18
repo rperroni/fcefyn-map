@@ -9,21 +9,17 @@ const CARRERAS = [
     {
         value: "biomedica-2025",
         nombre: "Ingeniería Biomédica",
-        anio: "2025"
+        anio: "2025",
+        plan: "https://fcefyn.unc.edu.ar/documents/5190/Ing._Biom%C3%A9dica_Plan_de_estudio_2025.pdf"
     },
     {
         value: "tusd-2025",
         nombre: "Tecnicatura Universitaria en Sistemas Digitales",
-        anio: "2025"
+        anio: "2025",
+        plan: "https://fcefyn.unc.edu.ar/documents/5905/Anexo_I_Grilla_de_Cursada-tusd25.pdf"
     }
     // Puedes agregar más carreras aquí si lo deseas
 ];
-
-// URLs de los planes de estudio por carrera
-const PLANES_CARRERA = {
-    "biomedica-2025": "https://fcefyn.unc.edu.ar/documents/5190/Ing._Biom%C3%A9dica_Plan_de_estudio_2025.pdf",
-    "tusd-2025": "https://fcefyn.unc.edu.ar/documents/5905/Anexo_I_Grilla_de_Cursada-tusd25.pdf"
-};
 
 
 /* Helpers para localStorage por carrera */
@@ -244,7 +240,8 @@ function cargarCarrera(nombreCarrera) {
 function actualizarPlanCarreraLink(nombreCarrera) {
     const link = document.getElementById("plan-carrera-link");
     if (link) {
-        link.href = PLANES_CARRERA[nombreCarrera] || "#";
+        const carrera = CARRERAS.find(c => c.value === nombreCarrera);
+        link.href = carrera && carrera.plan ? carrera.plan : "#";
     }
 }
 
@@ -473,3 +470,4 @@ document.addEventListener("DOMContentLoaded", () => {
     setupSugerencias();
     setupFooterColores();
 });
+    
