@@ -436,7 +436,113 @@
     "RTF": 3,
     "semestre": 10,
     "programa_url": "https://fcefyn.unc.edu.ar/documents/4329/Gestin_de_Organizaciones_IndustrialesOK_ZDhyPCt.pdf"
+  },
+
+
+
+  {
+    "codigo": "robotica",
+    "nombre": "Robotica en medicina",
+    "correlativas": ["biomec", "TRyC", "TyS"],
+    "RTF": 3,
+    "tipo": "optativa",
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4140/Robotica_en_Medicina.pdf"
+  },
+  {
+    "codigo": "seguridad",
+    "nombre": "Seguridad y Normalización en Instrumentación Biomédica",
+    "correlativas": ["instrumentacion", "insthosp"],
+    "RTF": 3,
+    "tipo": "optativa",
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4143/Seguridad_y_Normalizacion_en_IB.pdf"
+  },
+  {
+    "codigo": "instrumental",
+    "nombre": "Instrumental de Análisis Clínico",
+    "correlativas": ["TyS", "instrumentacion"],
+    "RTF": 3,
+    "tipo": "optativa",
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4141/Instrumental_de_Analisis_Clinico.pdf"
+  },
+  {
+    "codigo": "infmedica",
+    "nombre": "Informática Médica",
+    "correlativas": ["imagenes", "nuclear"],
+    "RTF": 3,
+    "tipo": "optativa",
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4145/Informatica_Medica.pdf"
+  },
+  {
+    "codigo": "ED3",
+    "nombre": "Electrónica Digital III",
+    "correlativas": ["ED2", "ingles"],
+    "RTF": 3,
+    "tipo": "optativa",
+    "programa_url": ""
+  },
+  {
+    "codigo": "IA",
+    "nombre": "Inteligencia Artificial",
+    "correlativas": ["MyS", "informatica"],
+    "RTF": 3,
+    "tipo": "optativa",
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4073/Inteligencia_ArtificialOK_1.pdf"
+  },
+  {
+    "codigo": "PSdS",
+    "nombre": "Procesamiento Digital de Señales",
+    "correlativas": ["seniales", "ED2"],
+    "RTF": 3,
+    "tipo": "optativa",
+    "programa_url": ""
+  },
+  {
+    "codigo": "RNIS",
+    "nombre": "Radiaciones No Ionizantes en Salud",
+    "correlativas": ["instrumentacion"],
+    "RTF": 3,
+    "tipo": "optativa",
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4142/RNI_en_Salud.pdf"
+  },
+  {
+    "codigo": "PyO",
+    "nombre": "Prótesis y Ortesis",
+    "correlativas": ["biomat", "fisiopatologia"],
+    "RTF": 3,
+    "tipo": "optativa",
+    "programa_url": ""
+  },
+  {
+    "codigo": "emprend",
+    "nombre": "Emprendedorismo Tecnológico",
+    "correlativas": [],
+    "RTF": 3,
+    "tipo": "optativa",
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4070/Emprendedorismo-Tecnol%C3%B3gico.pdf"
+  },
+  {
+    "codigo": "ML",
+    "nombre": "Machine Learning e Imágenes en Python",
+    "correlativas": [],
+    "condiciones": {
+      "tipo": "minAprobadas",
+      "cantidad": 35
+    },
+    "RTF": 3,
+    "tipo": "optativa",
+    "programa_url": ""
+  },
+  {
+    "codigo": "idiomas",
+    "nombre": "Optativas de Idiomas",
+    "correlativas": [],
+    "condiciones": {
+      "tipo": "minAprobadas",
+      "cantidad": 15
+    },
+    "RTF": 3,
+    "tipo": "optativa",
+    "programa_url": ""
   }
-  
 
 ]

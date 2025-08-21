@@ -54,16 +54,35 @@ function actualizarEstado() {
             puedeCursar = m.correlativas.every(c => aprobadas.has(c) || regulares.has(c));
         }
 
-        if (aprobadas.has(m.codigo)) {
-            elemento.className = "materia aprobada";
-        } else if (regulares.has(m.codigo)) {
-            elemento.className = "materia regular";
-        } else if (cursando.has(m.codigo)) {
-            elemento.className = "materia cursando";
-        } else if (puedeCursar) {
-            elemento.className = "materia disponible";
-        } else {
-            elemento.className = "materia bloqueada";
+        // Colores y clases para optativas
+        if (elemento) {
+            elemento.classList.remove("optativa");
+            if (m.tipo === "optativa") {
+                elemento.classList.add("optativa");
+                if (aprobadas.has(m.codigo)) {
+                    elemento.className = "materia optativa aprobada";
+                } else if (regulares.has(m.codigo)) {
+                    elemento.className = "materia optativa regular";
+                } else if (cursando.has(m.codigo)) {
+                    elemento.className = "materia optativa cursando";
+                } else if (puedeCursar) {
+                    elemento.className = "materia optativa disponible";
+                } else {
+                    elemento.className = "materia optativa bloqueada";
+                }
+            } else {
+                if (aprobadas.has(m.codigo)) {
+                    elemento.className = "materia aprobada";
+                } else if (regulares.has(m.codigo)) {
+                    elemento.className = "materia regular";
+                } else if (cursando.has(m.codigo)) {
+                    elemento.className = "materia cursando";
+                } else if (puedeCursar) {
+                    elemento.className = "materia disponible";
+                } else {
+                    elemento.className = "materia bloqueada";
+                }
+            }
         }
 
         // Tooltip en el nombre
@@ -161,21 +180,29 @@ function cargarCarrera(nombreCarrera) {
                         <div class="en-construccion-desc">Pronto vas a poder ver el plan de esta carrera.</div>
                     </div>
                 `;
+                // Elimina optativas si existen
+                const optativasCont = document.getElementById("contenedor-optativas");
+                if (optativasCont) optativasCont.remove();
                 return;
             }
 
             cargarProgreso();
 
+            // Agrupa materias por semestre y optativas
             const grupos = {};
+            const optativas = [];
             materias.forEach(m => {
-                if (!grupos[m.semestre]) grupos[m.semestre] = [];
-                grupos[m.semestre].push(m);
+                if (m.tipo === "optativa") {
+                    optativas.push(m);
+                } else {
+                    if (!grupos[m.semestre]) grupos[m.semestre] = [];
+                    grupos[m.semestre].push(m);
+                }
             });
 
             Object.keys(grupos).sort((a, b) => a - b).forEach(sem => {
                 const columna = document.createElement("div");
                 columna.className = "columna-semestre";
-
                 grupos[sem].forEach(m => {
                     const div = document.createElement("div");
                     div.id = m.codigo;
@@ -222,9 +249,80 @@ function cargarCarrera(nombreCarrera) {
                     div.appendChild(acciones);
                     columna.appendChild(div);
                 });
-
                 contenedor.appendChild(columna);
             });
+
+            // Renderiza optativas en un contenedor aparte
+            let optativasCont = document.getElementById("contenedor-optativas");
+            if (optativas.length > 0) {
+                if (!optativasCont) {
+                    optativasCont = document.createElement("div");
+                    optativasCont.id = "contenedor-optativas";
+                    contenedor.parentNode.appendChild(optativasCont);
+                }
+                optativasCont.innerHTML = "";
+                optativas.forEach(m => {
+                    const div = document.createElement("div");
+                    div.id = m.codigo;
+                    div.className = "materia optativa";
+                    div.onclick = () => toggleEstado(m.codigo);
+
+                    const asignatura = document.createElement("div");
+                    asignatura.classList.add("nombre-materia");
+
+                    const nombre = document.createElement("span");
+                    nombre.innerText = m.nombre;
+
+                    asignatura.appendChild(nombre);
+                    div.appendChild(asignatura);
+
+                    // Contenedor de iconos a la derecha
+                    const acciones = document.createElement("div");
+                    acciones.className = "acciones-materia";
+
+                    // Icono ver programa
+                    if (m.programa_url) {
+                        const icono = document.createElement("a");
+                        icono.href = m.programa_url;
+                        icono.target = "_blank";
+                        icono.className = "icono-flotante";
+                        icono.innerHTML = '<i class="fa-regular fa-file"></i>';
+                        icono.title = "Ver programa";
+                        // Evita que el click cambie el estado de la materia
+                        icono.addEventListener("click", function(e) {
+                            e.stopPropagation();
+                        });
+                        acciones.appendChild(icono);
+                    }
+
+                    // Botón anotarse
+                    const botonAnotarse = document.createElement("div");
+                    botonAnotarse.className = "icono-anotarse";
+                    botonAnotarse.onclick = e => {
+                        e.stopPropagation();
+                        toggleCursando(m.codigo);
+                    };
+                    acciones.appendChild(botonAnotarse);
+
+                    div.appendChild(acciones);
+                    optativasCont.appendChild(div);
+                });
+
+                // Ocultar por defecto y resetear el botón
+                optativasCont.classList.remove("visible");
+                const btnOpt = document.getElementById("optativas-btn");
+                if (btnOpt) {
+                    btnOpt.textContent = "Ver optativas";
+                    btnOpt.title = "Mostrar optativas";
+                }
+            } else if (optativasCont) {
+                optativasCont.remove();
+                const btnOpt = document.getElementById("optativas-btn");
+                if (btnOpt) {
+                    btnOpt.textContent = "Ver optativas";
+                    btnOpt.title = "Mostrar optativas";
+                }
+            }
 
             actualizarEstado();
         })
@@ -472,8 +570,62 @@ function setupFooterColores() {
 cargarCarrera(carreraActual);
 setupInfoColores();
 
+// Asegura posicionamiento correcto del botón respecto al footer
+window.addEventListener('load', setFooterHeightVar);
+window.addEventListener('resize', setFooterHeightVar);
+document.addEventListener('DOMContentLoaded', setFooterHeightVar);
+
+// Toggle optativas: ejecuta siempre, no depende de DOMContentLoaded
+(function() {
+    const btnOptativas = document.getElementById("optativas-btn");
+    const contOptativas = document.getElementById("contenedor-optativas");
+    if (btnOptativas && contOptativas) {
+        // Oculta por defecto al cargar
+        contOptativas.classList.remove("visible");
+        btnOptativas.textContent = "Ver optativas";
+        btnOptativas.title = "Mostrar optativas";
+
+        btnOptativas.onclick = function() {
+            const visible = contOptativas.classList.toggle("visible");
+            btnOptativas.textContent = visible ? "Ocultar optativas" : "Ver optativas";
+            btnOptativas.title = visible ? "Ocultar optativas" : "Mostrar optativas";
+        };
+    }
+})();
+
 document.addEventListener("DOMContentLoaded", () => {
     setupSugerencias();
     setupFooterColores();
+    setupInfoColores();
+
+    // Toggle optativas: no depende de que exista el contenedor en este momento
+    const btnOptativas = document.getElementById("optativas-btn");
+    if (btnOptativas) {
+        btnOptativas.onclick = function() {
+            const contOptativas = document.getElementById("contenedor-optativas");
+            if (!contOptativas) return; // si no hay optativas, no hace nada
+            const visible = contOptativas.classList.toggle("visible");
+            btnOptativas.textContent = visible ? "Ocultar optativas" : "Ver optativas";
+            btnOptativas.title = visible ? "Ocultar optativas" : "Mostrar optativas";
+        };
+
+        // Estado inicial: oculto y texto por defecto
+        const contOptInit = document.getElementById("contenedor-optativas");
+        if (contOptInit) contOptInit.classList.remove("visible");
+        btnOptativas.textContent = "Ver optativas";
+        btnOptativas.title = "Mostrar optativas";
+    }
 });
+
+// Calcula y establece la altura del footer como variable CSS
+function setFooterHeightVar() {
+    const footer = document.querySelector('footer');
+    if (!footer) return;
+    const h = footer.offsetHeight || 0;
+    document.documentElement.style.setProperty('--footer-height', `${h}px`);
+}
+
+window.addEventListener('load', setFooterHeightVar);
+window.addEventListener('resize', setFooterHeightVar);
+document.addEventListener('DOMContentLoaded', setFooterHeightVar);
 

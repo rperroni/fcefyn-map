@@ -32,6 +32,11 @@
     --bgnd-color-anotarse: #66BB6A; /* verde para anotarse */
     --bgnd-color-abandonar: #DE4343; /* rojo para desanotarse */
     --bgnd-color-ver-programa: #d4a56c; /* verde para ver programa */
+
+    /* Colores optativas */
+    --bgnd-color-optativa-disponible: #a259e4; /* violeta claro */
+    --bgnd-color-optativa-bloqueada: #6c3483; /* violeta oscuro */
+    --txt-color-optativa: #fff;
 }
 
 /* Página tipo diapositiva centrada */
@@ -83,15 +88,67 @@ a {
 .slide {
     height: 100%;                 /* ocupa todo el alto disponible */
     display: flex;
+    flex-direction: column; /* fuerza a que el contenido se apile verticalmente */
     justify-content: center;
     align-items: center;
     /*place-items: center;          /* centra el mapa */
     overflow: visible;            /* no recorta nada */
 }
 
+.toggle-optativas-btn {
+    align-self: flex-start;
+    margin-left: 10px;
+    margin-right: auto;
+    margin-top: 18px;
+    margin-bottom: 0; /* suficiente para no quedar tapado por el footer */
+    z-index: 30;
+    position: relative;
+}
+
+/* Estilo visual del botón de optativas (común a todos los tamaños) */
+.toggle-optativas-btn {
+    padding: 6px 12px;                  /* más compacto */
+    font-size: 0.95rem;                 /* un poco más chico */
+    font-weight: 400;                   /* letra normal */
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    background-color: var(--bgnd-color-optativa-disponible); /* sólido, sin gradiente */
+    box-shadow: 0 2px 6px rgba(162,89,228,0.18);
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.1s ease;
+    outline: none;
+}
+
+.toggle-optativas-btn:hover {
+    background-color: var(--bgnd-color-optativa-bloqueada);  /* violeta más oscuro al hover */
+    box-shadow: 0 4px 12px rgba(162,89,228,0.25);
+}
+
+.toggle-optativas-btn:active {
+    transform: translateY(1px);
+}
+
+.toggle-optativas-btn:focus-visible {
+    box-shadow: 0 0 0 3px rgba(162,89,228,0.35);
+}
+
+/* Desktop: botón fijo 10px desde la izquierda y 10px por encima del footer */
+@media (min-width: 901px) {
+    .toggle-optativas-btn {
+        position: fixed;
+        left: 10px;
+        bottom: calc(var(--footer-height, 52px) + 10px); /* 10px sobre el footer */
+        margin: 0; /* ignora márgenes en fijo */
+        z-index: 30; /* por encima del footer (z-index footer = 20) */
+    }
+}
+
 /* ÚNICO contenedor que scrollea en X */
 .scroll-x {
     display: flex;
+    flex-direction: column;
+    gap: 50px;
     width: auto;
     height: auto;
     overflow-x: auto;             /* scroll horizontal */
@@ -142,7 +199,7 @@ a {
 .nombre-materia {
     display: flex;
     align-items: center;
-    font-size: 1rem;
+    font-size: 15px;
     gap: 8px;
     justify-content: center;
 }
@@ -547,7 +604,7 @@ a {
 
     header {
         width: 100%;
-        padding-right: 50px;
+        padding-right: 20px;
     }
 }
 
@@ -945,5 +1002,40 @@ footer {
     }
     .en-construccion-desc {
         font-size: 0.97rem;
+    }
+}
+
+/* Tarjeta optativa: hereda de materia pero cambia color según estado */
+.materia.optativa.disponible {
+    background-color: var(--bgnd-color-optativa-disponible);
+    color: var(--txt-color-optativa);
+}
+.materia.optativa.bloqueada {
+    background-color: var(--bgnd-color-optativa-bloqueada);
+    color: var(--txt-color-optativa);
+}
+
+/* Contenedor de optativas */
+#contenedor-optativas {
+    display: none;
+    flex-direction: row;
+    gap: 30px;
+    justify-content: center;
+    margin-top: 32px;
+    margin-bottom: 0;
+    flex-wrap: wrap;
+}
+#contenedor-optativas.visible {
+    display: flex;
+}
+
+/* Mobile: mismas reglas de layout que #contenedor-semestres */
+@media (max-width: 900px) {
+    #contenedor-optativas {
+        /* espejo de #contenedor-semestres en mobile */
+        gap: 16px;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-left: -80px; /* corrige el corrimiento hacia la derecha */
     }
 }
