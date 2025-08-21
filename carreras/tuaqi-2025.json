@@ -1,0 +1,243 @@
+[
+    {
+    "codigo": "AmbUniv",
+    "nombre": "Ambientación Universitaria",
+    "correlativas": [],
+    "RTF": 1.5,
+    "semestre": 0,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5515/10-04050-Ambientaci%C3%B3n_Universitaria.pdf"
+  },
+  {
+    "codigo": "mat",
+    "nombre": "Matemática",
+    "correlativas": [],
+    "RTF": 4,
+    "semestre": 0,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5513/10-04051-Matem%C3%A1tica.pdf"
+  },
+  {
+    "codigo": "quimica",
+    "nombre": "Química",
+    "correlativas": [],
+    "RTF": 3,
+    "semestre": 0,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/718/CINEAU-Quimica-2013.pdf"
+  },
+
+
+
+  {
+    "codigo": "representacion",
+    "nombre": "Representación Gráfica",
+    "correlativas": [],
+    "RTF": 5.5,
+    "semestre": 1,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/717/1.01.04.Representaci%C3%B3n-Gr%C3%A1fica.pdf"
+  },
+  {
+    "codigo": "intromat",
+    "nombre": "Introducción a la Matemática",
+    "correlativas": ["mat"],
+    "RTF": 7,
+    "semestre": 1,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/107/05-IM-Introduccion_a_la_Matematica.pdf"
+  },
+  {
+    "codigo": "informatica",
+    "nombre": "Informática",
+    "correlativas": ["mat"],
+    "RTF": 5.5,
+    "semestre": 1,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/108/07-IM-Informatica_1.pdf"
+  },
+  {
+    "codigo": "qcagral1",
+    "nombre": "Química General I",
+    "correlativas": ["quimica"],
+    "RTF": 7,
+    "semestre": 1,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/716/1.01.02.Qu%C3%ADmica-General-I.pdf"
+  },
+
+
+
+  {
+    "codigo": "F1",
+    "nombre": "Física I",
+    "correlativas": ["intromat"],
+    "RTF": 7,
+    "semestre": 2,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/115/10-IM-Fisica_I.pdf"
+  },
+  {
+    "codigo": "AM1",
+    "nombre": "Análisis Matemático I",
+    "correlativas": ["intromat"],
+    "RTF": 5.5,
+    "semestre": 2,
+    "programa_url": "https://fcefyn.unc.edu.ar/facultad/secretarias/academica/departamentos/matematica/analisis-matematico-i-1/"
+  },
+  {
+    "codigo": "AL",
+    "nombre": "Álgebra Lineal",
+    "correlativas": ["intromat"],
+    "RTF": 5.5,
+    "semestre": 2,
+    "programa_url": ""
+  },
+  {
+    "codigo": "qcagral2",
+    "nombre": "Química General II",
+    "correlativas": ["qcagral1"],
+    "RTF": 5.5,
+    "semestre": 2,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/715/1.02.07.Qu%C3%ADmica-General-II.pdf"
+  },
+
+
+
+  {
+    "codigo": "inorganica",
+    "nombre": "Química Inorgánica",
+    "correlativas": ["qcagral2"],
+    "RTF": 6,
+    "semestre": 3,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/720/2.03.10.Qu%C3%ADmica-Inorg%C3%A1nica.pdf"
+  },
+  {
+    "codigo": "organica1",
+    "nombre": "Química Orgánica I",
+    "correlativas": ["qcagral2"],
+    "RTF": 8,
+    "semestre": 3,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/721/2.03.11.Quimica-Org%C3%A1nica-I.pdf"
+  },
+  {
+    "codigo": "PyE",
+    "nombre": "Probabilidad y Estadística",
+    "correlativas": ["AM1"],
+    "RTF": 5.5,
+    "semestre": 3,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/210/17-IM-Probab_y_E.pdf"
+  },
+  {
+    "codigo": "F2",
+    "nombre": "Física II",
+    "correlativas": ["AM1", "F1"],
+    "RTF": 7,
+    "semestre": 3,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/203/F%C3%AFsica-II1.pdf"
+  },
+
+
+
+  {
+    "codigo": "organica2",
+    "nombre": "Química Orgánica II",
+    "correlativas": ["organica1"],
+    "RTF": 8,
+    "semestre": 4,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/724/2.04.15.Qu%C3%ADmica-Org%C3%A1nica-II.pdf"
+  },
+  {
+    "codigo": "analiticagral",
+    "nombre": "Química Analítica General",
+    "correlativas": ["inorganica"],
+    "RTF": 8,
+    "semestre": 4,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/725/2.04.16.Qu%C3%ADmica-Anal%C3%ADtica-General.pdf"
+  },
+  {
+    "codigo": "EyRM",
+    "nombre": "Estática y Resistencia de Materiales",
+    "correlativas": ["F1"],
+    "RTF": 5,
+    "semestre": 4,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/727/2.04.17.Est%C3%A1tica-y-resistencia-de-materiales.pdf"
+  },
+  {
+    "codigo": "gestion",
+    "nombre": "Gestión Institucional",
+    "correlativas": ["AmbUniv"],
+    "RTF": 3,
+    "semestre": 4,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/726/2.04.19.Gestion-Institucional-I.pdf"
+  },
+
+
+
+
+  {
+    "codigo": "analiticainst",
+    "nombre": "Química Analítica Instrumental",
+    "correlativas": ["analiticagral", "F2"],
+    "RTF": 6,
+    "semestre": 5,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/730/3.05.20.Qu%C3%ADmica-Anal%C3%ADtica-Instrumental.pdf"
+  },
+  {
+    "codigo": "biologica",
+    "nombre": "Química Biológica",
+    "correlativas": ["organica2"],
+    "RTF": 7,
+    "semestre": 5,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/728/3.05.21.Qu%C3%ADmica-Biol%C3%B3gica.pdf"
+  },
+  {
+    "codigo": "problematica",
+    "nombre": "Problemática y Gestión Ambiental",
+    "correlativas": ["inorganica", "organica2"],
+    "RTF": 3,
+    "semestre": 5,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/731/3.05.23.Problem%C3%A1tica-y-Gesti%C3%B3n-Ambiental.pdf"
+  },
+  {
+    "codigo": "ingles",
+    "nombre": "Módulo de Inglés",
+    "correlativas": [],
+    "condiciones": {
+      "tipo": "minAprobadas",
+      "cantidad": 13
+    },
+    "RTF": 3,
+    "semestre": 5,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/218/23-IM-Modulo_de_Ingles.pdf"
+  },
+
+
+
+
+  {
+    "codigo": "microbiologia",
+    "nombre": "Microbiología General y de los Alimentos",
+    "correlativas": ["biologica"],
+    "RTF": 8,
+    "semestre": 6,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/733/3.06.26.Microbiolog%C3%ADa-General-y-de-los-Alimentos.pdf"
+  },
+  {
+    "codigo": "economia",
+    "nombre": "Economía",
+    "correlativas": ["AM1"],
+    "RTF": 3,
+    "semestre": 6,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/224/32-IM-Economia.pdf"
+  },
+  {
+    "codigo": "metalurgia",
+    "nombre": "Metalurgia",
+    "correlativas": ["EyRM"],
+    "RTF": 6,
+    "semestre": 6,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/732/3.06.25.Metalurgia.pdf"
+  },
+  {
+    "codigo": "analiticaaplicada",
+    "nombre": "Química Analítica Aplicada",
+    "correlativas": ["analiticainst"],
+    "RTF": 6,
+    "semestre": 6,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5174/programa_quimica_analitica_aplicada_8500.pdf"
+  }
+
+]
