@@ -248,6 +248,10 @@ function cargarCarrera(nombreCarrera) {
                         <i class="fa-solid fa-person-digging en-construccion-icon"></i>
                         <div><b>En construcción</b></div>
                         <div class="en-construccion-desc">Pronto vas a poder ver el plan de esta carrera.</div>
+                        <div class="en-construccion-desc" style="margin-top:14px;">
+                            <em>Si sos alumno de esta carrera y querés darme una mano para cargar el plan de estudios mandame un mail a
+                            <a href="mailto:rocio.perroni@mi.unc.edu.ar">rocio.perroni@mi.unc.edu.ar</a>.</em>
+                        </div>
                     </div>
                 `;
                 // Elimina optativas si existen
