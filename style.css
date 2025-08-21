@@ -34,8 +34,8 @@
     --bgnd-color-ver-programa: #d4a56c; /* verde para ver programa */
 
     /* Colores optativas */
-    --bgnd-color-optativa-disponible: #a259e4; /* violeta claro */
-    --bgnd-color-optativa-bloqueada: #6c3483; /* violeta oscuro */
+    --bgnd-color-optativa-disponible: #964DC6; /* violeta claro */
+    --bgnd-color-optativa-bloqueada: #D2C0DF; /* violeta oscuro */
     --txt-color-optativa: #fff;
 }
 
