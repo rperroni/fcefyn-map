@@ -96,6 +96,7 @@ a {
 }
 
 .toggle-optativas-btn {
+    display: none; /* oculto por defecto, el JS lo mostrará si hay optativas */
     align-self: flex-start;
     margin-left: 10px;
     margin-right: auto;

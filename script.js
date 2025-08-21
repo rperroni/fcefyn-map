@@ -183,6 +183,9 @@ function cargarCarrera(nombreCarrera) {
                 // Elimina optativas si existen
                 const optativasCont = document.getElementById("contenedor-optativas");
                 if (optativasCont) optativasCont.remove();
+                // Oculta el botón
+                const btnOpt = document.getElementById("optativas-btn");
+                if (btnOpt) btnOpt.style.display = "none";
                 return;
             }
 
@@ -312,6 +315,7 @@ function cargarCarrera(nombreCarrera) {
                 optativasCont.classList.remove("visible");
                 const btnOpt = document.getElementById("optativas-btn");
                 if (btnOpt) {
+                    btnOpt.style.display = "inline-block";   // mostrar botón
                     btnOpt.textContent = "Ver optativas";
                     btnOpt.title = "Mostrar optativas";
                 }
@@ -319,9 +323,14 @@ function cargarCarrera(nombreCarrera) {
                 optativasCont.remove();
                 const btnOpt = document.getElementById("optativas-btn");
                 if (btnOpt) {
+                    btnOpt.style.display = "none";            // ocultar botón
                     btnOpt.textContent = "Ver optativas";
                     btnOpt.title = "Mostrar optativas";
                 }
+            } else {
+                // No había contenedor y no hay optativas -> ocultar botón
+                const btnOpt = document.getElementById("optativas-btn");
+                if (btnOpt) btnOpt.style.display = "none";
             }
 
             actualizarEstado();
