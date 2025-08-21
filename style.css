@@ -656,8 +656,27 @@ footer {
     transition: color 0.2s;
 }
 
+.fa-palette:hover {
+    background: conic-gradient(
+        from 0deg,
+        #f44336,
+        #ff9800,
+        #ffeb3b,
+        #4caf50,
+        #00bcd4,
+        #2196f3,
+        #3f51b5,
+        #9c27b0,
+        #f44336
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent !important;
+    -webkit-text-fill-color: transparent; /* Safari */
+}
+
 .icono-footer:hover {
-    color: #43A047;
+    color: #a8a8a8;
 }
 
 .icono-footer-mate {
@@ -667,12 +686,13 @@ footer {
     border-radius: 0;
     background: none;
     border: none;
-    filter: brightness(0) invert(1); /* blanco sobre fondo oscuro */
+    filter: brightness(0) invert(1); /* blanco por defecto */
     transition: box-shadow 0.2s, filter 0.2s;
 }
 
 .icono-footer-mate:hover {
-    filter: brightness(0) invert(0.7); /* gris claro al hacer hover */
+    /* filtro aproximado al color exacto #43A047 */
+    filter: brightness(0) saturate(100%) invert(42%) sepia(36%) saturate(923%) hue-rotate(86deg) brightness(92%) contrast(92%);
     box-shadow: none;
 }
 
