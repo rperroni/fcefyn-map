@@ -1077,7 +1077,7 @@ footer {
         gap: 16px;
         flex-wrap: wrap;
         justify-content: center;
-        margin-left: -80px; /* corrige el corrimiento hacia la derecha */
+        margin-left: -2.8rem; /* corrige el corrimiento hacia la derecha */
     }
 }
 
