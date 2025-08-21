@@ -688,13 +688,13 @@ window.addEventListener('load', setFooterHeightVar);
 window.addEventListener('resize', setFooterHeightVar);
 document.addEventListener('DOMContentLoaded', setFooterHeightVar);
 
-// Detecta y actualiza los slots de optativas
+// Detecta y actualiza los slots de optativas copiando el estado (cursando/regular/aprobada)
 function updateOptativaSlots() {
     // Slots: materias NO tipo "optativa" cuyo nombre empieza con "Optativa"
     const slots = materias
         .filter(m => m.tipo !== "optativa" && /^optativa\b/i.test(m.nombre || ""))
         .sort((a, b) => {
-            // Orden estable por semestre y luego por nombre
+            // Orden por semestre y luego por nombre (estable)
             const sa = (typeof a.semestre === "number") ? a.semestre : Number.MAX_SAFE_INTEGER;
             const sb = (typeof b.semestre === "number") ? b.semestre : Number.MAX_SAFE_INTEGER;
             if (sa !== sb) return sa - sb;
@@ -704,10 +704,10 @@ function updateOptativaSlots() {
 
     if (slots.length === 0) return;
 
-    // Cantidad de optativas "reales" seleccionadas en cualquier estado útil
-    const usedCount = materias.filter(m =>
+    // Optativas "reales" seleccionadas (orden según aparecen en el JSON)
+    const seleccionadas = materias.filter(m =>
         m.tipo === "optativa" && (aprobadas.has(m.codigo) || regulares.has(m.codigo) || cursando.has(m.codigo))
-    ).length;
+    );
 
     // Limpia estados de todos los slots
     slots.forEach(code => {
@@ -716,10 +716,19 @@ function updateOptativaSlots() {
         cursando.delete(code);
     });
 
-    // Marca como aprobadas las primeras N (hasta la cantidad de slots)
-    const n = Math.min(usedCount, slots.length);
+    // Copia el estado de cada optativa seleccionada al slot correspondiente
+    const n = Math.min(seleccionadas.length, slots.length);
     for (let i = 0; i < n; i++) {
-        aprobadas.add(slots[i]);
+        const src = seleccionadas[i];
+        const dst = slots[i];
+        // Copia estado exclusivo
+        if (aprobadas.has(src.codigo)) {
+            aprobadas.add(dst);
+        } else if (regulares.has(src.codigo)) {
+            regulares.add(dst);
+        } else if (cursando.has(src.codigo)) {
+            cursando.add(dst);
+        }
     }
 }
 
