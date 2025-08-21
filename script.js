@@ -146,6 +146,9 @@ function toggleEstado(codigo) {
         aprobadas.add(codigo);
     }
 
+    // Ajusta los slots de optativas según la nueva selección
+    updateOptativaSlots();
+
     guardarProgreso();
     actualizarEstado();
 }
@@ -157,6 +160,10 @@ function toggleCursando(codigo) {
     } else {
         cursando.add(codigo);
     }
+
+    // Ajusta los slots de optativas según la nueva selección
+    updateOptativaSlots();
+
     guardarProgreso();
     actualizarEstado();
 }
@@ -332,6 +339,9 @@ function cargarCarrera(nombreCarrera) {
                 const btnOpt = document.getElementById("optativas-btn");
                 if (btnOpt) btnOpt.style.display = "none";
             }
+
+            // Alinea los slots de "Optativa I/II/..." con lo seleccionado
+            updateOptativaSlots();
 
             actualizarEstado();
         })
@@ -637,4 +647,39 @@ function setFooterHeightVar() {
 window.addEventListener('load', setFooterHeightVar);
 window.addEventListener('resize', setFooterHeightVar);
 document.addEventListener('DOMContentLoaded', setFooterHeightVar);
+
+// Detecta y actualiza los slots de optativas
+function updateOptativaSlots() {
+    // Slots: materias NO tipo "optativa" cuyo nombre empieza con "Optativa"
+    const slots = materias
+        .filter(m => m.tipo !== "optativa" && /^optativa\b/i.test(m.nombre || ""))
+        .sort((a, b) => {
+            // Orden estable por semestre y luego por nombre
+            const sa = (typeof a.semestre === "number") ? a.semestre : Number.MAX_SAFE_INTEGER;
+            const sb = (typeof b.semestre === "number") ? b.semestre : Number.MAX_SAFE_INTEGER;
+            if (sa !== sb) return sa - sb;
+            return (a.nombre || "").localeCompare(b.nombre || "", "es");
+        })
+        .map(m => m.codigo);
+
+    if (slots.length === 0) return;
+
+    // Cantidad de optativas "reales" seleccionadas en cualquier estado útil
+    const usedCount = materias.filter(m =>
+        m.tipo === "optativa" && (aprobadas.has(m.codigo) || regulares.has(m.codigo) || cursando.has(m.codigo))
+    ).length;
+
+    // Limpia estados de todos los slots
+    slots.forEach(code => {
+        aprobadas.delete(code);
+        regulares.delete(code);
+        cursando.delete(code);
+    });
+
+    // Marca como aprobadas las primeras N (hasta la cantidad de slots)
+    const n = Math.min(usedCount, slots.length);
+    for (let i = 0; i < n; i++) {
+        aprobadas.add(slots[i]);
+    }
+}
 
