@@ -48,7 +48,7 @@ html, body {
 
 header {
     background-color: var(--bgnd-color-header);
-    width: 100vw; /* usa viewport width para respetar padding */
+    width: 100%; /* usa viewport width para respetar padding */
     color: var(--txt-color-header);
     display: flex;
     justify-content: flex-end; /* título a la izquierda, selector a la derecha */
@@ -171,16 +171,18 @@ a {
     height: auto;
     overflow-x: auto;             /* scroll horizontal */
     overflow-y: hidden;           /* no queremos barra vertical aquí */
-    padding: 12px 20px 36px;      /* <-- bottom extra para que el ícono “flote” sin cortarse */
+    padding: 12px 16px 36px;      /* <-- bottom extra para que el ícono “flote” sin cortarse */
 }
 
 /* contenedor de columnas sin overflow */
 #contenedor-semestres {
+    width: 100%;
     display: flex;
     justify-content: center;
     gap: 30px;                    /* más espacio entre columnas */
     padding: 0;                   /* lo manejamos desde .scroll-x */
     overflow: visible;            /* importante: que no recorte */
+    
 }
 .columna-semestre {
     display: flex;
@@ -188,7 +190,7 @@ a {
     flex-direction: column;
     gap: 40px; /* más separación entre filas */
    /* min-width: 100px; /* más compacto */
-    max-width: 150px;
+    max-width: 10rem;
 }
 
 /* TARJETA DE MATERIA */
@@ -1036,6 +1038,7 @@ footer {
 /* Contenedor de optativas */
 #contenedor-optativas {
     display: none;
+    width: 100%;
     flex-direction: row;
     gap: 30px;
     justify-content: center;
