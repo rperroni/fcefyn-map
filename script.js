@@ -217,8 +217,8 @@ function buildProgramaIcon(m) {
                 : "";
 
             const html = `
-                <p>Perdón, busqué en la <a href = "https://fcefyn.unc.edu.ar/" target="_blank" rel="noopener">página de la facultad</a>
-                 el código de la materia ${m.nombre} y no se encontró un programa publicado.</p>
+                <p>Busqué en la <a href = "https://fcefyn.unc.edu.ar/" target="_blank" rel="noopener" style="color: blue">página de la facultad</a>
+                 el código de la materia "${m.nombre}" y no se encontró un programa publicado.</p>
                 ${optMsg}
                 <p>Si tenés el enlace correcto, podés enviarlo desde el botón de sugerencias en el pie de página.</p>
                 <p> Asegurate de incluir el código de la materia (por ejemplo 10-04024). Lo podés encontrar en la sección de plan de estudios del Guaraní.</p>

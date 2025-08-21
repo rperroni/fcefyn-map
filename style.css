@@ -1080,3 +1080,9 @@ footer {
         margin-left: -80px; /* corrige el corrimiento hacia la derecha */
     }
 }
+
+@media (min-width: 901px) {
+    #programa-modal-body {
+    max-width: 30vw;
+}
+}

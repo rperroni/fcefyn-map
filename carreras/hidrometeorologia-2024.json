@@ -1,0 +1,360 @@
+[
+    {
+    "codigo": "nivelacion",
+    "nombre": "Curso de Nivelacion",
+    "correlativas": [],
+    "RTF": 1,
+    "semestre": 0,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4328/RHCD_190_2006.pdf"
+    },
+
+
+    {
+    "codigo": "AM1",
+    "nombre": "Análisis Matemático I",
+    "correlativas": ["nivelacion"],
+    "RTF": 1,
+    "semestre": 1,
+    "programa_url": "https://fcefyn.unc.edu.ar/facultad/secretarias/academica/departamentos/famaf/03-01027-analisis-matematico-i/"
+    },
+    {
+    "codigo": "introatm",
+    "nombre": "Introducción a la Atmósfera",
+    "correlativas": ["nivelacion"],
+    "RTF": 1,
+    "semestre": 1,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4265/2_-_1er_a%C3%B1o_1_Introducci%C3%B3n_a_la_Atm%C3%B3sfera.docx_1.pdf"
+    },
+    {
+    "codigo": "qcagral",
+    "nombre": "Química General",
+    "correlativas": ["nivelacion"],
+    "RTF": 1,
+    "semestre": 1,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/205/1Quimica-General_5t0fy76.pdf"
+    },
+
+
+    {
+    "codigo": "F1",
+    "nombre": "Física I",
+    "correlativas": ["AM1"],
+    "RTF": 1,
+    "semestre": 2,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/115/10-IM-Fisica_I.pdf"
+    },
+    {
+    "codigo": "AM2",
+    "nombre": "Análisis Matemático II",
+    "correlativas": ["AM1"],
+    "RTF": 1,
+    "semestre": 2,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4326/An%C3%A1lisis_Matem%C3%A1tico_II_QKKX9Gv.pdf"
+    },
+    {
+    "codigo": "instrumental1",
+    "nombre": "Instrumental y Prácticas de Laboratorio I",
+    "correlativas": ["introatm"],
+    "RTF": 1,
+    "semestre": 2,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4286/5_-_1er_a%C3%B1o_2_Instrumental_y_Practicas_de_Laboratorio_I.docx.pdf"
+    },
+    {
+    "codigo": "AL",
+    "nombre": "Álgebra Lineal",
+    "correlativas": ["AM1"],
+    "RTF": 1,
+    "semestre": 2,
+    "programa_url": "https://fcefyn.unc.edu.ar/facultad/secretarias/academica/departamentos/matematica/algebra-lineal-1/"
+    },
+
+
+    {
+    "codigo": "F2",
+    "nombre": "Física II",
+    "correlativas": ["F1", "AM2"],
+    "RTF": 1,
+    "semestre": 3,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/203/F%C3%AFsica-II1.pdf"
+    },
+    {
+    "codigo": "PyE",
+    "nombre": "Probabilidad y Estadística",
+    "correlativas": ["AM1"],
+    "RTF": 1,
+    "semestre": 3,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/210/17-IM-Probab_y_E.pdf"
+    },
+    {
+    "codigo": "hidromet1",
+    "nombre": "Hidrometeorología I",
+    "correlativas": ["instrumental1"],
+    "RTF": 1,
+    "semestre": 3,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4287/10_-_2do_a%C3%B1o_1_Hidrometeorolog%C3%ADa_I.docx.pdf"
+    },
+    {
+    "codigo": "AM3",
+    "nombre": "Análisis Matemático III",
+    "correlativas": ["AM2"],
+    "RTF": 1,
+    "semestre": 3,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4327/An%C3%A1lisis_Matem%C3%A1tico_III.pdf"
+    },
+
+
+
+    {
+    "codigo": "ingles",
+    "nombre": "Inglés",
+    "correlativas": [],
+    "condiciones": {
+      "tipo": "minAprobadas",
+      "cantidad": 11
+    },
+    "RTF": 1,
+    "semestre": 4,
+    "programa_url": "https://fcefyn.unc.edu.ar/facultad/secretarias/academica/departamentos/ensenanza-de-la-ciencia-y-la-tecnologia/10-08004-ingles/"
+    },
+    {
+    "codigo": "F3",
+    "nombre": "Física III",
+    "correlativas": ["qcagral", "F1", "AM3"],
+    "RTF": 1,
+    "semestre": 4,
+    "programa_url": ""
+    },
+    {
+    "codigo": "mecfluidos",
+    "nombre": "Mecánica de Fluidos",
+    "correlativas": ["F2", "AM3"],
+    "RTF": 1,
+    "semestre": 4,
+    "programa_url": "https://fcefyn.unc.edu.ar/facultad/secretarias/academica/departamentos/hidraulica/10-08005-mecanica-de-fluidos/"
+    },
+    {
+    "codigo": "metodos",
+    "nombre": "Métodos Numéricos",
+    "correlativas": ["AM2"],
+    "RTF": 1,
+    "semestre": 4,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/199/18-IM-Metodos_Numericos.pdf"
+    },
+
+
+
+    {
+    "codigo": "hidrologia",
+    "nombre": "Hidrología y Procesos Hidráulicos",
+    "correlativas": ["mecfluidos"],
+    "RTF": 1,
+    "semestre": 5,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4288/16_-_3er_a%C3%B1o_1_Hidrolog%C3%ADa_y_Procesos_Hidr%C3%A1ulicos.docx.pdf"
+    },
+    {
+    "codigo": "termodinamica",
+    "nombre": "Termodinámica de la Atmósfera",
+    "correlativas": ["F3", "mecfluidos", "introatm"],
+    "RTF": 1,
+    "semestre": 5,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4289/17_-_3er_a%C3%B1o_1_Termodin%C3%A1mica_de_la_Atm%C3%B3sfera.docx.pdf"
+    },
+    {
+    "codigo": "informatica",
+    "nombre": "Informática",
+    "correlativas": ["nivelacion"],
+    "RTF": 1,
+    "semestre": 5,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/108/07-IM-Informatica_1.pdf"
+    },
+
+
+
+    {
+    "codigo": "dinamica1",
+    "nombre": "Dinámica de la Atmósfera I",
+    "correlativas": ["termodinamica", "F3", "mecfluidos"],
+    "RTF": 1,
+    "semestre": 6,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4269/Programa_de_Din%C3%A1mica_de_la_Atm%C3%B3sfera_I.pdf"
+    },
+    {
+    "codigo": "seriestemporales",
+    "nombre": "Análisis de Series Temporales",
+    "correlativas": ["PyE", "metodos", "informatica"],
+    "RTF": 1,
+    "semestre": 6,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4272/Programa_de__An%C3%A1lisis_de_Series_Temporales.pdf"
+    },
+    {
+    "codigo": "hidromet2",
+    "nombre": "Hidrometeorología II",
+    "correlativas": ["hidromet1", "hidrologia"],
+    "RTF": 1,
+    "semestre": 6,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4273/Programa_de__Hidrometeorolog%C3%ADa_II.pdf"
+    },
+    {
+    "codigo": "instrumental2",
+    "nombre": "Instrumental y Prácticas de Laboratorio II",
+    "correlativas": ["instrumental1"],
+    "RTF": 1,
+    "semestre": 6,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4274/Programa_de__Instrumental_y_Practicas_de_Laboratorio_II.pdf"
+    },
+
+
+
+    {
+    "codigo": "introsensado",
+    "nombre": "Introducción al Sensado Remoto",
+    "correlativas": ["instrumental1", "hidromet2"],
+    "RTF": 1,
+    "semestre": 7,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4268/Programa_de_Introducci%C3%B3n_al_Sensado_Remoto.pdf"
+    },
+    {
+    "codigo": "modhidro",
+    "nombre": "Modelos Hidrológicos",
+    "correlativas": ["hidrologia"],
+    "RTF": 1,
+    "semestre": 7,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4275/Programa_de__Modelos_Hidrol%C3%B3gicos.pdf"
+    },
+    {
+    "codigo": "sistalerta",
+    "nombre": "Sistemas de Alerta Hidrometeorológicos",
+    "correlativas": ["hidrologia", "hidromet1"],
+    "RTF": 1,
+    "semestre": 7,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4276/Programa_de__Sistemas_de_Alerta_Hidrometeorol%C3%B3gico.pdf"
+    },
+    {
+    "codigo": "sinoptica",
+    "nombre": "Meteorología Sinóptica",
+    "correlativas": ["dinamica"],
+    "RTF": 1,
+    "semestre": 7,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4277/Programa_de__Meteorolog%C3%ADa_Sin%C3%B3ptica.pdf"
+    },
+
+
+
+    {
+    "codigo": "sensores",
+    "nombre": "Sensores Remotos y SIG",
+    "correlativas": ["introsensado"],
+    "RTF": 1,
+    "semestre": 8,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4267/Programade_Sensores_Remotos_y_SIG.pdf"
+    },
+    {
+    "codigo": "qcaatm",
+    "nombre": "Química de la Atmósfera",
+    "correlativas": ["qcagral", "termodinamica"],
+    "RTF": 1,
+    "semestre": 8,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4278/Programa_de__Qu%C3%ADmica_de_la_atm%C3%B3sfera.pdf"
+    },
+    {
+    "codigo": "climatologia",
+    "nombre": "Climatología",
+    "correlativas": ["sinoptica"],
+    "RTF": 1,
+    "semestre": 8,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4279/Programa_de_Climatolog%C3%ADa.pdf"
+    },
+    {
+    "codigo": "modelado",
+    "nombre": "Modelado Numérico de Procesos Hidrometeorológicos",
+    "correlativas": ["metodos", "informatica", "introsensado"],
+    "RTF": 1,
+    "semestre": 8,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4280/Programa_de_Modelado_Num%C3%A9rico_de_Procesos_Hdrometeorol%C3%B3gicos.pdf"
+    },
+
+
+
+
+
+    {
+    "codigo": "variabilidad",
+    "nombre": "Variabilidad y Cambio Climático",
+    "correlativas": ["hidrologia", "seriestemporales", "climatologia"],
+    "RTF": 1,
+    "semestre": 9,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5000/30._Variabilidad_y_Cambio_Clim%C3%A1tico.pdf"
+    },
+    {
+    "codigo": "dinamica2",
+    "nombre": "Dinámica de la Atmósfera II",
+    "correlativas": ["dinamica1"],
+    "RTF": 1,
+    "semestre": 9,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/4266/Programa_de__Din%C3%A1mica_de_la_Atm%C3%B3sfera_II.pdf"
+    },
+    {
+    "codigo": "opt1",
+    "nombre": "Optativa I",
+    "correlativas": [],
+    "RTF": 1,
+    "semestre": 9,
+    "programa_url": "https://fcefyn.unc.edu.ar/facultad/secretarias/academica/departamentos/famaf/0301411-optativa-i/"
+    },
+
+
+
+
+    {
+    "codigo": "trabajofinal",
+    "nombre": "Trabajo Especial",
+    "correlativas": [""],
+    "condiciones": {
+      "tipo": "minAprobadas",
+      "cantidad": 28
+    },
+    "RTF": 1,
+    "semestre": 10,
+    "programa_url": "https://fcefyn.unc.edu.ar/facultad/secretarias/academica/departamentos/famaf/03-01414-trabajo-especial/"
+    },
+    {
+    "codigo": "opt2",
+    "nombre": "Optativa II",
+    "correlativas": [],
+    "RTF": 1,
+    "semestre": 10,
+    "programa_url": "https://fcefyn.unc.edu.ar/facultad/secretarias/academica/departamentos/famaf/0301412-asignatura-optativa-ii/"
+    },
+
+
+
+
+
+
+
+    {
+    "codigo": "analisisnubes",
+    "nombre": "Análisis y Procesamiento de Nubes a partir de Información Satelital",
+    "correlativas": [],
+    "RTF": 3,
+    "tipo": "optativa",
+    "programa_url": ""
+    },
+    {
+    "codigo": "microfisica",
+    "nombre": "Microfísica de Nubes",
+    "correlativas": [],
+    "RTF": 3,
+    "tipo": "optativa",
+    "programa_url": ""
+    },
+    {
+    "codigo": "emergencias",
+    "nombre": "Riesgo y Emergencias Ambientales",
+    "correlativas": [],
+    "RTF": 3,
+    "tipo": "optativa",
+    "programa_url": ""
+    }
+
+]
