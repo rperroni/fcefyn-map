@@ -145,6 +145,23 @@ a {
     }
 }
 
+/* Mobile: botón centrado al final, sin encimarse con footer ni contenedores */
+@media (max-width: 900px) {
+    .slide {
+        /* Reserva espacio para el footer en toda la página */
+        padding-bottom: calc(var(--footer-height, 52px) + 12px);
+    }
+
+    .toggle-optativas-btn {
+        position: static !important;      /* parte del flujo */
+        align-self: center;                /* centrado */
+        margin: 16px auto calc(var(--footer-height, 52px) + 8px); /* separación arriba y sobre el footer */
+        left: auto; right: auto; bottom: auto; /* limpia offsets previos */
+        z-index: auto;                     /* no sobre el footer */
+        display: inline-block;             /* visible cuando JS lo habilite */
+    }
+}
+
 /* ÚNICO contenedor que scrollea en X */
 .scroll-x {
     display: flex;
