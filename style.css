@@ -475,7 +475,7 @@ a {
     #contenedor-semestres {
         gap: 16px;
         flex-wrap: wrap;
-        margin-left: -80px;
+        margin-left: -2.8rem;
     }
 
     #contenedor-semestres:has(.en-construccion-panel) {
