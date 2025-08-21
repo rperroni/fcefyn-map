@@ -168,6 +168,69 @@ function toggleCursando(codigo) {
     actualizarEstado();
 }
 
+// Modal "programa no encontrado"
+function openProgramaModal(htmlContent) {
+    const modal = document.getElementById("programa-modal");
+    const body = document.getElementById("programa-modal-body");
+    if (!modal || !body) return;
+    body.innerHTML = htmlContent;
+    modal.classList.add("visible");
+}
+function setupProgramaModal() {
+    const modal = document.getElementById("programa-modal");
+    const closeBtn = document.getElementById("programa-modal-close");
+    if (!modal || !closeBtn) return;
+
+    closeBtn.addEventListener("click", () => modal.classList.remove("visible"));
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) modal.classList.remove("visible");
+    });
+}
+
+// Crea el icono "Ver programa" para cualquier materia (con o sin URL)
+function buildProgramaIcon(m) {
+    const icono = document.createElement("a");
+    icono.className = "icono-flotante";
+    icono.innerHTML = '<i class="fa-regular fa-file"></i>';
+    icono.target = "_blank";
+
+    if (m.programa_url && m.programa_url.trim()) {
+        icono.href = m.programa_url;
+        icono.rel = "noopener noreferrer";
+        icono.title = "Ver programa";
+        // Evita que el click cambie el estado de la materia
+        icono.addEventListener("click", (e) => e.stopPropagation());
+    } else {
+        icono.href = "#";
+        icono.rel = "noopener";
+        icono.title = "Programa no disponible";
+        icono.addEventListener("click", (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const planEl = document.getElementById("plan-carrera-link");
+            const facLink = (planEl && planEl.href && planEl.href !== "#")
+                ? planEl.href
+                : "https://fcefyn.unc.edu.ar/";
+            const optMsg = (m.tipo === "optativa" || /^optativa\b/i.test(m.nombre || ""))
+                ? "<p>Si es una materia optativa, verificá si se sigue dictando.</p>"
+                : "";
+
+            const html = `
+                <p>Perdón, busqué en la <a href = "https://fcefyn.unc.edu.ar/" target="_blank" rel="noopener">página de la facultad</a>
+                 el código de la materia ${m.nombre} y no se encontró un programa publicado.</p>
+                ${optMsg}
+                <p>Si tenés el enlace correcto, podés enviarlo desde el botón de sugerencias en el pie de página.</p>
+                <p> Asegurate de incluir el código de la materia (por ejemplo 10-04024). Lo podés encontrar en la sección de plan de estudios del Guaraní.</p>
+                <p> ¡Gracias!</p>
+            `;
+            openProgramaModal(html);
+        });
+    }
+
+    return icono;
+}
+
 function cargarCarrera(nombreCarrera) {
     carreraActual = nombreCarrera;
 
@@ -232,20 +295,8 @@ function cargarCarrera(nombreCarrera) {
                     const acciones = document.createElement("div");
                     acciones.className = "acciones-materia";
 
-                    // Icono ver programa
-                    if (m.programa_url) {
-                        const icono = document.createElement("a");
-                        icono.href = m.programa_url;
-                        icono.target = "_blank";
-                        icono.className = "icono-flotante";
-                        icono.innerHTML = '<i class="fa-regular fa-file"></i>';
-                        icono.title = "Ver programa";
-                        // Evita que el click cambie el estado de la materia
-                        icono.addEventListener("click", function(e) {
-                            e.stopPropagation();
-                        });
-                        acciones.appendChild(icono);
-                    }
+                    // Icono ver programa (siempre visible, con o sin URL)
+                    acciones.appendChild(buildProgramaIcon(m));
 
                     // Botón anotarse
                     const botonAnotarse = document.createElement("div");
@@ -290,20 +341,8 @@ function cargarCarrera(nombreCarrera) {
                     const acciones = document.createElement("div");
                     acciones.className = "acciones-materia";
 
-                    // Icono ver programa
-                    if (m.programa_url) {
-                        const icono = document.createElement("a");
-                        icono.href = m.programa_url;
-                        icono.target = "_blank";
-                        icono.className = "icono-flotante";
-                        icono.innerHTML = '<i class="fa-regular fa-file"></i>';
-                        icono.title = "Ver programa";
-                        // Evita que el click cambie el estado de la materia
-                        icono.addEventListener("click", function(e) {
-                            e.stopPropagation();
-                        });
-                        acciones.appendChild(icono);
-                    }
+                    // Icono ver programa (siempre visible, con o sin URL)
+                    acciones.appendChild(buildProgramaIcon(m));
 
                     // Botón anotarse
                     const botonAnotarse = document.createElement("div");
@@ -616,6 +655,7 @@ document.addEventListener("DOMContentLoaded", () => {
     setupSugerencias();
     setupFooterColores();
     setupInfoColores();
+    setupProgramaModal();
 
     // Toggle optativas: no depende de que exista el contenedor en este momento
     const btnOptativas = document.getElementById("optativas-btn");
