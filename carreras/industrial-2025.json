@@ -1,1 +1,392 @@
-[]
+
+[
+  {
+    "codigo": "AmbUniv",
+    "nombre": "Ambientación Universitaria",
+    "correlativas": [],
+    "RTF": 1,
+    "semestre": 0,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5515/10-04050-Ambientaci%C3%B3n_Universitaria.pdf"
+  },
+  {
+    "codigo": "mat",
+    "nombre": "Matemática",
+    "correlativas": [],
+    "RTF": 3,
+    "semestre": 0,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5513/10-04051-Matem%C3%A1tica.pdf"
+  },
+  {
+    "codigo": "FyQ",
+    "nombre": "Física y Química",
+    "correlativas": [],
+    "RTF": 3,
+    "semestre": 0,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5514/10-04052-F%C3%ADsica_y_Qu%C3%ADmica.pdf"
+  },
+
+
+  {
+    "codigo": "representacion",
+    "nombre": "Sistemas de Representación",
+    "correlativas": [],
+    "RTF": 7,
+    "semestre": 1,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5696/10-04055-Sistemas_de_Representaci%C3%B3n_IAER-IB-IE-IEM-IM-IIND-IQ.docx.pdf"
+  },
+  {
+    "codigo": "am1",
+    "nombre": "Análisis Matemático 1",
+    "correlativas": ["mat"],
+    "RTF": 7,
+    "semestre": 1,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5610/10-04053_An%C3%A1lisis_Matem%C3%A1tico_1-v02.docx.pdf"
+  },
+  {
+    "codigo": "quimica",
+    "nombre": "Química",
+    "correlativas": ["mat", "FyQ"],
+    "RTF": 5,
+    "semestre": 1,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5686/10-04057-Qu%C3%ADmica.pdf"
+  },
+  {
+    "codigo": "introing",
+    "nombre": "Introducción a la Ingeniería",
+    "correlativas": ["AmbUniv"],
+    "RTF": 3,
+    "semestre": 1,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5635/10-04054_Introducci%C3%B3n_a_la_Ingenier%C3%ADa-v02.docx.pdf"
+  },
+
+
+
+  {
+    "codigo": "algebra",
+    "nombre": "Álgebra Lineal",
+    "correlativas": ["mat"],
+    "RTF": 7,
+    "semestre": 2,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5611/10-04059-%C3%81lgebra_Lineal-v02.docx.pdf"
+  },
+  {
+    "codigo": "F1",
+    "nombre": "Física 1",
+    "correlativas": ["FyQ", "am1"],
+    "RTF": 7,
+    "semestre": 2,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5469/10-04060-F%C3%ADsica_1-v02.docx.pdf"
+  },
+  {
+    "codigo": "PyE",
+    "nombre": "Probabilidad y Estadística",
+    "correlativas": ["am1"],
+    "RTF": 5,
+    "semestre": 2,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5612/10-04062-Probabilidad_y_Estad%C3%ADstica.pdf"
+  },
+  {
+    "codigo": "ingeconomica",
+    "nombre": "Ingeniería Económica y Legal",
+    "correlativas": ["am1", "introing"],
+    "RTF": 6,
+    "semestre": 2,
+    "programa_url": "https://fcefyn.unc.edu.ar/facultad/secretarias/academica/departamentos/ingenieria-economica-y-legal/departamento-de-ingenieria-economica-y-legal/10-04064-ingenieria-economica-y-legal/"
+  },
+
+
+
+  {
+    "codigo": "organizaciones",
+    "nombre": "Organizaciones e Industrias",
+    "correlativas": ["mat", "introing"],
+    "RTF": 6,
+    "semestre": 3,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5661/10-09600-Organizaciones_e_Industrias.pdf"
+  },
+  {
+    "codigo": "am2",
+    "nombre": "Análisis Matemático 2",
+    "correlativas": ["am1", "algebra"],
+    "RTF": 7,
+    "semestre": 3,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5613/10-04063-An%C3%A1lisis_Matem%C3%A1tico_2.pdf"
+  },
+  {
+    "codigo": "F2",
+    "nombre": "Física 2",
+    "correlativas": ["F1", "algebra"],
+    "RTF": 7,
+    "semestre": 3,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5470/10-04067-F%C3%ADsica_2-v02.docx.pdf"
+  },
+  {
+    "codigo": "materiales",
+    "nombre": "Materiales",
+    "correlativas": ["quimica", "F1"],
+    "RTF": 6,
+    "semestre": 3,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5615/10-09601-Materiales.pdf"
+  },
+
+
+  {
+    "codigo": "estudio",
+    "nombre": "Estudio del Trabajo",
+    "correlativas": ["organizaciones"],
+    "RTF": 7,
+    "semestre": 4,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5662/10-09602-Estudio_del_Trabajo.pdf"
+  },
+  {
+    "codigo": "CyCN",
+    "nombre": "Computación y Cálculo Numérico",
+    "correlativas": ["am1", "algebra"],
+    "RTF": 7,
+    "semestre": 4,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5691/10-04072-Computaci%C3%B3n_y_C%C3%A1lculo_Num%C3%A9rico-v02.docx.pdf"
+  },
+  {
+    "codigo": "electrotecnia",
+    "nombre": "Electrotecnia e Instalaciones Eléctricas",
+    "correlativas": ["F2"],
+    "RTF": 10,
+    "semestre": 4,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5633/10-09603-Electrotecnia_e_Instalaciones_El%C3%A9ctricas.docx.pdf"
+  },
+  {
+    "codigo": "EyRM",
+    "nombre": "Estática y Resistencia de Materiales",
+    "correlativas": ["materiales"],
+    "RTF": 8,
+    "semestre": 4,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5646/10-09604-Est%C3%A1tica_y_Resistencia_de_Materiales.docx.pdf"
+  },
+
+
+
+  {
+    "codigo": "termotecnia",
+    "nombre": "Termotecnia e Instalaciones Térmicas",
+    "correlativas": ["F1"],
+    "RTF": 10,
+    "semestre": 5,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5539/10-09605-Termotecnia_e_Instalaciones_T%C3%A9rmicas.pdf"
+  },
+  {
+    "codigo": "manufactura1",
+    "nombre": "Procesos de Manufactura 1",
+    "correlativas": ["materiales", "estudio"],
+    "RTF": 10,
+    "semestre": 5,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5545/10-09606-Procesos_de_Manufactura_1.pdf"
+  },
+  {
+    "codigo": "mecanismos",
+    "nombre": "Mecanismos y Elementos de Máquinas",
+    "correlativas": ["EyRM"],
+    "RTF": 8,
+    "semestre": 5,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/6328/10-04079-Mecanismos_y_Elementos_de_M%C3%A1quinas_IIND.docx.pdf"
+  },
+  {
+    "codigo": "gestion",
+    "nombre": "Gestión de empresas",
+    "correlativas": ["organizaciones"],
+    "RTF": 7,
+    "semestre": 5,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5663/10-09607-Gesti%C3%B3n_de_Empresas.pdf"
+  },
+
+
+
+  {
+    "codigo": "calidad",
+    "nombre": "Gestión de Calidad",
+    "correlativas": ["gestion", "estudio"],
+    "RTF": 10,
+    "semestre": 6,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5664/10-09608-Gesti%C3%B3n_de_Calidad.pdf"
+  },
+  {
+    "codigo": "HyS",
+    "nombre": "Higiene y Seguridad",
+    "correlativas": ["ingeconomica", "estudio"],
+    "RTF": 10,
+    "semestre": 6,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5656/10-04077-Higiene_y_Seguridad.pdf"
+  },
+  {
+    "codigo": "mantenimiento",
+    "nombre": "Mantenimiento Industrial",
+    "correlativas": ["electrotecnia", "termotecnia"],
+    "RTF": 10,
+    "semestre": 6,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5665/10-09609-Mantenimiento_Industrial.pdf"
+  },
+  {
+    "codigo": "planificacion",
+    "nombre": "Planificación y Control de la Producción",
+    "correlativas": ["manufactura1", "gestion"],
+    "RTF": 10,
+    "semestre": 6,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5666/10-09610-Planificaci%C3%B3n_y_Control_de_la_Producci%C3%B3n.pdf"
+  },
+
+
+
+  {
+    "codigo": "costos",
+    "nombre": "Costos Industriales",
+    "correlativas": ["planificacion"],
+    "RTF": 10,
+    "semestre": 7,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5667/10-09611-Costos_Industriales.pdf"
+  },
+  {
+    "codigo": "investigacion",
+    "nombre": "Investigación Operativa",
+    "correlativas": ["PyE", "CyCN"],
+    "RTF": 10,
+    "semestre": 7,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5668/10-09612-Investigaci%C3%B3n_Operativa.pdf"
+  },
+  {
+    "codigo": "relaciones",
+    "nombre": "Relaciones Industriales",
+    "correlativas": ["gestion"],
+    "RTF": 7,
+    "semestre": 7,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5669/10-09613-Relaciones_Industriales.pdf"
+  },
+  {
+    "codigo": "fluidos",
+    "nombre": "Mecánica de los Fluidos",
+    "correlativas": ["am2", "termotecnia"],
+    "RTF": 6,
+    "semestre": 7,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5478/10-09614-Mec%C3%A1nica_de_los_Fluidos.docx.pdf"
+  },
+
+
+
+  {
+    "codigo": "mercadotecnia",
+    "nombre": "Mercadotecnia",
+    "correlativas": ["gestion"],
+    "RTF": 7,
+    "semestre": 8,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5670/10-09615-Mercadotecnia.pdf"
+  },
+  {
+    "codigo": "manufactura2",
+    "nombre": "Procesos de Manufactura 2",
+    "correlativas": ["manufactura1"],
+    "RTF": 7,
+    "semestre": 8,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5546/10-09616-Procesos_de_Manufactura_2.pdf"
+  },
+  {
+    "codigo": "selectiva1",
+    "nombre": "Selectiva 1",
+    "correlativas": [],
+    "RTF": 0,
+    "semestre": 8,
+    "programa_url": ""
+  },
+  {
+    "codigo": "ingles",
+    "nombre": "Módulo de Inglés",
+    "correlativas": [],
+    "condiciones": {
+      "tipo": "minAprobadas",
+      "cantidad": 13
+    },
+    "RTF": 3,
+    "semestre": 8,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5636/10-04066_M%C3%B3dulo_de_ingl%C3%A9s-v03.docx.pdf"
+  },
+  {
+    "codigo": "innovacion",
+    "nombre": "Innovación Tecnológica en Ingeniería Industrial",
+    "correlativas": ["gestion", "investigacion"],
+    "RTF": 5,
+    "semestre": 8,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5671/10-09618_-_Innovaci%C3%B3n_Tecnol%C3%B3gica_en_Ingenier%C3%ADa_Industrial.pdf"
+  },
+
+
+
+
+  {
+    "codigo": "formulacion",
+    "nombre": "Formulación y Evaluación de Proyectos Industriales",
+    "correlativas": ["mercadotecnia", "costos"],
+    "RTF": 10,
+    "semestre": 9,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5653/10-09619-_Formulaci%C3%B3n_y_Evaluaci%C3%B3n_de_Proyectos_Industriales.pdf"
+  },
+  {
+    "codigo": "tecamb",
+    "nombre": "Gestión y Tecnologías Ambientales",
+    "correlativas": ["calidad", "HyS"],
+    "RTF": 5,
+    "semestre": 9,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5672/10-09620-Gesti%C3%B3n_y_Tecnolog%C3%ADas_Ambientales.pdf"
+  },
+  {
+    "codigo": "logistica",
+    "nombre": "Logística",
+    "correlativas": ["planificacion"],
+    "RTF": 7,
+    "semestre": 9,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5673/10-09621-Log%C3%ADstica.pdf"
+  },
+  {
+    "codigo": "selectiva2",
+    "nombre": "Selectiva 2",
+    "correlativas": [],
+    "RTF": 7,
+    "semestre": 9,
+    "programa_url": ""
+  },
+
+
+
+  {
+    "codigo": "servicios",
+    "nombre": "Gestión de Servicios",
+    "correlativas": ["mercadotecnia"],
+    "RTF": 3,
+    "semestre": 10,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5674/10-09623-Gesti%C3%B3n_de_Servicios.pdf"
+  },
+  {
+    "codigo": "finanzas",
+    "nombre": "Finanzas de Empresas",
+    "correlativas": ["costos"],
+    "RTF": 3,
+    "semestre": 10,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5678/10-09624-Finanzas_de_Empresas.pdf"
+  },
+  {
+    "codigo": "selectiva3",
+    "nombre": "Selectiva 3",
+    "correlativas": [],
+    "RTF": 0,
+    "semestre": 10,
+    "programa_url": ""
+  },
+  {
+    "codigo": "PPI",
+    "nombre": "Práctica Profesional Integradora",
+    "correlativas": [],
+    "condiciones": {
+      "tipo": "minAprobadas",
+      "cantidad": 30
+    },
+    "RTF": 21,
+    "semestre": 10,
+    "programa_url": "https://fcefyn.unc.edu.ar/documents/5683/10-09626-Pr%C3%A1ctica_Profesional_Integradora_-_Ing._Industrial.pdf"
+  }
+]

@@ -357,6 +357,14 @@
     "programa_url": "https://fcefyn.unc.edu.ar/documents/5694/10-09220-Modelos_y_Simulaciones.docx.pdf"
   },
   {
+    "codigo": "selectiva1",
+    "nombre": "Selectiva 1",
+    "correlativas": [],
+    "RTF": 7,
+    "semestre": 9,
+    "programa_url": ""
+  },
+  {
     "codigo": "radiaciones",
     "nombre": "Radiaciones Ionizantes en Medicina",
     "correlativas": ["fibi", "imagenes"],
@@ -381,6 +389,14 @@
     "RTF": 7,
     "semestre": 10,
     "programa_url": "https://fcefyn.unc.edu.ar/documents/5533/10-09223-Seguridad_y_Normalizaci%C3%B3n_Biom%C3%A9dica.docx_1.pdf"
+  },
+  {
+    "codigo": "selectiva2",
+    "nombre": "Selectiva 2",
+    "correlativas": [],
+    "RTF": 7,
+    "semestre": 9,
+    "programa_url": ""
   },
   {
     "codigo": "PI",
