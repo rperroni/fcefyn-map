@@ -36,6 +36,11 @@ let highlightActive = false;
 // Hint flotante "Esc para salir"
 let escHintEl = null;
 
+// Detector de pantallas pequeñas (mismo umbral que el resto del código)
+function isSmallScreen() {
+    return window.innerWidth <= 900;
+}
+
 function handleMateriaContextMenu(e, codigo) {
     e.preventDefault();
     e.stopPropagation();
@@ -153,7 +158,7 @@ function clearHighlight() {
 function showEscHint() {
     if (escHintEl) return;
     escHintEl = document.createElement('div');
-    escHintEl.textContent = 'Esc para salir';
+    escHintEl.textContent = isSmallScreen() ? 'Tocá para salir' : 'Esc para salir';
     escHintEl.style.position = 'fixed';
     escHintEl.style.right = '16px';
     escHintEl.style.bottom = '16px';
@@ -174,6 +179,21 @@ document.addEventListener('keydown', (e) => {
         clearHighlight();
     }
 });
+
+// En pantallas pequeñas: salir del modo al tocar/clickear en cualquier lado
+function handleSmallScreenDismiss(e) {
+    if (!highlightActive) return;
+    if (!isSmallScreen()) return;
+    // Evita que el tap/click propague y dispare otros handlers (p.ej., toggleEstado)
+    e.preventDefault();
+    e.stopPropagation();
+    closeContextMenu();
+    clearHighlight();
+}
+// Captura antes que otros listeners
+document.addEventListener('click', handleSmallScreenDismiss, true);
+document.addEventListener('touchstart', handleSmallScreenDismiss, { capture: true, passive: false });
+
 // === Fin menú contextual/resaltado ===
 
 // Detecta si una materia es un "slot" de Optativa/Selectiva (no es tipo optativa real)
