@@ -86,6 +86,7 @@ a {
 
 /* Área “slide” centrada */
 .slide {
+    min-height: 0;
     height: 100%;                 /* ocupa todo el alto disponible */
     width: 100%;                  /* ocupa todo el ancho disponible */
     display: flex;
@@ -172,7 +173,7 @@ a {
     width: auto;
     height: auto;
     overflow-x: auto;             /* scroll horizontal */
-    overflow-y: hidden;           /* no queremos barra vertical aquí */
+    overflow-y: auto;           /* scroll vertical */
     padding: 12px 16px 36px;      /* <-- bottom extra para que el ícono “flote” sin cortarse */
     box-sizing: border-box; /* el padding ya no recorta el área visible */
 }
@@ -1155,5 +1156,4 @@ footer {
         font-size: 0.93rem;
     }
 }
-    }
-}
+
