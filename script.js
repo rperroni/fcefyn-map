@@ -29,6 +29,11 @@ function guardarProgreso() {
     localStorage.setItem("ultimaCarrera", carreraActual);
 }
 
+// Detecta si una materia es un "slot" de Optativa/Selectiva (no es tipo optativa real)
+function esSlotOptativaOSelectiva(m) {
+    return m && m.tipo !== "optativa" && /^(optativa|selectiva)\b/i.test(m.nombre || "");
+}
+
 function actualizarEstado() {
     materias.forEach(m => {
         const elemento = document.getElementById(m.codigo);
@@ -36,9 +41,14 @@ function actualizarEstado() {
             .filter(x => !aprobadas.has(x.codigo))
             .reduce((total, x) => total + (x.RTF || 0), 0);
 
+        // Si es un slot (Optativa/Selectiva), no se puede cursar directamente.
+        const esSlot = esSlotOptativaOSelectiva(m);
+
         let puedeCursar;
         // las materias con condiciones especiales
-        if (m.condiciones) {
+        if (esSlot) {
+            puedeCursar = false;
+        } else if (m.condiciones) {
             switch (m.condiciones.tipo) {
                 case "minAprobadas":
                     puedeCursar = aprobadas.size >= m.condiciones.cantidad;
@@ -87,7 +97,9 @@ function actualizarEstado() {
 
         // Tooltip en el nombre
         const nombreSpan = elemento.querySelector(".nombre-materia span");
-        if (aprobadas.has(m.codigo)) {
+        if (esSlot) {
+            nombreSpan.title = "Cambiá el estado desde la lista de optativas.";
+        } else if (aprobadas.has(m.codigo)) {
             nombreSpan.title = "Desaprobar";
         } else if (cursando.has(m.codigo)) {
             nombreSpan.title = "Regularizar";
@@ -100,7 +112,10 @@ function actualizarEstado() {
         // Botón anotarse
         const botonAnotarse = elemento.querySelector(".icono-anotarse");
         const esMobile = window.innerWidth <= 900;
-        if (aprobadas.has(m.codigo) || (!puedeCursar) || regulares.has(m.codigo)) {
+        if (esSlot) {
+            // Nunca permitir anotarse en slots Optativa/Selectiva
+            botonAnotarse.style.display = "none";
+        } else if (aprobadas.has(m.codigo) || (!puedeCursar) || regulares.has(m.codigo)) {
             // En desktop se oculta si no se puede usar
             // En mobile también se oculta si no es disponible/cursando
             botonAnotarse.style.display = "none";
@@ -131,6 +146,11 @@ function actualizarEstado() {
 function toggleEstado(codigo) {
     const materia = materias.find(m => m.codigo === codigo);
 
+    // Bloquea cambios directos en slots Optativa/Selectiva
+    if (esSlotOptativaOSelectiva(materia)) {
+        return;
+    }
+
     if (aprobadas.has(codigo)) {
         aprobadas.delete(codigo);
     } else if (cursando.has(codigo)) {
@@ -155,6 +175,12 @@ function toggleEstado(codigo) {
 
 // Cambia estado cursando al click en icono
 function toggleCursando(codigo) {
+    const materia = materias.find(m => m.codigo === codigo);
+    // Bloquea cambios directos en slots Optativa/Selectiva
+    if (esSlotOptativaOSelectiva(materia)) {
+        return;
+    }
+
     if (cursando.has(codigo)) {
         cursando.delete(codigo);
     } else {
@@ -212,8 +238,8 @@ function buildProgramaIcon(m) {
             const facLink = (planEl && planEl.href && planEl.href !== "#")
                 ? planEl.href
                 : "https://fcefyn.unc.edu.ar/";
-            const optMsg = (m.tipo === "optativa" || /^optativa\b/i.test(m.nombre || ""))
-                ? "<p>Si es una materia optativa, verificá si se sigue dictando.</p>"
+            const optMsg = (m.tipo === "optativa" || /^(optativa|selectiva)\b/i.test(m.nombre || ""))
+                ? "<p>Si es una materia optativa/selectiva, verificá si se sigue dictando.</p>"
                 : "";
 
             const html = `
@@ -254,12 +280,31 @@ function cargarCarrera(nombreCarrera) {
                         </div>
                     </div>
                 `;
-                // Elimina optativas si existen
-                const optativasCont = document.getElementById("contenedor-optativas");
-                if (optativasCont) optativasCont.remove();
-                // Oculta el botón
+
+                // Asegura contenedor de optativas con mensaje y botón visible
+                let optativasCont = document.getElementById("contenedor-optativas");
+                if (!optativasCont) {
+                    optativasCont = document.createElement("div");
+                    optativasCont.id = "contenedor-optativas";
+                    contenedor.parentNode.appendChild(optativasCont);
+                }
+                optativasCont.innerHTML = `
+                    <div class="en-construccion-panel">
+                        <i class="fa-regular fa-circle-question en-construccion-icon"></i>
+                        <div><b>Optativas aún no disponibles</b></div>
+                        <div class="en-construccion-desc">
+                            Las optativas ofrecidas para este plan aún no están disponibles. Podés consultar el plan viejo como referencia.
+                        </div>
+                    </div>
+                `;
+                optativasCont.classList.remove("visible");
+
                 const btnOpt = document.getElementById("optativas-btn");
-                if (btnOpt) btnOpt.style.display = "none";
+                if (btnOpt) {
+                    btnOpt.style.display = "inline-block";
+                    btnOpt.textContent = "Ver optativas";
+                    btnOpt.title = "Mostrar optativas";
+                }
                 return;
             }
 
@@ -299,7 +344,7 @@ function cargarCarrera(nombreCarrera) {
                     const acciones = document.createElement("div");
                     acciones.className = "acciones-materia";
 
-                    // Icono ver programa (siempre visible, con o sin URL)
+                    // Icono ver programa
                     acciones.appendChild(buildProgramaIcon(m));
 
                     // Botón anotarse
@@ -317,15 +362,16 @@ function cargarCarrera(nombreCarrera) {
                 contenedor.appendChild(columna);
             });
 
-            // Renderiza optativas en un contenedor aparte
+            // Renderiza optativas en un contenedor aparte (siempre visible el botón)
             let optativasCont = document.getElementById("contenedor-optativas");
+            if (!optativasCont) {
+                optativasCont = document.createElement("div");
+                optativasCont.id = "contenedor-optativas";
+                contenedor.parentNode.appendChild(optativasCont);
+            }
+            optativasCont.innerHTML = "";
+
             if (optativas.length > 0) {
-                if (!optativasCont) {
-                    optativasCont = document.createElement("div");
-                    optativasCont.id = "contenedor-optativas";
-                    contenedor.parentNode.appendChild(optativasCont);
-                }
-                optativasCont.innerHTML = "";
                 optativas.forEach(m => {
                     const div = document.createElement("div");
                     div.id = m.codigo;
@@ -341,14 +387,11 @@ function cargarCarrera(nombreCarrera) {
                     asignatura.appendChild(nombre);
                     div.appendChild(asignatura);
 
-                    // Contenedor de iconos a la derecha
                     const acciones = document.createElement("div");
                     acciones.className = "acciones-materia";
 
-                    // Icono ver programa (siempre visible, con o sin URL)
                     acciones.appendChild(buildProgramaIcon(m));
 
-                    // Botón anotarse
                     const botonAnotarse = document.createElement("div");
                     botonAnotarse.className = "icono-anotarse";
                     botonAnotarse.onclick = e => {
@@ -360,27 +403,26 @@ function cargarCarrera(nombreCarrera) {
                     div.appendChild(acciones);
                     optativasCont.appendChild(div);
                 });
-
-                // Ocultar por defecto y resetear el botón
-                optativasCont.classList.remove("visible");
-                const btnOpt = document.getElementById("optativas-btn");
-                if (btnOpt) {
-                    btnOpt.style.display = "inline-block";   // mostrar botón
-                    btnOpt.textContent = "Ver optativas";
-                    btnOpt.title = "Mostrar optativas";
-                }
-            } else if (optativasCont) {
-                optativasCont.remove();
-                const btnOpt = document.getElementById("optativas-btn");
-                if (btnOpt) {
-                    btnOpt.style.display = "none";            // ocultar botón
-                    btnOpt.textContent = "Ver optativas";
-                    btnOpt.title = "Mostrar optativas";
-                }
             } else {
-                // No había contenedor y no hay optativas -> ocultar botón
-                const btnOpt = document.getElementById("optativas-btn");
-                if (btnOpt) btnOpt.style.display = "none";
+                // Mensaje si no hay optativas cargadas para este plan
+                optativasCont.innerHTML = `
+                    <div class="en-construccion-panel">
+                        <i class="fa-regular fa-circle-question en-construccion-icon"></i>
+                        <div><b>Optativas aún no disponibles</b></div>
+                        <div class="en-construccion-desc">
+                            Las optativas ofrecidas para este plan aún no están disponibles. Podés consultar el plan viejo como referencia.
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Oculto por defecto y botón siempre visible
+            optativasCont.classList.remove("visible");
+            const btnOpt = document.getElementById("optativas-btn");
+            if (btnOpt) {
+                btnOpt.style.display = "inline-block";
+                btnOpt.textContent = "Ver optativas";
+                btnOpt.title = "Mostrar optativas";
             }
 
             // Alinea los slots de "Optativa I/II/..." con lo seleccionado
@@ -694,9 +736,9 @@ document.addEventListener('DOMContentLoaded', setFooterHeightVar);
 
 // Detecta y actualiza los slots de optativas copiando el estado (cursando/regular/aprobada)
 function updateOptativaSlots() {
-    // Slots: materias NO tipo "optativa" cuyo nombre empieza con "Optativa"
+    // Slots: materias NO tipo "optativa" cuyo nombre empieza con "Optativa" o "Selectiva"
     const slots = materias
-        .filter(m => m.tipo !== "optativa" && /^optativa\b/i.test(m.nombre || ""))
+        .filter(m => esSlotOptativaOSelectiva(m))
         .sort((a, b) => {
             // Orden por semestre y luego por nombre (estable)
             const sa = (typeof a.semestre === "number") ? a.semestre : Number.MAX_SAFE_INTEGER;
