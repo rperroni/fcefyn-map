@@ -751,7 +751,7 @@ const ESTADOS_MATERIA = [
     { clase: "disponible", label: "Disponible para cursar", var: "--bgnd-color-disponible" },
     { clase: "cursando", label: "En curso", var: "--bgnd-color-cursando" },
     { clase: "regular", label: "Regularizada", var: "--bgnd-color-regular" },
-    { clase: "bloqueada", label: "Bloqueada (faltan correlativas)", var: "--bgnd-color-bloqueada" }
+    { clase: "bloqueada", label: "Bloqueada (faltan correlativas. Click derecho para verlas.)", var: "--bgnd-color-bloqueada" }
 ];
 
 // Utilidad para obtener el color real de cada estado desde CSS
