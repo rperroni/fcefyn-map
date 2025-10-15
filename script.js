@@ -158,7 +158,7 @@ function clearHighlight() {
 function showEscHint() {
     if (escHintEl) return;
     escHintEl = document.createElement('div');
-    escHintEl.textContent = isSmallScreen() ? 'Tocá para salir' : 'Esc para salir';
+    escHintEl.textContent = isSmallScreen() ? 'Tocá para salir' : 'Click o Esc para salir';
     escHintEl.style.position = 'fixed';
     escHintEl.style.right = '16px';
     escHintEl.style.bottom = '16px';
@@ -180,11 +180,9 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// En pantallas pequeñas: salir del modo al tocar/clickear en cualquier lado
+// Salir del modo al tocar/clickear en cualquier lado (todas las pantallas)
 function handleSmallScreenDismiss(e) {
     if (!highlightActive) return;
-    if (!isSmallScreen()) return;
-    // Evita que el tap/click propague y dispare otros handlers (p.ej., toggleEstado)
     e.preventDefault();
     e.stopPropagation();
     closeContextMenu();
@@ -952,4 +950,6 @@ function updateOptativaSlots() {
         }
     }
 }
+    
+
 

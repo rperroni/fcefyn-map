@@ -87,6 +87,7 @@ a {
 /* Área “slide” centrada */
 .slide {
     height: 100%;                 /* ocupa todo el alto disponible */
+    width: 100%;                  /* ocupa todo el ancho disponible */
     display: flex;
     flex-direction: column; /* fuerza a que el contenido se apile verticalmente */
     justify-content: center;
@@ -470,7 +471,7 @@ a {
     }
     .scroll-x {
         padding: 8px 4px 24px;
-        max-width: 100vw;
+        max-width: 90vw;
     }
     #contenedor-semestres {
         gap: 16px;
@@ -618,7 +619,7 @@ a {
 @media (max-width: 1600px) and (min-width: 901px) {
     .scroll-x {
         overflow-x: auto !important;
-        max-width: 100vw;
+        max-width: 90vw;
         padding-right: 24px;
     }
 
@@ -1081,8 +1082,43 @@ footer {
     }
 }
 
-@media (min-width: 901px) {
-    #programa-modal-body {
-    max-width: 30vw;
+/* Panel "Optativas aún no disponibles": versión compacta dentro del contenedor de optativas */
+#contenedor-optativas .en-construccion-panel {
+    max-width: 420px;                  /* más chico que el genérico */
+    width: min(420px, 92vw);           /* no excede el viewport */
+    min-height: 140px;                 /* reduce alto mínimo */
+    margin: 16px auto;                 /* centrado horizontal */
+    padding: 18px 14px;                /* menos padding */
+    font-size: 1.1rem;                 /* título más compacto */
 }
+
+#contenedor-optativas .en-construccion-icon {
+    font-size: 1.8rem;                 /* icono más chico */
+    margin-bottom: 10px;
+}
+
+#contenedor-optativas .en-construccion-desc {
+    font-size: 0.95rem;                /* texto más compacto */
+}
+
+/* En mobile: centrar el contenedor cuando solo se muestra el panel */
+@media (max-width: 900px) {
+    #contenedor-optativas:has(.en-construccion-panel) {
+        margin-left: 0 !important;     /* anula el corrimiento */
+        justify-content: center;       /* centra el panel */
+    }
+    #contenedor-optativas .en-construccion-panel {
+        max-width: 92vw;               /* ajusta al ancho disponible */
+        width: 92vw;
+        margin: 12px auto;             /* centrado */
+        padding: 16px 10px;            /* aún más compacto en mobile */
+        font-size: 1rem;
+    }
+    #contenedor-optativas .en-construccion-icon {
+        font-size: 1.6rem;
+        margin-bottom: 8px;
+    }
+    #contenedor-optativas .en-construccion-desc {
+        font-size: 0.93rem;
+    }
 }
