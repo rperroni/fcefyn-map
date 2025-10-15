@@ -58,7 +58,7 @@ header {
 }
 
 .selector-carrera {
-    font-size: 14px;
+    font-size: 0.875rem; /* 14px -> 0.875rem */
     color: var(--txt-color-selector);
 }
 
@@ -94,6 +94,7 @@ a {
     align-items: center;
     /*place-items: center;          /* centra el mapa */
     overflow: visible;            /* no recorta nada */
+    padding-bottom: calc(var(--footer-height, 52px) + 12px); /* Evita que el footer fijo tape el contenido */
 }
 
 .toggle-optativas-btn {
@@ -173,6 +174,7 @@ a {
     overflow-x: auto;             /* scroll horizontal */
     overflow-y: hidden;           /* no queremos barra vertical aquí */
     padding: 12px 16px 36px;      /* <-- bottom extra para que el ícono “flote” sin cortarse */
+    box-sizing: border-box; /* el padding ya no recorta el área visible */
 }
 
 /* contenedor de columnas sin overflow */
@@ -220,7 +222,7 @@ a {
 .nombre-materia {
     display: flex;
     align-items: center;
-    font-size: 15px;
+    font-size: 0.9375rem; /* 15px -> 0.9375rem */
     gap: 8px;
     justify-content: center;
 }
@@ -273,7 +275,7 @@ a {
     align-items: center;
     
     justify-content: center;
-    font-size: 15px;
+    font-size: 0.9375rem; /* 15px -> 0.9375rem */
     cursor: pointer;
     border: 1px solid #ccc;
     box-shadow: 0 2px 4px rgba(0,0,0,0.2);
@@ -290,7 +292,7 @@ a {
 }
 
 .icono-plan-carrera {
-    font-size: 22px;
+    font-size: 1.375rem; /* 22px -> 1.375rem */
     color: #f5f5f5; /* blanco/gris claro para contraste sobre fondo oscuro */
     margin-right: 10px;
     vertical-align: middle;
@@ -351,7 +353,7 @@ a {
 .carrera-dropdown {
     position: relative;
     display: inline-block;
-    font-size: 15px;
+    font-size: 0.9375rem; /* 15px -> 0.9375rem */
     z-index: 10;
     min-width: 0;
     width: auto;
@@ -378,7 +380,7 @@ a {
 .carrera-dropdown-selected .anio-label {
     background: #263238;
     color: #fff;
-    font-size: 12px;
+    font-size: 0.75rem; /* 12px -> 0.75rem */
     border-radius: 4px;
     padding: 2px 8px;
     margin-left: 8px;
@@ -416,7 +418,7 @@ a {
     align-items: center;
     justify-content: space-between;
     transition: background 0.15s;
-    font-size: 15px;
+    font-size: 0.9375rem; /* 15px -> 0.9375rem */
     border-radius: 4px;
 }
 
@@ -429,7 +431,7 @@ a {
 .carrera-dropdown-option .anio-label {
     background: #263238;
     color: #fff;
-    font-size: 12px;
+    font-size: 0.75rem; /* 12px -> 0.75rem */
     border-radius: 4px;
     padding: 2px 8px;
     margin-left: 8px;
@@ -573,7 +575,7 @@ a {
     }
 
     .icono-plan-carrera {
-        font-size: 20px;
+        font-size: 1.25rem; /* 20px -> 1.25rem */
         margin-right: 7px;
     }
 
@@ -616,11 +618,14 @@ a {
 }
 
 /* --- RESPONSIVE --- */
-@media (max-width: 1600px) and (min-width: 901px) {
+@media (max-width: 1600px) and (min-width: 1301px) {
     .scroll-x {
-        overflow-x: auto !important;
-        max-width: 90vw;
-        padding-right: 24px;
+        overflow-x: scroll !important;
+        width: 95vw;            /* ocupa todo el viewport */
+        max-width: 100vw;        /* evita recortar con padding */
+        /*padding-left: clamp(16px, 4vw, 60px); /* ~60px a 1500px, menor en anchos chicos */
+        padding-left: 10%;
+        padding-right: 0;
     }
 
     header {
@@ -629,6 +634,34 @@ a {
     }
 }
 
+@media (max-width: 1300px) and (min-width: 1101px) {
+    .scroll-x {
+        overflow-x: scroll !important;
+        width: 95vw;            /* ocupa todo el viewport */
+        max-width: 100vw;        /* evita recortar con padding */
+        padding-left: 30%;
+    }
+
+}
+
+@media (max-width: 1100px) and (min-width: 951px) {
+    .scroll-x {
+        overflow-x: scroll !important;
+        width: 95vw;            /* ocupa todo el viewport */
+        max-width: 100vw;        /* evita recortar con padding */
+        padding-left: 50%;
+    }
+
+}
+@media (max-width: 970px) and (min-width: 901px) {
+    .scroll-x {
+        overflow-x: scroll !important;
+        width: 95vw;            /* ocupa todo el viewport */
+        max-width: 100vw;        /* evita recortar con padding */
+        padding-left: 70%;
+    }
+
+}
 /* Footer */
 footer {
     background-color: var(--bgnd-color-footer);
@@ -1120,5 +1153,7 @@ footer {
     }
     #contenedor-optativas .en-construccion-desc {
         font-size: 0.93rem;
+    }
+}
     }
 }
