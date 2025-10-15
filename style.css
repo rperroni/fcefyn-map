@@ -1098,7 +1098,7 @@ footer {
     gap: 30px;
     justify-content: center;
     margin-top: 32px;
-    margin-bottom: 0;
+    margin-bottom: calc(var(--footer-height, 52px) + 12px);
     flex-wrap: wrap;
 }
 #contenedor-optativas.visible {
