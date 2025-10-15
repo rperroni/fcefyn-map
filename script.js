@@ -29,6 +29,153 @@ function guardarProgreso() {
     localStorage.setItem("ultimaCarrera", carreraActual);
 }
 
+// === Context menu y resaltado de correlativas ===
+let ctxMenuEl = null;
+let ctxMateria = null;
+let highlightActive = false;
+// Hint flotante "Esc para salir"
+let escHintEl = null;
+
+function handleMateriaContextMenu(e, codigo) {
+    e.preventDefault();
+    e.stopPropagation();
+    openContextMenu(e.clientX, e.clientY, codigo);
+}
+
+function openContextMenu(x, y, codigo) {
+    ctxMateria = codigo;
+    if (!ctxMenuEl) {
+        ctxMenuEl = document.createElement('div');
+        ctxMenuEl.id = 'materia-context-menu';
+        ctxMenuEl.style.position = 'fixed';
+        ctxMenuEl.style.zIndex = '9999';
+        ctxMenuEl.style.background = '#fff';
+        ctxMenuEl.style.border = '1px solid #ddd';
+        ctxMenuEl.style.borderRadius = '6px';
+        ctxMenuEl.style.boxShadow = '0 4px 16px rgba(0,0,0,0.15)';
+        ctxMenuEl.style.padding = '6px 0';
+        ctxMenuEl.style.minWidth = '160px';
+        ctxMenuEl.style.fontSize = '14px';
+        ctxMenuEl.style.userSelect = 'none';
+
+        const item = document.createElement('div');
+        item.textContent = 'Ver correlativas';
+        item.style.padding = '8px 12px';
+        item.style.cursor = 'pointer';
+        item.addEventListener('mouseenter', () => item.style.background = '#f3f4f6');
+        item.addEventListener('mouseleave', () => item.style.background = '');
+        item.addEventListener('click', () => {
+            if (ctxMateria) highlightCorrelativas(ctxMateria);
+            closeContextMenu();
+        });
+
+        ctxMenuEl.appendChild(item);
+        document.body.appendChild(ctxMenuEl);
+    }
+
+    // Posicionar dentro de la ventana
+    const menuW = ctxMenuEl.offsetWidth || 160;
+    const menuH = ctxMenuEl.offsetHeight || 40;
+    const left = Math.min(x, window.innerWidth - menuW - 4);
+    const top = Math.min(y, window.innerHeight - menuH - 4);
+    ctxMenuEl.style.left = left + 'px';
+    ctxMenuEl.style.top = top + 'px';
+    ctxMenuEl.style.display = 'block';
+
+    // Cerrar al hacer click fuera/scroll/resize
+    setTimeout(() => {
+        document.addEventListener('click', docClickCloseOnce, { once: true });
+        window.addEventListener('resize', closeContextMenu, { once: true });
+        window.addEventListener('scroll', closeContextMenu, { once: true });
+    }, 0);
+}
+
+function docClickCloseOnce() { closeContextMenu(); }
+
+function closeContextMenu() {
+    if (ctxMenuEl) ctxMenuEl.style.display = 'none';
+    ctxMateria = null;
+}
+
+function highlightCorrelativas(codigo) {
+    clearHighlight();
+    const materia = materias.find(m => m.codigo === codigo);
+    if (!materia) return;
+    highlightActive = true;
+
+    const keep = new Set([codigo, ...(materia.correlativas || [])]);
+    document.querySelectorAll('.materia').forEach(el => {
+        if (!keep.has(el.id)) {
+            el.style.opacity = '0.25';
+            el.style.filter = 'grayscale(45%)';
+            // Asegura sin borde en no relevantes
+            el.style.outline = '';
+            el.style.position = '';
+            el.style.zIndex = '';
+        } else {
+            // No oscurecer seleccionada ni correlativas
+            el.style.opacity = '';
+            el.style.filter = '';
+            if (el.id === codigo) {
+                // Solo la seleccionada con borde
+                el.style.outline = '3px solid rgba(0,128,255,0.7)';
+                el.style.position = 'relative';
+                el.style.zIndex = '2';
+            } else {
+                // Correlativas sin borde
+                el.style.outline = '';
+                el.style.position = '';
+                el.style.zIndex = '';
+            }
+        }
+    });
+
+    showEscHint();
+}
+
+function clearHighlight() {
+    if (!highlightActive) return;
+    document.querySelectorAll('.materia').forEach(el => {
+        el.style.opacity = '';
+        el.style.filter = '';
+        el.style.outline = '';
+        el.style.zIndex = '';
+        el.style.position = '';
+    });
+    // Remueve el hint si existe
+    if (escHintEl) {
+        escHintEl.remove();
+        escHintEl = null;
+    }
+    highlightActive = false;
+}
+
+function showEscHint() {
+    if (escHintEl) return;
+    escHintEl = document.createElement('div');
+    escHintEl.textContent = 'Esc para salir';
+    escHintEl.style.position = 'fixed';
+    escHintEl.style.right = '16px';
+    escHintEl.style.bottom = '16px';
+    escHintEl.style.padding = '8px 12px';
+    escHintEl.style.background = 'rgba(17,17,17,0.9)';
+    escHintEl.style.color = '#fff';
+    escHintEl.style.borderRadius = '8px';
+    escHintEl.style.boxShadow = '0 4px 12px rgba(0,0,0,0.25)';
+    escHintEl.style.fontSize = '13px';
+    escHintEl.style.zIndex = '10000';
+    escHintEl.style.pointerEvents = 'none';
+    document.body.appendChild(escHintEl);
+}
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeContextMenu();
+        clearHighlight();
+    }
+});
+// === Fin menú contextual/resaltado ===
+
 // Detecta si una materia es un "slot" de Optativa/Selectiva (no es tipo optativa real)
 function esSlotOptativaOSelectiva(m) {
     return m && m.tipo !== "optativa" && /^(optativa|selectiva)\b/i.test(m.nombre || "");
@@ -263,6 +410,10 @@ function cargarCarrera(nombreCarrera) {
     fetch(`carreras/${nombreCarrera}.json`)
         .then(res => res.json())
         .then(data => {
+            // Al cambiar de carrera, salir del modo resaltado y cerrar menú
+            clearHighlight();
+            closeContextMenu();
+
             materias = data;
             const contenedor = document.getElementById("contenedor-semestres");
             contenedor.innerHTML = "";
@@ -330,6 +481,8 @@ function cargarCarrera(nombreCarrera) {
                     div.id = m.codigo;
                     div.className = "materia";
                     div.onclick = () => toggleEstado(m.codigo);
+                    // Click derecho: ver correlativas
+                    div.addEventListener('contextmenu', (e) => handleMateriaContextMenu(e, m.codigo));
 
                     const asignatura = document.createElement("div");
                     asignatura.classList.add("nombre-materia");
@@ -377,6 +530,8 @@ function cargarCarrera(nombreCarrera) {
                     div.id = m.codigo;
                     div.className = "materia optativa";
                     div.onclick = () => toggleEstado(m.codigo);
+                    // Click derecho: ver correlativas
+                    div.addEventListener('contextmenu', (e) => handleMateriaContextMenu(e, m.codigo));
 
                     const asignatura = document.createElement("div");
                     asignatura.classList.add("nombre-materia");
