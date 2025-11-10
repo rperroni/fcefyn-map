@@ -20,7 +20,12 @@
             FCEFyN Map
         </a>
     </h1>-->
-
+    <div class="sync-controls" style="display: inline-block; margin-left: 20px;">
+        <input type="text" id="dni-input" placeholder="DNI para sincronizar" 
+            style="padding: 5px; margin-right: 5px; width: 150px;">
+        <button onclick="configurarDNI(document.getElementById('dni-input').value)">Sincronizar</button>
+        <button onclick="limpiarDNI()">Local</button>
+    </div>
     <!-- Selector de carrera personalizado -->
     <div class="selector-carrera">
         <a id="plan-carrera-link" href="#" target="_blank" title="Ver plan de estudios">

@@ -11,6 +11,133 @@ function claveLS(tipo) {
     return `${tipo}_${carreraActual}`;
 }
 
+// --- MODIFICACION PARA BASE DE DATOS
+
+async function cargarProgreso() {
+    // Siempre cargar desde localStorage primero
+    const data = localStorage.getItem(claveLS("aprobadas"));
+    aprobadas = data ? new Set(JSON.parse(data)) : new Set();
+
+    const dataCursando = localStorage.getItem(claveLS("cursando"));
+    cursando = dataCursando ? new Set(JSON.parse(dataCursando)) : new Set();
+
+    const dataRegulares = localStorage.getItem(claveLS("regulares"));
+    regulares = dataRegulares ? new Set(JSON.parse(dataRegulares)) : new Set();
+
+    // Si hay DNI configurado, intentar cargar desde Firebase también
+    if (dniActual) {
+        try {
+            const doc = await db.collection('progreso').doc(dniActual).get();
+            if (doc.exists) {
+                const dataFirebase = doc.data();
+                // Sobrescribir con datos de Firebase si existen
+                aprobadas = new Set(dataFirebase.aprobadas || []);
+                cursando = new Set(dataFirebase.cursando || []);
+                regulares = new Set(dataFirebase.regulares || []);
+                carreraActual = dataFirebase.carreraActual || carreraActual;
+                
+                // También actualizar localStorage
+                guardarEnLocalStorage();
+                
+                mostrarEstadoSync('Datos sincronizados desde la nube');
+            }
+        } catch (error) {
+            console.error('Error cargando desde Firebase:', error);
+            mostrarEstadoSync('Error al sincronizar, usando datos locales', true);
+        }
+    }
+}
+
+async function guardarProgreso() {
+    // Siempre guardar en localStorage
+    localStorage.setItem(claveLS("aprobadas"), JSON.stringify([...aprobadas]));
+    localStorage.setItem(claveLS("cursando"), JSON.stringify([...cursando]));
+    localStorage.setItem(claveLS("regulares"), JSON.stringify([...regulares]));
+    localStorage.setItem("ultimaCarrera", carreraActual);
+
+    // Si hay DNI configurado, guardar también en Firebase
+    if (dniActual) {
+        try {
+            await db.collection('progreso').doc(dniActual).set({
+                aprobadas: [...aprobadas],
+                cursando: [...cursando],
+                regulares: [...regulares],
+                carreraActual: carreraActual,
+                ultimaActualizacion: firebase.firestore.FieldValue.serverTimestamp()
+            });
+            mostrarEstadoSync('Datos guardados en la nube');
+        } catch (error) {
+            console.error('Error guardando en Firebase:', error);
+            mostrarEstadoSync('Error al guardar en la nube', true);
+        }
+    }
+}
+
+// Configuración de Firebase (al principio del archivo)
+const firebaseConfig = {
+    apiKey: "AIzaSyAV6aAXzYBBUx01bPAEYOF6MHR2C9eGzEA",
+    authDomain: "fcfefyn-map.firebaseapp.com",
+    projectId: "fcfefyn-map",
+    storageBucket: "fcfefyn-map.firebasestorage.app",
+    messagingSenderId: "293813581211",
+    appId: "1:293813581211:web:fa77897e82256e1738dd3e",
+    measurementId: "G-TSF0F0WY71"
+};
+
+// Inicializar Firebase
+let db = null;
+try {
+    firebase.initializeApp(firebaseConfig);
+    db = firebase.firestore();
+} catch (error) {
+    console.log('Firebase no configurado aún');
+}
+
+let dniActual = '';
+
+function configurarDNI(dni) {
+    const dniLimpio = dni.trim();
+    if (dniLimpio) {
+        dniActual = dniLimpio;
+        mostrarEstadoSync('DNI configurado: ' + dniActual);
+        // Recargar progreso para sincronizar con la nube
+        cargarProgreso();
+        actualizarInterfaz();
+    } else {
+        mostrarEstadoSync('Ingresá un DNI válido', true);
+    }
+}
+
+function limpiarDNI() {
+    dniActual = '';
+    mostrarEstadoSync('Modo local activado');
+    // Recargar solo desde localStorage
+    cargarProgreso();
+    actualizarInterfaz();
+}
+
+function mostrarEstadoSync(mensaje, esError = false) {
+    // Buscar o crear elemento para mostrar estado
+    let statusElement = document.getElementById('sync-status');
+    if (!statusElement) {
+        statusElement = document.createElement('span');
+        statusElement.id = 'sync-status';
+        statusElement.style.marginLeft = '10px';
+        statusElement.style.fontSize = '0.9em';
+        // Agregarlo al lado de los controles de sync
+        const syncControls = document.querySelector('.sync-controls');
+        if (syncControls) {
+            syncControls.appendChild(statusElement);
+        }
+    }
+    
+    statusElement.textContent = mensaje;
+    statusElement.style.color = esError ? '#e74c3c' : '#27ae60';
+}
+
+// --- FIN DE MODIFICACION DB
+
+/* ESTO ERA PARA HACERLO CON LOCAL STORAGE SOLAMENTE
 function cargarProgreso() {
     const data = localStorage.getItem(claveLS("aprobadas"));
     aprobadas = data ? new Set(JSON.parse(data)) : new Set();
@@ -27,7 +154,7 @@ function guardarProgreso() {
     localStorage.setItem(claveLS("cursando"), JSON.stringify([...cursando]));
     localStorage.setItem(claveLS("regulares"), JSON.stringify([...regulares]));
     localStorage.setItem("ultimaCarrera", carreraActual);
-}
+}*/
 
 // === Context menu y resaltado de correlativas ===
 let ctxMenuEl = null;
