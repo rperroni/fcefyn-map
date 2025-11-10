@@ -1078,5 +1078,22 @@ function updateOptativaSlots() {
     }
 }
     
-
+// Agregar event listeners cuando el DOM esté cargado
+document.addEventListener('DOMContentLoaded', function() {
+    const btnSincronizar = document.getElementById('btn-sincronizar');
+    const btnLocal = document.getElementById('btn-local');
+    const dniInput = document.getElementById('dni-input');
+    
+    if (btnSincronizar) {
+        btnSincronizar.addEventListener('click', function() {
+            configurarDNI(dniInput.value);
+        });
+    }
+    
+    if (btnLocal) {
+        btnLocal.addEventListener('click', limpiarDNI);
+    }
+    
+    console.log("✅ Event listeners configurados");
+});
 
