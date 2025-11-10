@@ -12,6 +12,7 @@ Inspirado fuertemente en el proyecto [FIUBA-Map](https://github.com/fdelmazo/FIU
 - [Características principales](#características-principales)  
 - [Capturas / Demo](#capturas--demo)  
 - [Cómo usar](#cómo-usar)  
+- [Configuración de Firebase](#configuración-de-firebase)  
 - [Cómo contribuir](#cómo-contribuir)  
 - [Licencia](#licencia)  
 - [Agradecimientos](#agradecimientos)
@@ -33,9 +34,9 @@ El diseño y enfoque se inspiran en [FIUBA-Map](https://github.com/fdelmazo/FIUB
 - Visualización clara de materias y correlativas por carrera y plan de estudios  
 - Interfaz interactiva para marcar materias aprobadas y pendientes  
 - Navegación por carrera y plan específicos  
-- *(Opcional: tracking de créditos, guardado del estado, etc. si lo implementás)*  
+- Sincronización en la nube con Firebase (Firestore): tu progreso se guarda y se comparte entre dispositivos  
+- *(Opcional: tracking de créditos, etc.)*  
 
-* *Por el momento el proyecto no cuenta con una base de datos. Los cambios se guardan en el navegador localmente.*
 ---
 
 ## Capturas / Demo
@@ -54,9 +55,35 @@ El diseño y enfoque se inspiran en [FIUBA-Map](https://github.com/fdelmazo/FIUB
    git clone https://github.com/rperroni/fcefyn-map.git
    cd fcefyn-map
    ```
-2. Abrí el archivo `index.html` en tu navegador preferido.  
+2. Abrí `index.html` en tu navegador.  
+   - Si tu navegador bloquea módulos ES desde file://, serví el proyecto con un servidor local:
+     ```bash
+     npx serve .
+     # o
+     python3 -m http.server 8080
+     ```
+3. Para sincronizar tu progreso en la nube:
+   - Ingresá tu DNI en el campo “DNI para sincronizar” y presioná “Sincronizar”.  
+   - Presioná “Local” para volver a usar solo almacenamiento local del navegador.
+4. Si no tenés que cambiar nada de Firebase, no necesitás backend ni variables de entorno.
 
-*(Si en el futuro agregás dependencias tipo npm, podés actualizar esta sección)*
+---
+
+## Configuración de Firebase
+
+Esta app usa Firebase cargado por script (CDN) y Firestore como base de datos. No requiere backend.
+
+- Dónde se configura:
+  - index.html incluye los scripts de Firebase.
+  - script.js contiene el objeto `firebaseConfig` y la inicialización de Firestore.
+- Para usar tu propio proyecto (forks):
+  1. Creá un proyecto en Firebase y habilitá Firestore en modo producción.
+  2. Agregá tu dominio/localhost en “Authentication -> Settings -> Authorized domains” (aunque no uses auth, evita bloqueos de origen).
+  3. Reemplazá el `firebaseConfig` en `script.js` con tus credenciales del panel de Firebase.
+  4. Revisá y ajustá tus reglas de seguridad de Firestore para permitir solo los accesos deseados.
+- Notas:
+  - Si la sincronización falla, la app sigue funcionando en modo local.
+  - El DNI se usa como ID de documento en la colección `progreso`.
 
 ---
 
