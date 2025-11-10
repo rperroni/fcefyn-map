@@ -102,7 +102,7 @@ function configurarDNI(dni) {
         mostrarEstadoSync('DNI configurado: ' + dniActual);
         // Recargar progreso para sincronizar con la nube
         cargarProgreso();
-        actualizarInterfaz();
+        actualizarEstado();
     } else {
         mostrarEstadoSync('Ingresá un DNI válido', true);
     }
@@ -113,7 +113,7 @@ function limpiarDNI() {
     mostrarEstadoSync('Modo local activado');
     // Recargar solo desde localStorage
     cargarProgreso();
-    actualizarInterfaz();
+    actualizarEstado();
 }
 
 function mostrarEstadoSync(mensaje, esError = false) {
@@ -133,6 +133,24 @@ function mostrarEstadoSync(mensaje, esError = false) {
     
     statusElement.textContent = mensaje;
     statusElement.style.color = esError ? '#e74c3c' : '#27ae60';
+}
+
+function guardarEnLocalStorage() {
+    localStorage.setItem(claveLS("aprobadas"), JSON.stringify([...aprobadas]));
+    localStorage.setItem(claveLS("cursando"), JSON.stringify([...cursando]));
+    localStorage.setItem(claveLS("regulares"), JSON.stringify([...regulares]));
+    localStorage.setItem("ultimaCarrera", carreraActual);
+}
+
+function cargarDesdeLocalStorage() {
+    const data = localStorage.getItem(claveLS("aprobadas"));
+    aprobadas = data ? new Set(JSON.parse(data)) : new Set();
+
+    const dataCursando = localStorage.getItem(claveLS("cursando"));
+    cursando = dataCursando ? new Set(JSON.parse(dataCursando)) : new Set();
+
+    const dataRegulares = localStorage.getItem(claveLS("regulares"));
+    regulares = dataRegulares ? new Set(JSON.parse(dataRegulares)) : new Set();
 }
 
 // --- FIN DE MODIFICACION DB
