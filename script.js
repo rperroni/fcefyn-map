@@ -30,27 +30,21 @@ async function cargarProgreso() {
             const doc = await db.collection('progreso').doc(dniActual).get();
             if (doc.exists) {
                 const dataFirebase = doc.data();
-                // Sobrescribir con datos de Firebase si existen
+                
+                // SOLO CARGAR LAS MATERIAS, IGNORAR LA CARRERA GUARDADA
+                // (así podés ver cualquier carrera sin que te fuerce a una específica)
                 aprobadas = new Set(dataFirebase.aprobadas || []);
                 cursando = new Set(dataFirebase.cursando || []);
                 regulares = new Set(dataFirebase.regulares || []);
                 
-                // VERIFICAR SI LA CARRERA CAMBIÓ
-                const carreraAnterior = carreraActual;
-                carreraActual = dataFirebase.carreraActual || carreraActual;
+                // NO cambiar carreraActual - dejar la que el usuario eligió
+                // carreraActual = dataFirebase.carreraActual || carreraActual;
                 
                 // También actualizar localStorage
                 guardarEnLocalStorage();
                 
-                // SI CAMBIÓ LA CARRERA, ACTUALIZAR LA INTERFAZ
-                if (carreraActual !== carreraAnterior) {
-                    cargarCarrera(carreraActual);
-                    renderCarreraDropdown();
-                    actualizarPlanCarreraLink(carreraActual);
-                }
-                
                 mostrarEstadoSync('Datos sincronizados desde la nube');
-                actualizarEstado();  // Asegurar que se actualice la UI
+                actualizarEstado();
             }
         } catch (error) {
             console.error('Error cargando desde Firebase:', error);
@@ -73,9 +67,9 @@ async function guardarProgreso() {
                 aprobadas: [...aprobadas],
                 cursando: [...cursando],
                 regulares: [...regulares],
-                carreraActual: carreraActual,
+                carreraActual: carreraActual,  // ← Esto guarda la carrera ACTUAL
                 ultimaActualizacion: firebase.firestore.FieldValue.serverTimestamp()
-            });
+            }, { merge: true });  // ← IMPORTANTE: merge: true para no pisar otros datos
             mostrarEstadoSync('Datos guardados en la nube');
         } catch (error) {
             console.error('Error guardando en Firebase:', error);
