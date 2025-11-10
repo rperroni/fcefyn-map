@@ -34,12 +34,23 @@ async function cargarProgreso() {
                 aprobadas = new Set(dataFirebase.aprobadas || []);
                 cursando = new Set(dataFirebase.cursando || []);
                 regulares = new Set(dataFirebase.regulares || []);
+                
+                // VERIFICAR SI LA CARRERA CAMBIÓ
+                const carreraAnterior = carreraActual;
                 carreraActual = dataFirebase.carreraActual || carreraActual;
                 
                 // También actualizar localStorage
                 guardarEnLocalStorage();
                 
+                // SI CAMBIÓ LA CARRERA, ACTUALIZAR LA INTERFAZ
+                if (carreraActual !== carreraAnterior) {
+                    cargarCarrera(carreraActual);
+                    renderCarreraDropdown();
+                    actualizarPlanCarreraLink(carreraActual);
+                }
+                
                 mostrarEstadoSync('Datos sincronizados desde la nube');
+                actualizarEstado();  // Asegurar que se actualice la UI
             }
         } catch (error) {
             console.error('Error cargando desde Firebase:', error);
