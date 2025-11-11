@@ -20,12 +20,17 @@
             FCEFyN Map
         </a>
     </h1>-->
-    <div class="sync-controls" style="display: inline-block; margin-left: 20px;">
-        <input type="text" id="dni-input" placeholder="DNI para sincronizar" 
-            style="padding: 5px; margin-right: 5px; width: 150px;">
-        <button id="btn-sincronizar">Sincronizar</button>
-        <button id="btn-local">Local</button>
-        <span id="sync-status" style="margin-left: 10px; font-size: 0.9em;"></span>
+    <div class="sync-controls">
+        <input type="text" id="dni-input" placeholder="DNI para sincronizar">
+        <button id="btn-sync" class="sync-btn">
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+            <span class="btn-label">Sincronizar</span>
+        </button>
+        <button id="btn-local" class="sync-btn">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span class="btn-label">Modo local</span>
+        </button>
+        <span id="sync-status"></span>
     </div>
     <!-- Selector de carrera personalizado -->
     <div class="selector-carrera">

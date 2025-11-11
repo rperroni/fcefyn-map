@@ -1157,3 +1157,111 @@ footer {
     }
 }
 
+/* Sync controls */
+.sync-controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /*background: var(--bgnd-color-selector);*/
+    padding: 8px 14px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    font-size: 0.85rem;
+}
+
+.sync-controls input {
+    background: #263238;
+    color: #fff;
+    border: 1px solid #455a64;
+    border-radius: 6px;
+    padding: 6px 10px;
+    outline: none;
+    width: 140px;
+    font-size: 0.85rem;
+}
+
+.sync-controls input {
+    font-size: 0.875rem;
+}
+
+.sync-controls input::placeholder {
+    color: #b0bec5;
+}
+
+.sync-controls input:focus {
+    border-color: #1e88e5;
+}
+
+.sync-btn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: #37474f;
+    color: #fff;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background .15s, transform .15s;
+    padding: 0;
+}
+
+.sync-btn:hover {
+    background: #1e88e5;
+}
+
+.sync-btn:active {
+    transform: translateY(1px);
+}
+
+.sync-btn .btn-label {
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translate(-50%, 100%);
+    background: #263238;
+    color: #fff;
+    padding: 4px 8px;
+    font-size: 0.65rem;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .15s, transform .15s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+.sync-btn:hover .btn-label {
+    opacity: 1;
+    transform: translate(-50%, 90%);
+}
+
+#sync-status {
+    font-size: 0.7rem;
+    color: #9ccc65;
+    min-width: 90px;
+}
+
+/* Alinear a la izquierda en desktop */
+@media (min-width: 901px) {
+    .sync-controls {
+        margin-right: auto;
+    }
+}
+
+/* En mobile ocupar todo el ancho y centrar */
+@media (max-width: 900px) {
+    .sync-controls {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .sync-controls input {
+        width: 60%;
+        min-width: 160px;
+    }
+}
+

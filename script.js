@@ -43,12 +43,14 @@ async function cargarProgreso() {
                 // También actualizar localStorage
                 guardarEnLocalStorage();
                 
-                mostrarEstadoSync('Datos sincronizados desde la nube');
+                //mostrarEstadoSync('Datos sincronizados desde la nube');
+                console.log('Datos sincronizados desde la nube');
                 actualizarEstado();
             }
         } catch (error) {
             console.error('Error cargando desde Firebase:', error);
-            mostrarEstadoSync('Error al sincronizar, usando datos locales', true);
+            //mostrarEstadoSync('Error al sincronizar, usando datos locales', true);
+            console.log('Error al sincronizar, usando datos locales');
         }
     }
 }
@@ -70,10 +72,12 @@ async function guardarProgreso() {
                 carreraActual: carreraActual,  // ← Esto guarda la carrera ACTUAL
                 ultimaActualizacion: firebase.firestore.FieldValue.serverTimestamp()
             }, { merge: true });  // ← IMPORTANTE: merge: true para no pisar otros datos
-            mostrarEstadoSync('Datos guardados en la nube');
+            //mostrarEstadoSync('Datos guardados en la nube');
+            console.log('Datos guardados en la nube');
         } catch (error) {
             console.error('Error guardando en Firebase:', error);
-            mostrarEstadoSync('Error al guardar en la nube', true);
+            //mostrarEstadoSync('Error al guardar en la nube', true);
+            console.log('Error al guardar en la nube');
         }
     }
 }
@@ -100,25 +104,45 @@ try {
 
 let dniActual = '';
 
+function updateSyncUI() {
+    const syncBtn = document.getElementById('btn-sync');
+    const localBtn = document.getElementById('btn-local');
+    if (!syncBtn || !localBtn) return;
+
+    if (dniActual) {
+        syncBtn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i><span class="btn-label">Guardar</span>';
+        localBtn.innerHTML = '<i class="fa-solid fa-right-from-bracket"></i><span class="btn-label">Salir a local</span>';
+    } else {
+        syncBtn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i><span class="btn-label">Sincronizar</span>';
+        localBtn.innerHTML = '<i class="fa-solid fa-right-from-bracket"></i><span class="btn-label">Modo local</span>';
+    }
+}
+
 function configurarDNI(dni) {
     const dniLimpio = dni.trim();
     if (dniLimpio) {
         dniActual = dniLimpio;
-        mostrarEstadoSync('DNI configurado: ' + dniActual);
+        //mostrarEstadoSync('DNI configurado: ' + dniActual);
+        console.log('DNI configurado: ' + dniActual);
         // Recargar progreso para sincronizar con la nube
-        cargarProgreso();
-        actualizarEstado();
+        cargarProgreso().then(updateSyncUI);
+        //actualizarEstado();
     } else {
-        mostrarEstadoSync('Ingresá un DNI válido', true);
+        //mostrarEstadoSync('Ingresá un DNI válido', true);
+        console.log('Ingresá un DNI válido');
     }
+    actualizarEstado();
+    updateSyncUI();
 }
 
 function limpiarDNI() {
     dniActual = '';
-    mostrarEstadoSync('Modo local activado');
+    //mostrarEstadoSync('Modo local activado');
+    console.log('Modo local activado');
     // Recargar solo desde localStorage
-    cargarProgreso();
+    cargarProgreso().then(updateSyncUI);
     actualizarEstado();
+    updateSyncUI();
 }
 
 function mostrarEstadoSync(mensaje, esError = false) {
@@ -1103,20 +1127,17 @@ function updateOptativaSlots() {
     
 // Agregar event listeners cuando el DOM esté cargado
 document.addEventListener('DOMContentLoaded', function() {
-    const btnSincronizar = document.getElementById('btn-sincronizar');
+    const btnSync = document.getElementById('btn-sync');
     const btnLocal = document.getElementById('btn-local');
     const dniInput = document.getElementById('dni-input');
-    
-    if (btnSincronizar) {
-        btnSincronizar.addEventListener('click', function() {
-            configurarDNI(dniInput.value);
-        });
+
+    if (btnSync) {
+        btnSync.addEventListener('click', () => configurarDNI(dniInput.value));
     }
-    
     if (btnLocal) {
         btnLocal.addEventListener('click', limpiarDNI);
     }
-    
-    console.log("✅ Event listeners configurados");
+    updateSyncUI();
+    console.log("✅ Event listeners configurados (sync)");
 });
 
