@@ -1,6 +1,6 @@
 [
     {
-    "codigo": "AmbUniv",
+    "codigo": "td25-AmbUniv",
     "nombre": "Ambientación Universitaria",
     "correlativas": [],
     "RTF": 1,
@@ -8,7 +8,7 @@
     "programa_url": "https://fcefyn.unc.edu.ar/documents/5515/10-04050-Ambientaci%C3%B3n_Universitaria.pdf"
   },
   {
-    "codigo": "mat",
+    "codigo": "td25-mat",
     "nombre": "Matemática",
     "correlativas": [],
     "RTF": 3,
@@ -16,7 +16,7 @@
     "programa_url": "https://fcefyn.unc.edu.ar/documents/5513/10-04051-Matem%C3%A1tica.pdf"
   },
   {
-    "codigo": "FyQ",
+    "codigo": "td25-FyQ",
     "nombre": "Física y Química",
     "correlativas": [],
     "RTF": 3,
@@ -26,15 +26,15 @@
   
   
   {
-    "codigo": "AM1",
+    "codigo": "td25-AM1",
     "nombre": "Análisis Matemático 1",
-    "correlativas": ["mat"],
+    "correlativas": ["td25-mat"],
     "RTF": 7,
     "semestre": 1,
     "programa_url": "https://fcefyn.unc.edu.ar/documents/5610/10-04053-An%C3%A1lisis_Matem%C3%A1tico_1.pdf"
   },
   {
-    "codigo": "SR",
+    "codigo": "td25-SR",
     "nombre": "Sistemas de Representación",
     "correlativas": [],
     "RTF": 7,
@@ -42,9 +42,9 @@
     "programa_url": "https://fcefyn.unc.edu.ar/documents/5686/10-04057-Qu%C3%ADmica.pdf"
   }, 
   {
-    "codigo": "TyL",
+    "codigo": "td25-TyL",
     "nombre": "Taller y Laboratorio",
-    "correlativas": ["AmbUniv", "mat"],
+    "correlativas": ["td25-AmbUniv", "td25-mat"],
     "RTF": 6,
     "semestre": 1,
     "programa_url": "https://fcefyn.unc.edu.ar/documents/5698/10-04058-Taller_y_Laboratorio.docx.pdf"
@@ -52,50 +52,50 @@
 
 
   {
-    "codigo": "AL",
+    "codigo": "td25-AL",
     "nombre": "Álgebra Lineal",
-    "correlativas": ["mat"],
+    "correlativas": ["td25-mat"],
     "RTF": 7,
     "semestre": 2,
     "programa_url": "https://fcefyn.unc.edu.ar/documents/5611/10-04059-%C3%81lgebra_Lineal-v02.docx.pdf"
   },
   {
-    "codigo": "F1",
+    "codigo": "td25-F1",
     "nombre": "Física 1",
-    "correlativas": ["FyQ", "AM1"],
+    "correlativas": ["td25-FyQ", "td25-AM1"],
     "RTF": 7,
     "semestre": 2,
     "programa_url": "https://fcefyn.unc.edu.ar/documents/5469/10-04060-F%C3%ADsica_1-v02.docx.pdf"
   },
   {
-    "codigo": "IyCN",
+    "codigo": "td25-IyCN",
     "nombre": "Informática y Cálculo Numérico",
-    "correlativas": ["AM1"],
+    "correlativas": ["td25-AM1"],
     "RTF": 7,
     "semestre": 2,
     "programa_url": "https://fcefyn.unc.edu.ar/documents/5693/10-04061-Inform%C3%A1tica_y_C%C3%A1lculo_Num%C3%A9rico.docx.pdf"
   },
 
   {
-    "codigo": "ED1",
+    "codigo": "td25-ED1",
     "nombre": "Electrónica Digital 1",
-    "correlativas": ["IyCN", "TyL"],
+    "correlativas": ["td25-IyCN", "td25-TyL"],
     "RTF": 10,
     "semestre": 3,
     "programa_url": "https://fcefyn.unc.edu.ar/documents/5700/10-04068-Electr%C3%B3nica_Digital_1.docx.pdf"
   },
   {
-    "codigo": "infAvan",
+    "codigo": "td25infAvan",
     "nombre": "Informática Avanzada",
-    "correlativas": ["IyCN"],
+    "correlativas": ["td25-IyCN"],
     "RTF": 6,
     "semestre": 3,
     "programa_url": "https://fcefyn.unc.edu.ar/documents/5569/10-09700-Inform%C3%A1tica_Avanzada.docx.pdf"
   },
   {
-    "codigo": "F2",
+    "codigo": "td25-F2",
     "nombre": "Física 2",
-    "correlativas": ["F1", "AL"],
+    "correlativas": ["td25-F1", "td25-AL"],
     "RTF": 7,
     "semestre": 3,
     "programa_url": "https://fcefyn.unc.edu.ar/documents/5470/10-04067-F%C3%ADsica_2-v02.docx.pdf"
@@ -103,15 +103,15 @@
 
 
   {
-    "codigo": "ED2",
+    "codigo": "td25-ED2",
     "nombre": "Electrónica Digital 2",
-    "correlativas": ["ED1"],
+    "correlativas": ["td25-ED1"],
     "RTF": 10,
     "semestre": 4,
     "programa_url": "https://fcefyn.unc.edu.ar/documents/5702/10-04071-Electr%C3%B3nica_Digital_2.docx.pdf"
   },
   {
-    "codigo": "ingles",
+    "codigo": "td25-ingles",
     "nombre": "Módulo de Inglés",
     "correlativas": [],
     "condiciones": {
@@ -123,33 +123,33 @@
     "programa_url": "https://fcefyn.unc.edu.ar/documents/5636/10-04066-M%C3%B3dulo_de_ingl%C3%A9s-v02.docx.pdf"
   },
   {
-    "codigo": "elec",
+    "codigo": "td25-elec",
     "nombre": "Electrónica",
-    "correlativas": ["F2", "TyL"],
+    "correlativas": ["td25-F2", "td25-TyL"],
     "RTF": 6,
     "semestre": 4,
     "programa_url": "https://fcefyn.unc.edu.ar/documents/5699/10-04074-Electr%C3%B3nica.docx.pdf"
   },
 
   {
-    "codigo": "ED3",
+    "codigo": "td25-ED3",
     "nombre": "Electrónica Digital 3",
-    "correlativas": ["ED2", "infAvan"],
+    "correlativas": ["td25-ED2", "td25infAvan"],
     "RTF": 10,
     "semestre": 5,
     "programa_url": "https://fcefyn.unc.edu.ar/documents/5703/10-04075-Electr%C3%B3nica_Digital_3.docx.pdf"
   },
   {
-    "codigo": "ME",
+    "codigo": "td25-ME",
     "nombre": "Mediciones Electrónicas",
-    "correlativas": ["ED1", "elec"],
+    "correlativas": ["td25-ED1", "td25-elec"],
     "RTF": 8,
     "semestre": 5,
     "programa_url": "https://fcefyn.unc.edu.ar/documents/5598/10-09702-Mediciones_Electr%C3%B3nicas.docx.pdf"
   },
 
   {
-    "codigo": "PPS",
+    "codigo": "td25-PPS",
     "nombre": "Práctica Profesional Supervisada",
     "correlativas": [],
     "condiciones": {
@@ -162,9 +162,9 @@
   },
 
   {
-    "codigo": "TE",
+    "codigo": "td25-TE",
     "nombre": "Tecnología Electrónica",
-    "correlativas": ["F2", "elec"],
+    "correlativas": ["td25-F2", "td25-elec"],
     "RTF": 6,
     "semestre": 6,
     "programa_url": "https://fcefyn.unc.edu.ar/documents/5601/10-09706-Tecnolog%C3%ADa_Electr%C3%B3nica.docx.pdf"
