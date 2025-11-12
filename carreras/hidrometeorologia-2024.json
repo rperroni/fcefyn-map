@@ -12,7 +12,7 @@
     {
     "codigo": "H24-AM1",
     "nombre": "Análisis Matemático I",
-    "correlativas": ["nivelacion"],
+    "correlativas": ["H24-nivelacion"],
     "RTF": 1,
     "semestre": 1,
     "programa_url": "https://fcefyn.unc.edu.ar/facultad/secretarias/academica/departamentos/famaf/03-01027-analisis-matematico-i/"
@@ -20,7 +20,7 @@
     {
     "codigo": "H24-introatm",
     "nombre": "Introducción a la Atmósfera",
-    "correlativas": ["nivelacion"],
+    "correlativas": ["H24-nivelacion"],
     "RTF": 1,
     "semestre": 1,
     "programa_url": "https://fcefyn.unc.edu.ar/documents/4265/2_-_1er_a%C3%B1o_1_Introducci%C3%B3n_a_la_Atm%C3%B3sfera.docx_1.pdf"
@@ -28,7 +28,7 @@
     {
     "codigo": "H24-qcagral",
     "nombre": "Química General",
-    "correlativas": ["nivelacion"],
+    "correlativas": ["H24-nivelacion"],
     "RTF": 1,
     "semestre": 1,
     "programa_url": "https://fcefyn.unc.edu.ar/documents/205/1Quimica-General_5t0fy76.pdf"
@@ -162,7 +162,7 @@
     {
     "codigo": "H24-informatica",
     "nombre": "Informática",
-    "correlativas": ["nivelacion"],
+    "correlativas": ["H24-nivelacion"],
     "RTF": 1,
     "semestre": 5,
     "programa_url": "https://fcefyn.unc.edu.ar/documents/108/07-IM-Informatica_1.pdf"
